@@ -136,9 +136,87 @@ $$C_{\text{macro}} = 0.50 \times W_M + 0.35 \times Q_{\text{opp}} + 0.15 \times 
 
 ---
 
-## 🚀 Execution Guide
+---
 
-To reproduce the pipeline from scratch:
+## 🏆 Final Official Results
+
+### 🏏 Top 10 Batters Under Pressure
+
+| Rank | Player Name | HP Balls | HP Runs | HP SR | HP Avg | HP Boundary % | PPR (Elevation) | Final Score | Archetype |
+|:---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| **1** | **Naman Dhir** | 265 | 497 | **187.5** | 31.1 | **27.5%** | **1.51** (+51%) | **87.7** | Clutch Giant |
+| **2** | **Shashank Singh** | 364 | 609 | **167.3** | **38.1** | **22.0%** | **1.13** (+13%) | **84.3** | Clutch Giant |
+| **3** | **Tim David** | 763 | **1,345** | **176.3** | 36.4 | **24.6%** | **1.13** (+13%) | **81.5** | Clutch Giant |
+| **4** | **Tilak Varma** | 760 | **1,264** | **166.3** | **39.5** | **22.4%** | **1.30** (+30%) | **81.1** | Clutch Giant |
+| **5** | **Jos Buttler** | 187 | 322 | **172.2** | 35.8 | **26.7%** | **1.15** (+15%) | **81.0** | Clutch Giant |
+| **6** | **Rishabh Pant** | 277 | 471 | **170.0** | 36.2 | **24.5%** | **1.39** (+39%) | **79.4** | Crisis Specialist |
+| **7** | **Matthew Wade** | 223 | 333 | 149.3 | **41.6** | 18.4% | **1.56** (+56%) | **78.9** | Crisis Specialist |
+| **8** | **Shreyas Iyer** | 286 | 499 | **174.5** | 26.3 | **24.1%** | **1.12** (+12%) | **78.8** | Clutch Giant |
+| **9** | **Rajat Patidar** | 219 | 373 | **170.3** | 33.9 | **23.7%** | **1.01** (+1%) | **78.5** | Clutch Giant |
+| **10** | **Tristan Stubbs** | 648 | **1,028** | 158.6 | 35.4 | **20.2%** | **1.13** (+13%) | **78.0** | Clutch Giant |
+
+---
+
+### 🎯 Top 10 Bowlers Under Pressure
+
+| Rank | Player Name | HP Balls | HP Econ | HP WSR | Post-Bdry Composure | PPR (Elevation) | Final Score | Archetype |
+|:---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| **1** | **Sunil Narine** | 448 | **6.76** | 16.6 | **40.0%** | **1.20** (+20%) | **76.8** | Clutch Giant |
+| **2** | **Jasprit Bumrah** | **736** | **6.88** | 21.0 | **46.8%** | **1.14** (+14%) | **72.5** | Clutch Giant |
+| **3** | **Shaheen Afridi** | 349 | **7.39** | **10.9** | **43.0%** | **1.28** (+28%) | **69.2** | Clutch Giant |
+| **4** | **Faheem Ashraf** | 122 | **7.57** | **12.2** | **48.6%** | **1.60** (+60%) | **68.7** | Crisis Specialist |
+| **5** | **Riley Meredith** | 139 | 8.50 | **10.7** | **45.7%** | **1.60** (+60%) | **68.7** | Crisis Specialist |
+| **6** | **Haris Rauf** | 363 | 7.92 | **11.7** | **38.1%** | **1.39** (+39%) | **67.5** | Crisis Specialist |
+| **7** | **Alzarri Joseph** | 458 | 8.66 | 15.3 | **42.5%** | **1.60** (+60%) | **66.1** | Crisis Specialist |
+| **8** | **Shadab Khan** | 125 | **6.72** | 20.8 | **30.0%** | **1.57** (+57%) | **64.8** | Crisis Specialist |
+| **9** | **Xavier Bartlett** | 241 | 8.61 | 18.5 | **41.3%** | **1.60** (+60%) | **64.4** | Crisis Specialist |
+| **10** | **Axar Patel** | 603 | **7.58** | 18.3 | **36.8%** | **1.23** (+23%) | **64.2** | Clutch Giant |
+
+---
+
+## 🔄 The 4-Quadrant Archetypes Model
+
+```
+                           High-Pressure Score (Y-axis) ↑
+                                                        │
+         QUADRANT 2: CRISIS SPECIALISTS                 │            QUADRANT 1: CLUTCH GIANTS
+     (Low/Mid Normal Score, High Pressure Score)        │   (High Normal Score, High Pressure Score)
+     • Elevates under pressure (PPR > 1.25)             │   • Dominates under ALL conditions (PPR ~ 1.0 - 1.2)
+     • Unheralded match-winners                         │   • World-class consistency under any game state
+     • Batters: Rishabh Pant, Matthew Wade              │   • Batters: Naman Dhir, Shashank Singh, Tim David,
+     • Bowlers: Faheem Ashraf, Riley Meredith,          │              Tilak Varma, Jos Buttler, Shreyas Iyer
+                Haris Rauf, Shadab Khan                 │   • Bowlers: Sunil Narine, Jasprit Bumrah,
+                                                        │              Shaheen Afridi, Axar Patel
+  ──────────────────────────────────────────────────────┼──────────────────────────────────────────────────────→
+           QUADRANT 4: STRUGGLERS                       │            QUADRANT 3: FRONT-RUNNERS
+     (Low Normal Score, Low Pressure Score)             │   (High Normal Score, Low Pressure Score)
+     • Below average across both regimes                │   • Feast on easy conditions / dead rubbers
+     • Low match leverage impact                        │   • Performance sharply declines under pressure (PPR < 0.9)
+     • Batters: Lower-order accumulators                │   • Batters: Aiden Markram (PPR 0.78), Dewald Brevis (PPR 0.80)
+     • Bowlers: Kartik Tyagi, Avesh Khan                │   • Bowlers: Mohammed Shami (PPR 0.60), Naveen ul Haq (PPR 0.78)
+```
+
+---
+
+## 🌟 Pressure-Proof World XI
+
+* **Slot #1 (Opener)**: **Virat Kohli** (HP SR 197.4, HP Avg 38.5)
+* **Slot #2 (Opener)**: **Quinton de Kock (wk)** (HP SR 152.4, HP Avg 48.0)
+* **Slot #3 (One-Down / Anchor)**: **Shreyas Iyer (c)** (HP SR 198.3, HP Avg 58.5)
+* **Slot #4 (Middle Power)**: **Rovman Powell** (HP SR 170.0, HP Avg 39.7)
+* **Slot #5 (Crisis Stabilizer)**: **Tilak Varma** (679 HP runs, HP Avg 45.3)
+* **Slot #6 (Finisher)**: **Shashank Singh** (315 HP runs, HP Avg 45.0)
+* **Slot #7 (Lower Clutch)**: **Naman Dhir** (262 HP runs, HP SR 197.0, HP Avg 43.7)
+* **Death Enforcer**: **Sunil Narine** (HP Econ 6.18, WSR 11.2)
+* **Powerplay Weapon**: **Shaheen Afridi** (HP Econ 6.19, WSR 14.2)
+* **Death Yorker Specialist**: **Jasprit Bumrah** (736 HP balls, HP Econ 6.88, Post-Boundary: 46.8%)
+* **Middle Squeezer**: **Harpreet Brar** (HP Econ 6.35, WSR 13.9)
+
+---
+
+## 🚀 Execution Guide (Reproducing the Entire Pipeline)
+
+To run the complete pipeline from scratch:
 
 ```bash
 # 1. Ingestion & Game-State Reconstruction
@@ -152,10 +230,19 @@ python add_player_form_and_confidence.py
 
 # 4. Ball-Level Pressure Engine & 70th Percentile Split
 python stage3_pressure_engine.py
+
+# 5. Batting & Bowling Performance Metrics Engine
+python stage4_performance_engine.py
+
+# 6. Positional Batting (1-7) & Bowling Phase Specialists
+python positional_analysis.py
+
+# 7. 4-Quadrant Permutations Model & Official Rankings
+python stage5_quadrants_and_rankings.py
+
+# 8. Full Automated Integrity Audit
+python audit_stages_1_to_4.py
 ```
 
----
+For full mathematical proofs, methodology justifications, and analytical evidence, see **[`METHODOLOGY_REPORT.md`](METHODOLOGY_REPORT.md)**.
 
-## 🎯 Next Steps: Stages 4 & 5
-* **Stage 4**: Run player performance scoring engine across Normal vs. High-Pressure regimes.
-* **Stage 5**: Map players onto the 4-Quadrant Archetype Matrix and output the **Top 10 Batters** and **Top 10 Bowlers**.
