@@ -1,0 +1,11 @@
+{
+  "total_balls": 200999,
+  "thresh_bat": 0.5835,
+  "thresh_bowl": 0.6501206467402018,
+  "high_pressure_bat_balls": 60314,
+  "high_pressure_bowl_balls": 60300,
+  "death_overs_bat_hp_pct": 0.7725963917757682,
+  "death_overs_bowl_hp_pct": 0.6576011157601116,
+  "post_boundary_bowl_hp_pct": 0.5982764882622907,
+  "decider_matches_bat_hp_pct": 0.373271239062941
+}

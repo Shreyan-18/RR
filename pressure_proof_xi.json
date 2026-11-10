@@ -1,0 +1,86 @@
+{
+  "batting_lineup": {
+    "1": {
+      "name": "Virat Kohli",
+      "runs": 77,
+      "balls": 39,
+      "sr": 197.4,
+      "avg": 38.5,
+      "score": 68.4
+    },
+    "2": {
+      "name": "Quinton de Kock",
+      "runs": 96,
+      "balls": 63,
+      "sr": 152.4,
+      "avg": 48.0,
+      "score": 76.8
+    },
+    "3": {
+      "name": "Shreyas Iyer",
+      "runs": 117,
+      "balls": 59,
+      "sr": 198.3,
+      "avg": 58.5,
+      "score": 85.3
+    },
+    "4": {
+      "name": "Rovman Powell",
+      "runs": 119,
+      "balls": 70,
+      "sr": 170.0,
+      "avg": 39.7,
+      "score": 91.9
+    },
+    "5": {
+      "name": "Namboori Tilak Varma",
+      "runs": 679,
+      "balls": 403,
+      "sr": 168.5,
+      "avg": 45.3,
+      "score": 89.0
+    },
+    "6": {
+      "name": "Shashank Singh",
+      "runs": 315,
+      "balls": 191,
+      "sr": 164.9,
+      "avg": 45.0,
+      "score": 89.6
+    },
+    "7": {
+      "name": "Naman Dhir",
+      "runs": 262,
+      "balls": 133,
+      "sr": 197.0,
+      "avg": 43.7,
+      "score": 97.2
+    }
+  },
+  "bowling_attack": {
+    "Powerplay": {
+      "name": "Shaheen Afridi",
+      "hp_balls": 156,
+      "econ": 6.19,
+      "wsr": 14.2,
+      "post_b_comp": 55.1,
+      "score": 82.5
+    },
+    "Middle": {
+      "name": "Harpreet Brar",
+      "hp_balls": 153,
+      "econ": 6.35,
+      "wsr": 13.9,
+      "post_b_comp": 30.0,
+      "score": 79.7
+    },
+    "Death": {
+      "name": "Sunil Narine",
+      "hp_balls": 168,
+      "econ": 6.18,
+      "wsr": 11.2,
+      "post_b_comp": 43.8,
+      "score": 89.7
+    }
+  }
+}
