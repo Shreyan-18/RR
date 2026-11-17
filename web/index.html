@@ -62,60 +62,57 @@
       backdrop-filter: blur(12px);
       border: 1px solid rgba(31, 49, 79, 0.8);
     }
-    .pitch-line {
-      border: 1px dashed rgba(234, 26, 133, 0.3);
-    }
   </style>
 </head>
 <body class="bg-rr-deep text-slate-100 font-sans min-h-screen antialiased selection:bg-rr-pink selection:text-white">
 
-  <!-- TOP BRANDING NAV -->
-  <header class="sticky top-0 z-50 bg-rr-deep/90 backdrop-blur-md border-b border-rr-border">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+  <!-- TOP BRANDING NAV (With generous vertical padding - NEVER cut off) -->
+  <header class="sticky top-0 z-50 bg-rr-deep/95 backdrop-blur-lg border-b border-rr-border shadow-lg shadow-black/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
       
-      <!-- Logo & Title -->
-      <div class="flex items-center space-x-4">
-        <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-rr-pink to-rr-darkBlue flex items-center justify-center font-extrabold text-white text-xl shadow-lg shadow-rr-pink/30 border border-rr-pink/40">
+      <!-- Logo & Title with clean padding -->
+      <div class="flex items-center space-x-3.5">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-rr-pink to-rr-darkBlue flex items-center justify-center font-black text-white text-xl shadow-lg shadow-rr-pink/30 border border-rr-pink/40 flex-shrink-0">
           RR
         </div>
-        <div>
-          <div class="flex items-center space-x-2">
-            <span class="text-xs uppercase tracking-widest px-2 py-0.5 rounded-full bg-rr-pink/20 text-rr-lightPink font-bold border border-rr-pink/30">
+        <div class="flex flex-col justify-center">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-rr-pink/20 text-rr-lightPink border border-rr-pink/30 leading-none">
               Season 2 • Round 1
             </span>
-            <span class="text-xs uppercase tracking-widest px-2 py-0.5 rounded-full bg-rr-cyan/10 text-rr-cyan font-bold border border-rr-cyan/20">
+            <span class="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-rr-cyan/15 text-rr-cyan border border-rr-cyan/25 leading-none">
               Verified Pipeline
             </span>
           </div>
-          <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight text-white flex items-center gap-2">
+          <h1 class="text-lg sm:text-2xl font-extrabold tracking-tight text-white leading-tight">
             SupeRR Selector <span class="text-rr-pink">Analytics Hub</span>
           </h1>
         </div>
       </div>
 
-      <!-- Navigation Tabs -->
+      <!-- Navigation Tabs (Clean vector icons, 0 stickers) -->
       <nav class="hidden md:flex items-center space-x-1 bg-rr-surface p-1.5 rounded-xl border border-rr-border">
-        <button onclick="switchTab('leaderboard')" id="tab-btn-leaderboard" class="tab-btn active px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 bg-rr-pink text-white shadow-md shadow-rr-pink/30">
-          <i data-lucide="trophy" class="w-4 h-4 inline mr-1.5"></i>Leaderboard
+        <button onclick="switchTab('leaderboard')" id="tab-btn-leaderboard" class="tab-btn active px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 bg-rr-pink text-white shadow-md shadow-rr-pink/30 flex items-center gap-1.5">
+          <i data-lucide="trophy" class="w-4 h-4"></i> Leaderboard
         </button>
-        <button onclick="switchTab('quadrants')" id="tab-btn-quadrants" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-400 hover:text-white hover:bg-rr-card">
-          <i data-lucide="layout-grid" class="w-4 h-4 inline mr-1.5"></i>4-Quadrant Matrix
+        <button onclick="switchTab('quadrants')" id="tab-btn-quadrants" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-400 hover:text-white hover:bg-rr-card flex items-center gap-1.5">
+          <i data-lucide="layout-grid" class="w-4 h-4"></i> 4-Quadrant Matrix
         </button>
-        <button onclick="switchTab('lineup')" id="tab-btn-lineup" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-400 hover:text-white hover:bg-rr-card">
-          <i data-lucide="shield" class="w-4 h-4 inline mr-1.5"></i>Pressure-Proof XI
+        <button onclick="switchTab('lineup')" id="tab-btn-lineup" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-400 hover:text-white hover:bg-rr-card flex items-center gap-1.5">
+          <i data-lucide="shield" class="w-4 h-4"></i> Pressure-Proof XI
         </button>
-        <button onclick="switchTab('simulator')" id="tab-btn-simulator" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-400 hover:text-white hover:bg-rr-card">
-          <i data-lucide="gauge" class="w-4 h-4 inline mr-1.5"></i>Pressure Simulator
+        <button onclick="switchTab('simulator')" id="tab-btn-simulator" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-400 hover:text-white hover:bg-rr-card flex items-center gap-1.5">
+          <i data-lucide="gauge" class="w-4 h-4"></i> Pressure Simulator
         </button>
-        <button onclick="switchTab('methodology')" id="tab-btn-methodology" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-400 hover:text-white hover:bg-rr-card">
-          <i data-lucide="file-text" class="w-4 h-4 inline mr-1.5"></i>Methodology
+        <button onclick="switchTab('methodology')" id="tab-btn-methodology" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-400 hover:text-white hover:bg-rr-card flex items-center gap-1.5">
+          <i data-lucide="file-text" class="w-4 h-4"></i> Methodology
         </button>
       </nav>
 
-      <!-- Quick Action / Status -->
+      <!-- Quick Action -->
       <div class="flex items-center space-x-3">
         <div class="hidden lg:flex flex-col text-right">
-          <span class="text-xs text-slate-400">Database Size</span>
+          <span class="text-[11px] text-slate-400">Database Size</span>
           <span class="text-xs font-mono font-bold text-rr-lightPink">200,999 Deliveries</span>
         </div>
         <a href="https://github.com/Shreyan-18/RR.git" target="_blank" class="px-3.5 py-2 rounded-lg bg-rr-card hover:bg-rr-border text-slate-200 text-xs font-bold border border-rr-border transition flex items-center gap-1.5">
@@ -125,47 +122,47 @@
     </div>
 
     <!-- Mobile Navigation Bar -->
-    <div class="md:hidden flex overflow-x-auto px-4 py-2.5 space-x-2 bg-rr-surface border-t border-rr-border">
+    <div class="md:hidden flex overflow-x-auto px-4 py-2 space-x-2 bg-rr-surface border-t border-rr-border">
       <button onclick="switchTab('leaderboard')" class="mobile-tab-btn active text-xs whitespace-nowrap px-3 py-1.5 rounded-lg bg-rr-pink text-white font-bold">Leaderboard</button>
       <button onclick="switchTab('quadrants')" class="mobile-tab-btn text-xs whitespace-nowrap px-3 py-1.5 rounded-lg text-slate-400 font-bold">4-Quadrant</button>
-      <button onclick="switchTab('lineup')" class="mobile-tab-btn text-xs whitespace-nowrap px-3 py-1.5 rounded-lg text-slate-400 font-bold">Pressure-Proof XI</button>
+      <button onclick="switchTab('lineup')" class="mobile-tab-btn text-xs whitespace-nowrap px-3 py-1.5 rounded-lg text-slate-400 font-bold">Pressure XI</button>
       <button onclick="switchTab('simulator')" class="mobile-tab-btn text-xs whitespace-nowrap px-3 py-1.5 rounded-lg text-slate-400 font-bold">Simulator</button>
       <button onclick="switchTab('methodology')" class="mobile-tab-btn text-xs whitespace-nowrap px-3 py-1.5 rounded-lg text-slate-400 font-bold">Methodology</button>
     </div>
   </header>
 
   <!-- MAIN CONTAINER -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
     <!-- HERO METRICS STRIP -->
-    <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
       <div class="glass-card rounded-2xl p-4 relative overflow-hidden group">
         <div class="absolute right-2 -bottom-2 text-rr-pink/10 group-hover:text-rr-pink/20 transition">
-          <i data-lucide="database" class="w-20 h-20"></i>
+          <i data-lucide="database" class="w-16 h-16"></i>
         </div>
-        <p class="text-xs uppercase font-bold text-slate-400 tracking-wider">Total Deliveries</p>
+        <p class="text-[11px] uppercase font-bold text-slate-400 tracking-wider">Total Deliveries</p>
         <p class="text-2xl sm:text-3xl font-extrabold font-mono text-white mt-1">200,999</p>
         <span class="text-xs text-rr-lightPink font-semibold mt-1 inline-flex items-center gap-1">
-          <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> 867 Matches (IPL & T20I)
+          <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> 867 Matches (IPL & T20I)
         </span>
       </div>
 
       <div class="glass-card rounded-2xl p-4 relative overflow-hidden group">
         <div class="absolute right-2 -bottom-2 text-rr-cyan/10 group-hover:text-rr-cyan/20 transition">
-          <i data-lucide="flame" class="w-20 h-20"></i>
+          <i data-lucide="flame" class="w-16 h-16"></i>
         </div>
-        <p class="text-xs uppercase font-bold text-slate-400 tracking-wider">High Pressure Split</p>
+        <p class="text-[11px] uppercase font-bold text-slate-400 tracking-wider">High Pressure Split</p>
         <p class="text-2xl sm:text-3xl font-extrabold font-mono text-rr-cyan mt-1">60,314</p>
         <span class="text-xs text-slate-300 font-semibold mt-1 inline-flex items-center gap-1">
-          Top 30% Leverage ($P \ge 0.70$)
+          Top 30% Leverage (P ≥ 0.70)
         </span>
       </div>
 
       <div class="glass-card rounded-2xl p-4 relative overflow-hidden group">
         <div class="absolute right-2 -bottom-2 text-rr-gold/10 group-hover:text-rr-gold/20 transition">
-          <i data-lucide="users" class="w-20 h-20"></i>
+          <i data-lucide="users" class="w-16 h-16"></i>
         </div>
-        <p class="text-xs uppercase font-bold text-slate-400 tracking-wider">Qualified Players</p>
+        <p class="text-[11px] uppercase font-bold text-slate-400 tracking-wider">Qualified Players</p>
         <p class="text-2xl sm:text-3xl font-extrabold font-mono text-white mt-1">405</p>
         <span class="text-xs text-rr-gold font-semibold mt-1 inline-flex items-center gap-1">
           162 Batters • 243 Bowlers
@@ -174,9 +171,9 @@
 
       <div class="glass-card rounded-2xl p-4 relative overflow-hidden group">
         <div class="absolute right-2 -bottom-2 text-rr-pink/10 group-hover:text-rr-pink/20 transition">
-          <i data-lucide="crown" class="w-20 h-20"></i>
+          <i data-lucide="crown" class="w-16 h-16"></i>
         </div>
-        <p class="text-xs uppercase font-bold text-slate-400 tracking-wider">#1 Clutch Ranks</p>
+        <p class="text-[11px] uppercase font-bold text-slate-400 tracking-wider">#1 Clutch Ranks</p>
         <p class="text-lg sm:text-xl font-extrabold text-white mt-1 truncate">N. Dhir & S. Narine</p>
         <span class="text-xs text-rr-lightPink font-semibold mt-1 inline-flex items-center gap-1">
           Scores: 87.7 (Bat) • 76.8 (Bowl)
@@ -196,17 +193,17 @@
             Official Pressure Rankings <span class="text-rr-pink text-base font-semibold">• Top 10</span>
           </h2>
           <p class="text-sm text-slate-400 mt-0.5">
-            Ranked by Composite Pressure Performance Score, incorporating PPR elevation, opposition quality, and boundary composure.
+            Ranked by Composite Pressure Performance Score, audited across 867 fixtures.
           </p>
         </div>
 
         <!-- Role Toggle: Batters vs Bowlers -->
         <div class="flex items-center bg-rr-surface p-1 rounded-xl border border-rr-border shadow-inner">
-          <button onclick="toggleRole('batters')" id="role-btn-batters" class="px-5 py-2 rounded-lg text-sm font-bold bg-rr-pink text-white shadow-md transition">
-            <i data-lucide="zap" class="w-4 h-4 inline mr-1"></i> Batters (10)
+          <button onclick="toggleRole('batters')" id="role-btn-batters" class="px-5 py-2 rounded-lg text-sm font-bold bg-rr-pink text-white shadow-md transition flex items-center gap-1.5">
+            <i data-lucide="zap" class="w-4 h-4"></i> Batters (10)
           </button>
-          <button onclick="toggleRole('bowlers')" id="role-btn-bowlers" class="px-5 py-2 rounded-lg text-sm font-bold text-slate-400 hover:text-white transition">
-            <i data-lucide="target" class="w-4 h-4 inline mr-1"></i> Bowlers (10)
+          <button onclick="toggleRole('bowlers')" id="role-btn-bowlers" class="px-5 py-2 rounded-lg text-sm font-bold text-slate-400 hover:text-white transition flex items-center gap-1.5">
+            <i data-lucide="target" class="w-4 h-4"></i> Bowlers (10)
           </button>
         </div>
       </div>
@@ -227,7 +224,7 @@
           The 4-Quadrant Permutations Model
         </h2>
         <p class="text-sm text-slate-400 mt-1">
-          Separating true clutch performers from flat-track accumulators by comparing Normal Match Performance ($S_{\text{norm}}$) against High-Pressure Performance ($S_{\text{hp}}$).
+          Separating true clutch performers from flat-track accumulators by comparing Normal Match Performance against High-Pressure Performance.
         </p>
       </div>
 
@@ -267,7 +264,7 @@
         <div class="flex items-center justify-between mb-4">
           <h3 class="text-lg font-bold text-white flex items-center gap-2">
             <i data-lucide="scatter-chart" class="w-5 h-5 text-rr-pink"></i>
-            Interactive Performance Permutations Scatter Map
+            Performance Permutations Scatter Map
           </h3>
           <div class="flex items-center space-x-2">
             <button onclick="updateQuadrantChart('batters')" id="quad-btn-batters" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-rr-pink text-white transition">Batters</button>
@@ -290,16 +287,13 @@
           The Pressure-Proof World XI <span class="text-rr-gold text-base font-semibold">• Master Lineup</span>
         </h2>
         <p class="text-sm text-slate-400 mt-1">
-          Mathematically synthesized from positional optimization (Slots 1–7) and bowling phase specialists (Powerplay, Middle, Death).
+          Mathematically synthesized from positional optimization (Slots 1–7) and bowling phase specialists.
         </p>
       </div>
 
       <!-- CRICKET PITCH TACTICAL VIEW -->
       <div class="relative glass-card rounded-3xl p-6 sm:p-8 overflow-hidden bg-gradient-to-b from-rr-surface via-rr-card to-rr-surface border-2 border-rr-pink/30">
         
-        <!-- Pitch Center Glow -->
-        <div class="absolute inset-0 bg-radial-gradient from-rr-pink/5 via-transparent to-transparent pointer-events-none"></div>
-
         <div class="text-center mb-6">
           <span class="text-xs uppercase font-extrabold text-rr-lightPink tracking-widest px-3 py-1 rounded-full bg-rr-pink/15 border border-rr-pink/30">
             Tactical Pitch Deployment
@@ -359,7 +353,7 @@
               <span id="val-rrr" class="text-base font-mono font-bold text-rr-lightPink">11.5 RPO</span>
             </div>
             <input type="range" id="input-rrr" min="4" max="20" step="0.5" value="11.5" class="w-full accent-rr-pink bg-rr-surface rounded-lg cursor-pointer" oninput="runSimulation()">
-            <div class="flex justify-between text-xs text-slate-500 mt-1">
+            <div class="flex justify-between text-xs text-slate-500 mt-1 font-medium">
               <span>4.0 (Comfortable)</span>
               <span>10.0 (Tense)</span>
               <span>20.0 (Extreme Miracle)</span>
@@ -373,7 +367,7 @@
               <span id="val-balls" class="text-base font-mono font-bold text-white">24 Balls (4 Overs)</span>
             </div>
             <input type="range" id="input-balls" min="1" max="120" step="1" value="24" class="w-full accent-rr-pink bg-rr-surface rounded-lg cursor-pointer" oninput="runSimulation()">
-            <div class="flex justify-between text-xs text-slate-500 mt-1">
+            <div class="flex justify-between text-xs text-slate-500 mt-1 font-medium">
               <span>1 Ball (Final Ball)</span>
               <span>30 Balls (Death)</span>
               <span>120 Balls (Innings Start)</span>
@@ -387,24 +381,24 @@
               <span id="val-wickets" class="text-base font-mono font-bold text-amber-400">5 Wickets</span>
             </div>
             <input type="range" id="input-wickets" min="0" max="9" step="1" value="5" class="w-full accent-rr-pink bg-rr-surface rounded-lg cursor-pointer" oninput="runSimulation()">
-            <div class="flex justify-between text-xs text-slate-500 mt-1">
+            <div class="flex justify-between text-xs text-slate-500 mt-1 font-medium">
               <span>0 (Full Batting Depth)</span>
               <span>5 (Crisis Phase)</span>
               <span>9 (Last Wicket)</span>
             </div>
           </div>
 
-          <!-- Select 4: Match Stakes Context -->
+          <!-- Select 4: Match Stakes Context (CLEAN PROFESSIONAL TEXT - NO EMOJI STICKERS) -->
           <div>
-            <label class="text-sm font-semibold text-slate-200 block mb-2">Macro Match Stakes</label>
+            <label class="text-sm font-semibold text-slate-200 block mb-2">Macro Match Stakes Context</label>
             <select id="input-stakes" class="w-full p-3 bg-rr-surface border border-rr-border rounded-xl text-white font-semibold focus:outline-none focus:border-rr-pink" onchange="runSimulation()">
-              <option value="1.00">🏆 Tournament Final (IPL / ICC Final) - W_M = 1.00</option>
-              <option value="0.95">⚔️ Direct Knockout / Eliminator / Semi-Final - W_M = 0.95</option>
-              <option value="0.85" selected>🔥 Tied Series Decider (34 Matches) - W_M = 0.85</option>
-              <option value="0.80">💥 Marquee Derby (IND vs PAK, MI vs CSK) - W_M = 0.80</option>
-              <option value="0.70">📈 Late League Match (Match 55+ NRR Battle) - W_M = 0.70</option>
-              <option value="0.50">🏏 Standard League Match - W_M = 0.50</option>
-              <option value="0.35">💤 Dead Rubber (Series Clinched) - W_M = 0.35</option>
+              <option value="1.00">Tournament Final (IPL / ICC Championship) - [W_M = 1.00]</option>
+              <option value="0.95">Direct Knockout / Semi-Final / Eliminator - [W_M = 0.95]</option>
+              <option value="0.85" selected>Tied Series Decider (34 Matches) - [W_M = 0.85]</option>
+              <option value="0.80">Marquee Rivalry Derby (IND vs PAK, MI vs CSK) - [W_M = 0.80]</option>
+              <option value="0.70">Late League Match (Match 55+ NRR Battle) - [W_M = 0.70]</option>
+              <option value="0.50">Standard League Match - [W_M = 0.50]</option>
+              <option value="0.35">Dead Rubber (Series Already Clinched) - [W_M = 0.35]</option>
             </select>
           </div>
 
@@ -446,7 +440,7 @@
           </div>
 
           <div class="pt-4 border-t border-rr-border text-xs text-slate-500 font-mono">
-            $P = 0.40 \cdot C_{\text{macro}} + 0.60 \cdot S_{\text{micro}}$
+            P = 0.40 · C_macro + 0.60 · S_micro
           </div>
         </div>
       </div>
@@ -471,41 +465,41 @@
         <!-- Card 1: Pressure Index Formula -->
         <div class="glass-card rounded-2xl p-6 space-y-3">
           <div class="flex items-center gap-2 text-rr-pink font-bold">
-            <i data-lucide="function-square" class="w-5 h-5"></i>
+            <i data-lucide="calculator" class="w-5 h-5"></i>
             <h3>1. The Composite Pressure Index</h3>
           </div>
           <p class="text-xs text-slate-300 leading-relaxed">
-            Every ball is assigned a continuous score $P_{\text{ball}} \in [0, 1]$ uniting consequence severity and micro leverage:
+            Every ball is assigned a continuous score P_ball in [0, 1] uniting consequence severity and micro leverage:
           </p>
           <div class="p-3 rounded-xl bg-rr-surface font-mono text-xs text-rr-lightPink border border-rr-border">
             P_ball = 0.40 * C_macro + 0.60 * S_micro
           </div>
           <p class="text-xs text-slate-400 leading-relaxed">
-            Deliveries in the top 30% ($P \ge 0.70$) form the <strong>High-Pressure (HP) Regime</strong>, benchmarked directly against the normal regime. Super Overs are hardcoded to $1.00$.
+            Deliveries in the top 30% (P ≥ 0.70) form the <strong>High-Pressure (HP) Regime</strong>, benchmarked directly against the normal regime. Super Overs are hardcoded to 1.00.
           </p>
         </div>
 
         <!-- Card 2: Macro Stakes Taxonomy -->
         <div class="glass-card rounded-2xl p-6 space-y-3">
           <div class="flex items-center gap-2 text-rr-cyan font-bold">
-            <i data-lucide="trophy" class="w-5 h-5"></i>
+            <i data-lucide="award" class="w-5 h-5"></i>
             <h3>2. Macro Stakes & Match Context</h3>
           </div>
           <div class="p-3 rounded-xl bg-rr-surface font-mono text-xs text-rr-cyan border border-rr-border">
             C_macro = 0.50 * W_M + 0.35 * Q_opp + 0.15 * H_fortress
           </div>
           <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
-            <li><strong>Tournament Finals ($1.00$)</strong>: 15 championship matches.</li>
-            <li><strong>Direct Knockouts ($0.95$)</strong>: 9 eliminator & semi-final fixtures.</li>
-            <li><strong>Tied Series Deciders ($0.85$)</strong>: 34 bilateral deciders & 5 Super 4s.</li>
-            <li><strong>Dead Rubbers ($0.35$)</strong>: 64 matches after series was clinched.</li>
+            <li><strong>Tournament Finals (1.00)</strong>: 15 championship matches.</li>
+            <li><strong>Direct Knockouts (0.95)</strong>: 9 eliminator & semi-final fixtures.</li>
+            <li><strong>Tied Series Deciders (0.85)</strong>: 34 bilateral deciders & 5 Super 4s.</li>
+            <li><strong>Dead Rubbers (0.35)</strong>: 64 matches after series was clinched.</li>
           </ul>
         </div>
 
         <!-- Card 3: Opposition Quality Tiers -->
         <div class="glass-card rounded-2xl p-6 space-y-3">
           <div class="flex items-center gap-2 text-rr-gold font-bold">
-            <i data-lucide="award" class="w-5 h-5"></i>
+            <i data-lucide="shield" class="w-5 h-5"></i>
             <h3>3. Opposition Quality Hierarchy</h3>
           </div>
           <p class="text-xs text-slate-300 leading-relaxed">
@@ -527,7 +521,7 @@
           </div>
           <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside leading-relaxed">
             <li><strong>Post-Boundary Bowler Stress</strong>: Measures percentage of deliveries following a 4/6 where bowler yields a dot ball or wicket. Bumrah (46.8%) and Narine (40.0%) lead.</li>
-            <li><strong>Post-Wicket Surge</strong>: Next 6 balls receive $+0.08$ pressure boost.</li>
+            <li><strong>Post-Wicket Surge</strong>: Next 6 balls receive +0.08 pressure boost.</li>
             <li><strong>3-Match Rolling Form</strong>: Batter average / Bowler economy across preceding 3 matches modulates pressure resistance.</li>
           </ul>
         </div>
@@ -625,7 +619,7 @@
       renderCards(role);
     }
 
-    // Render Player Cards
+    // Render Player Cards with REAL DOWNLOADED IMAGES
     function renderCards(role) {
       const container = document.getElementById('players-cards-container');
       const players = role === 'batters' ? CRICKET_DATA.batters : CRICKET_DATA.bowlers;
@@ -673,9 +667,9 @@
             <div class="p-5">
               <!-- Top Header: Rank & Image & Name -->
               <div class="flex items-start gap-4">
-                <div class="relative">
+                <div class="relative flex-shrink-0">
                   <img src="${p.image}" alt="${p.name}" 
-                       class="w-16 h-16 rounded-2xl object-cover border-2 border-rr-pink/40 shadow-lg group-hover:scale-105 transition"
+                       class="w-16 h-16 rounded-2xl object-cover border-2 border-rr-pink/50 shadow-lg group-hover:scale-105 transition"
                        onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(p.name)}&background=EA1A85&color=fff&size=128&bold=true';">
                   <span class="absolute -top-2 -left-2 w-6 h-6 rounded-full bg-rr-pink text-white font-mono font-bold text-xs flex items-center justify-center shadow">
                     #${p.rank}
@@ -684,7 +678,7 @@
 
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center justify-between">
-                    <span class="text-[11px] font-bold px-2 py-0.5 rounded-full border ${badgeColor}">
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-full border ${badgeColor}">
                       ${p.archetype}
                     </span>
                     <span class="text-xs font-mono font-extrabold text-rr-gold">
@@ -732,10 +726,9 @@
       const modal = document.getElementById('player-modal');
       const content = document.getElementById('modal-content');
 
-      const isBatter = role === 'batters';
       content.innerHTML = `
         <div class="flex items-center gap-4 border-b border-rr-border pb-4">
-          <img src="${p.image}" alt="${p.name}" class="w-20 h-20 rounded-2xl object-cover border-2 border-rr-pink shadow-lg"
+          <img src="${p.image}" alt="${p.name}" class="w-20 h-20 rounded-2xl object-cover border-2 border-rr-pink shadow-lg flex-shrink-0"
                onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(p.name)}&background=EA1A85&color=fff&size=128&bold=true';">
           <div>
             <div class="flex items-center gap-2">
@@ -786,7 +779,7 @@
       battersContainer.innerHTML = xi.batting_lineup.map(b => `
         <div class="glass-card rounded-xl p-4 border border-rr-border hover:border-rr-pink/50 transition">
           <div class="flex items-center gap-3">
-            <img src="${b.image}" alt="${b.name}" class="w-12 h-12 rounded-xl object-cover border border-rr-pink"
+            <img src="${b.image}" alt="${b.name}" class="w-12 h-12 rounded-xl object-cover border border-rr-pink flex-shrink-0"
                  onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(b.name)}&background=EA1A85&color=fff&size=128&bold=true';">
             <div class="min-w-0 flex-1">
               <div class="flex justify-between items-center">
@@ -804,7 +797,7 @@
       bowlersContainer.innerHTML = xi.bowling_attack.map(bw => `
         <div class="glass-card rounded-xl p-4 border border-rr-border hover:border-rr-cyan/50 transition">
           <div class="flex items-center gap-3">
-            <img src="${bw.image}" alt="${bw.name}" class="w-12 h-12 rounded-xl object-cover border border-rr-cyan"
+            <img src="${bw.image}" alt="${bw.name}" class="w-12 h-12 rounded-xl object-cover border border-rr-cyan flex-shrink-0"
                  onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(bw.name)}&background=00F5D4&color=000&size=128&bold=true';">
             <div class="min-w-0 flex-1">
               <div class="flex justify-between items-center">
@@ -922,17 +915,14 @@
       document.getElementById('val-wickets').innerText = wickets + ' Wickets';
 
       // Mathematical computation
-      // Micro leverage S_micro = 0.45 * RRR_factor + 0.35 * Balls_factor + 0.20 * Wickets_factor
       const rrrNorm = Math.min(1.0, Math.max(0.0, (rrr - 6.0) / 10.0));
       const ballsNorm = Math.min(1.0, Math.max(0.0, (120 - balls) / 96.0));
       const wktsNorm = Math.min(1.0, wickets / 8.0);
       const sMicro = 0.45 * rrrNorm + 0.35 * ballsNorm + 0.20 * wktsNorm;
 
-      // Macro Context C_macro = 0.50 * stakes + 0.35 * Opp(0.85) + 0.15 * fortress
       const fortressVal = isFortress ? 1.0 : 0.0;
       const cMacro = 0.50 * stakes + 0.35 * 0.85 + 0.15 * fortressVal;
 
-      // Composite P_ball = 0.40 * C_macro + 0.60 * S_micro
       let pBall = 0.40 * cMacro + 0.60 * sMicro;
       pBall = Math.min(1.0, Math.max(0.1, pBall));
 

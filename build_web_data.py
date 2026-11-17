@@ -14,12 +14,12 @@ phase_df = pd.read_csv('bowling_phase_specialists.csv')
 quad_batters = pd.read_csv('batter_quadrants.csv')
 quad_bowlers = pd.read_csv('bowler_quadrants.csv')
 
-# Player bios and tactical scouting notes
+# Player bios and tactical scouting notes with local downloaded real images
 batter_scouting = {
     "Naman Dhir": {
         "team": "Mumbai Indians / Punjab",
         "role": "Finisher / Dynamic 360° Hitter",
-        "image": "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=400&q=80",
+        "image": "players/naman_dhir.jpg",
         "bio": "Empirically the #1 clutch batter in the entire dataset. Elevates performance by +51% under extreme pressure (PPR: 1.51) with a staggering 187.5 strike rate in high-leverage death chases.",
         "key_strength": "Explosive Boundary Conversion (27.5% in HP)",
         "archetype": "Clutch Giant"
@@ -27,7 +27,7 @@ batter_scouting = {
     "Shashank Singh": {
         "team": "Punjab Kings / Chhattisgarh",
         "role": "Crisis Finisher / Pressure Absorber",
-        "image": "https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=400&q=80",
+        "image": "players/shashank_singh.jpg",
         "bio": "The iceman of lower-order chases. Boasts an extraordinary 38.1 average under high pressure while striking at 167.3. Delivers a 1.13x lift in games where top order collapsed.",
         "key_strength": "High-leverage chase composure & 51.6% strike rotation",
         "archetype": "Clutch Giant"
@@ -35,7 +35,7 @@ batter_scouting = {
     "Tim David": {
         "team": "Mumbai Indians / Australia",
         "role": "Designated Death Overs Demolisher",
-        "image": "https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=400&q=80",
+        "image": "players/tim_david.jpg",
         "bio": "Massive volume clutch specialist with 1,345 high-pressure runs. Boasts a 176.3 HP strike rate and 24.6% boundary rate when RRR crosses 11.5.",
         "key_strength": "Heavy power hitting against Tier-1 pace in Death",
         "archetype": "Clutch Giant"
@@ -43,7 +43,7 @@ batter_scouting = {
     "Namboori Tilak Varma": {
         "team": "Mumbai Indians / India",
         "role": "Middle-Order Stabilizer & Finisher",
-        "image": "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80",
+        "image": "players/tilak_varma.jpg",
         "bio": "World-class crisis anchor who elevates by +30% (PPR: 1.30) in critical playoff and decider fixtures. Accumulated 1,264 HP runs at a 39.5 average with 166.3 SR.",
         "key_strength": "Gear shifting from 30/3 rescue to death acceleration",
         "archetype": "Clutch Giant"
@@ -51,7 +51,7 @@ batter_scouting = {
     "Jos Buttler": {
         "team": "Rajasthan Royals / England",
         "role": "Elite Opener & Match Winner",
-        "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80",
+        "image": "players/jos_buttler.jpg",
         "bio": "The gold standard of high-stakes acceleration. Strikes at 172.2 under pressure with a 26.7% boundary rate. Dominates both fortress away grounds and championship finals.",
         "key_strength": "Boundary acceleration against new-ball & death swing",
         "archetype": "Clutch Giant"
@@ -59,7 +59,7 @@ batter_scouting = {
     "Rishabh Pant": {
         "team": "Delhi Capitals / India",
         "role": "Wicketkeeper Batter / Counter-Attacker",
-        "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
+        "image": "players/rishabh_pant.jpg",
         "bio": "Quintessential Crisis Specialist. Massive +39% elevation under pressure (PPR: 1.39). Smashes 170.0 SR when entering at 4 wickets down, destroying opposition momentum.",
         "key_strength": "Fearless ramp & lofted boundary hitting in collapse situations",
         "archetype": "Crisis Specialist"
@@ -67,7 +67,7 @@ batter_scouting = {
     "Matthew Wade": {
         "team": "Gujarat Titans / Australia",
         "role": "Lower-Order Finisher",
-        "image": "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80",
+        "image": "players/matthew_wade.jpg",
         "bio": "Elevates by a gargantuan +56% (PPR: 1.56) in tournament knockouts. Maintains a 41.6 average in pressure balls, famous for ice-cool scoop shots when 12+ per over is needed.",
         "key_strength": "Ramp shots vs extreme 145kph+ pace in knockouts",
         "archetype": "Crisis Specialist"
@@ -75,7 +75,7 @@ batter_scouting = {
     "Shreyas Iyer": {
         "team": "Kolkata Knight Riders / India",
         "role": "One-Down Captain & Spin Neutralizer",
-        "image": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=400&q=80",
+        "image": "players/shreyas_iyer.jpg",
         "bio": "Championship-winning captain with a 174.5 strike rate under pressure. Exceptional at dismantling spin in high-leverage middle overs with a 51.4% strike rotation rate.",
         "key_strength": "High-pressure middle-over strike rotation (51.4%)",
         "archetype": "Clutch Giant"
@@ -83,7 +83,7 @@ batter_scouting = {
     "Rajat Patidar": {
         "team": "Royal Challengers Bengaluru / MP",
         "role": "Aggressive Spin Destroyer & Accelerator",
-        "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80",
+        "image": "players/rajat_patidar.jpg",
         "bio": "Proven playoff centurion. Strikes at 170.3 under pressure with a 23.7% boundary rate. Neutralizes both spin and high-pace bowling when match consequence is critical.",
         "key_strength": "Playoff acceleration & fearless six-hitting over mid-wicket",
         "archetype": "Clutch Giant"
@@ -91,7 +91,7 @@ batter_scouting = {
     "Tristan Stubbs": {
         "team": "Delhi Capitals / South Africa",
         "role": "360° Finisher & Crisis Rescuer",
-        "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80",
+        "image": "players/tristan_stubbs.jpg",
         "bio": "Crossed 1,028 high-pressure runs with 158.6 SR and 35.4 average. Possesses a 1.13x pressure lift, specializing in inventive strokeplay in high RRR run chases.",
         "key_strength": "Reverse sweeps and innovative death scoring",
         "archetype": "Clutch Giant"
@@ -102,7 +102,7 @@ bowler_scouting = {
     "Sunil Narine": {
         "team": "Kolkata Knight Riders / West Indies",
         "role": "Mystery Spinner / Death Enforcer",
-        "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+        "image": "players/sunil_narine.jpg",
         "bio": "Empirically the #1 clutch bowler in modern T20 cricket. Concedes an astonishingly low 6.76 economy across 448 high-pressure balls with a 16.6 strike rate. 40.0% post-boundary comeback rate.",
         "key_strength": "Impenetrable boundary choke (11.1% boundary rate)",
         "archetype": "Clutch Giant"
@@ -110,7 +110,7 @@ bowler_scouting = {
     "Jasprit Bumrah": {
         "team": "Mumbai Indians / India",
         "role": "All-Phase Pace Weapon & Yorker King",
-        "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80",
+        "image": "players/jasprit_bumrah.jpg",
         "bio": "The world benchmark. Bowled 736 high-pressure deliveries (highest volume) maintaining a microscopic 6.88 economy. Displays unmatched 46.8% post-boundary composure.",
         "key_strength": "Laser yorkers & 46.8% post-boundary dot/wicket comeback",
         "archetype": "Clutch Giant"
@@ -118,7 +118,7 @@ bowler_scouting = {
     "Shaheen Afridi": {
         "team": "Pakistan / Lahore Qalandars",
         "role": "Powerplay Weapon & Inswing Specialist",
-        "image": "https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=crop&w=400&q=80",
+        "image": "players/shaheen_afridi.jpg",
         "bio": "Lethal early-breakthrough weapon. Boasts a 10.9 wicket strike rate and 7.39 economy in high-stakes matches, elevating by +28% (PPR: 1.28) in knockout fixtures.",
         "key_strength": "First-over knockout breakthroughs (WSR: 10.9)",
         "archetype": "Clutch Giant"
@@ -126,7 +126,7 @@ bowler_scouting = {
     "Faheem Ashraf": {
         "team": "Islamabad United / Pakistan",
         "role": "Pace All-Rounder & Death Squeezer",
-        "image": "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&w=400&q=80",
+        "image": "players/faheem_ashraf.jpg",
         "bio": "Extreme Crisis Specialist (+60% elevation under pressure). Concedes only 7.57 economy in tight games with a 12.2 strike rate and 48.6% post-boundary dot/wicket rate.",
         "key_strength": "48.6% post-boundary recovery and heavy death yorkers",
         "archetype": "Crisis Specialist"
@@ -134,7 +134,7 @@ bowler_scouting = {
     "Riley Meredith": {
         "team": "Mumbai Indians / Australia",
         "role": "High-Velocity Enforcer (145kph+)",
-        "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80",
+        "image": "players/riley_meredith.jpg",
         "bio": "Pace thunderbolt with a blistering 10.7 wicket strike rate under high pressure. Elevated his impact from normal games to crunch moments by +60% (PPR: 1.60).",
         "key_strength": "Sheer pace yorkers and 45.7% bounce-back composure",
         "archetype": "Crisis Specialist"
@@ -142,7 +142,7 @@ bowler_scouting = {
     "Haris Rauf": {
         "team": "Pakistan / Lahore Qalandars",
         "role": "Death Overs Fast Bowler",
-        "image": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=400&q=80",
+        "image": "players/haris_rauf.jpg",
         "bio": "High-leverage strike weapon. Across 363 HP balls, claims a wicket every 11.7 deliveries. Thrives in high-ego rivalries like IND vs PAK and tight death finishes.",
         "key_strength": "Heavy 150kph reverse yorkers and 11.7 WSR in Death",
         "archetype": "Crisis Specialist"
@@ -150,7 +150,7 @@ bowler_scouting = {
     "Alzarri Joseph": {
         "team": "Gujarat Titans / West Indies",
         "role": "Hit-the-Deck Fast Bowler",
-        "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+        "image": "players/alzarri_joseph.jpg",
         "bio": "Bowled 458 high-pressure balls with a 15.3 strike rate and 42.5% post-boundary composure. Unlocks aggressive bounce on hostile away pitches.",
         "key_strength": "Steep bounce and 15.3 WSR in middle/death overs",
         "archetype": "Crisis Specialist"
@@ -158,7 +158,7 @@ bowler_scouting = {
     "Shadab Khan": {
         "team": "Islamabad United / Pakistan",
         "role": "Leg-Spin All-Rounder & Middle Choker",
-        "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80",
+        "image": "players/shadab_khan.jpg",
         "bio": "Elite spin control. Holds an unbelievable 6.72 economy under pressure with +57% elevation (PPR: 1.57), suffocating opposition batters in playoff middle overs.",
         "key_strength": "Tight 6.72 economy and deceptive wrong-un in crisis",
         "archetype": "Crisis Specialist"
@@ -166,7 +166,7 @@ bowler_scouting = {
     "Xavier Bartlett": {
         "team": "Australia / Brisbane Heat",
         "role": "Swing & Seam Wicket Taker",
-        "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
+        "image": "players/xavier_bartlett.jpg",
         "bio": "Breakout clutch performer (+60% elevation). Takes 13 wickets in 241 HP balls with an 18.5 strike rate and 41.3% post-boundary comeback rate.",
         "key_strength": "Late outswing in powerplay and 41.3% composure",
         "archetype": "Crisis Specialist"
@@ -174,7 +174,7 @@ bowler_scouting = {
     "Axar Patel": {
         "team": "Delhi Capitals / India",
         "role": "Defensive Left-Arm Spinner & Finisher",
-        "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80",
+        "image": "players/axar_patel.jpg",
         "bio": "Massive volume clutch bowler (603 HP deliveries). Concedes just 7.58 RPO with 33 wickets (WSR: 18.3). Iconic performer in T20 World Cup 2024 final under extreme pressure.",
         "key_strength": "Flat, darting trajectory that denies room in crunch overs",
         "archetype": "Clutch Giant"
@@ -255,7 +255,7 @@ xi_full = {
             "role": "Opener / Aggressor",
             "name": "Virat Kohli",
             "team": "Royal Challengers Bengaluru / India",
-            "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
+            "image": "players/virat_kohli.jpg",
             "hp_sr": 197.4,
             "hp_avg": 38.5,
             "score": 68.4,
@@ -266,7 +266,7 @@ xi_full = {
             "role": "Opener / Wicketkeeper",
             "name": "Quinton de Kock",
             "team": "Lucknow Super Giants / South Africa",
-            "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80",
+            "image": "players/quinton_de_kock.jpg",
             "hp_sr": 152.4,
             "hp_avg": 48.0,
             "score": 76.8,
@@ -277,7 +277,7 @@ xi_full = {
             "role": "One-Down / Captain & Anchor",
             "name": "Shreyas Iyer",
             "team": "Kolkata Knight Riders / India",
-            "image": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=400&q=80",
+            "image": "players/shreyas_iyer.jpg",
             "hp_sr": 198.3,
             "hp_avg": 58.5,
             "score": 85.3,
@@ -288,7 +288,7 @@ xi_full = {
             "role": "Middle Power / Acceleration",
             "name": "Rovman Powell",
             "team": "Rajasthan Royals / West Indies",
-            "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80",
+            "image": "players/rovman_powell.jpg",
             "hp_sr": 170.0,
             "hp_avg": 39.7,
             "score": 91.9,
@@ -299,7 +299,7 @@ xi_full = {
             "role": "Crisis Stabilizer & Counter-Attacker",
             "name": "Namboori Tilak Varma",
             "team": "Mumbai Indians / India",
-            "image": "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80",
+            "image": "players/tilak_varma.jpg",
             "hp_sr": 168.5,
             "hp_avg": 45.3,
             "score": 89.0,
@@ -310,7 +310,7 @@ xi_full = {
             "role": "Death Finisher / Ice-Man",
             "name": "Shashank Singh",
             "team": "Punjab Kings",
-            "image": "https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=400&q=80",
+            "image": "players/shashank_singh.jpg",
             "hp_sr": 164.9,
             "hp_avg": 45.0,
             "score": 89.6,
@@ -321,7 +321,7 @@ xi_full = {
             "role": "Lower Clutch Demolisher",
             "name": "Naman Dhir",
             "team": "Mumbai Indians",
-            "image": "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=400&q=80",
+            "image": "players/naman_dhir.jpg",
             "hp_sr": 197.0,
             "hp_avg": 43.7,
             "score": 97.2,
@@ -333,7 +333,7 @@ xi_full = {
             "role": "Powerplay Weapon",
             "name": "Shaheen Afridi",
             "team": "Pakistan",
-            "image": "https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=crop&w=400&q=80",
+            "image": "players/shaheen_afridi.jpg",
             "hp_econ": 6.19,
             "hp_wsr": 14.2,
             "post_b_comp": 55.1,
@@ -344,7 +344,7 @@ xi_full = {
             "role": "Middle Squeezer",
             "name": "Harpreet Brar",
             "team": "Punjab Kings",
-            "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80",
+            "image": "players/harpreet_brar.jpg",
             "hp_econ": 6.35,
             "hp_wsr": 13.9,
             "post_b_comp": 30.0,
@@ -355,7 +355,7 @@ xi_full = {
             "role": "Death Yorker Specialist",
             "name": "Jasprit Bumrah",
             "team": "Mumbai Indians / India",
-            "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80",
+            "image": "players/jasprit_bumrah.jpg",
             "hp_econ": 6.88,
             "hp_wsr": 21.0,
             "post_b_comp": 46.8,
@@ -366,7 +366,7 @@ xi_full = {
             "role": "Death Enforcer & Spinner",
             "name": "Sunil Narine",
             "team": "Kolkata Knight Riders",
-            "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+            "image": "players/sunil_narine.jpg",
             "hp_econ": 6.18,
             "hp_wsr": 11.2,
             "post_b_comp": 43.8,

@@ -20,7 +20,8 @@ import {
   Crown,
   Crosshair,
   Award,
-  Brain
+  Brain,
+  CheckCircle
 } from 'lucide-react';
 
 export default function Home() {
@@ -53,25 +54,25 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#060B14] text-slate-100 font-sans selection:bg-[#EA1A85] selection:text-white pb-16">
       
-      {/* HEADER / NAVIGATION */}
-      <header className="sticky top-0 z-50 bg-[#060B14]/90 backdrop-blur-md border-b border-[#1F314F]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      {/* HEADER / NAVIGATION (With clean vertical padding - NEVER cut off) */}
+      <header className="sticky top-0 z-50 bg-[#060B14]/95 backdrop-blur-lg border-b border-[#1F314F] shadow-lg shadow-black/40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
           
           {/* Logo & Brand */}
-          <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-[#EA1A85] to-[#001C58] flex items-center justify-center font-extrabold text-white text-xl shadow-lg shadow-[#EA1A85]/30 border border-[#EA1A85]/40">
+          <div className="flex items-center space-x-3.5">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#EA1A85] to-[#001C58] flex items-center justify-center font-black text-white text-xl shadow-lg shadow-[#EA1A85]/30 border border-[#EA1A85]/40 flex-shrink-0">
               RR
             </div>
-            <div>
-              <div className="flex items-center space-x-2">
-                <span className="text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full bg-[#EA1A85]/20 text-[#FF4DAB] font-bold border border-[#EA1A85]/30">
+            <div className="flex flex-col justify-center">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#EA1A85]/20 text-[#FF4DAB] border border-[#EA1A85]/30 leading-none">
                   Season 2 • Round 1
                 </span>
-                <span className="text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full bg-[#00F5D4]/10 text-[#00F5D4] font-bold border border-[#00F5D4]/20">
+                <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#00F5D4]/15 text-[#00F5D4] border border-[#00F5D4]/25 leading-none">
                   Verified Pipeline
                 </span>
               </div>
-              <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-white flex items-center gap-2">
+              <h1 className="text-lg sm:text-2xl font-extrabold tracking-tight text-white leading-tight">
                 SupeRR Selector <span className="text-[#EA1A85]">Analytics Hub</span>
               </h1>
             </div>
@@ -145,7 +146,7 @@ export default function Home() {
         </div>
 
         {/* Mobile Navigation Bar */}
-        <div className="md:hidden flex overflow-x-auto px-4 py-2.5 space-x-2 bg-[#0F1A2E] border-t border-[#1F314F]">
+        <div className="md:hidden flex overflow-x-auto px-4 py-2 space-x-2 bg-[#0F1A2E] border-t border-[#1F314F]">
           {(['leaderboard', 'quadrants', 'lineup', 'simulator', 'methodology'] as const).map((t) => (
             <button
               key={t}
@@ -169,7 +170,9 @@ export default function Home() {
             <Database className="w-16 h-16 absolute right-2 -bottom-2 text-[#EA1A85]/10" />
             <p className="text-[11px] uppercase font-bold text-slate-400 tracking-wider">Total Deliveries</p>
             <p className="text-2xl sm:text-3xl font-extrabold font-mono text-white mt-1">200,999</p>
-            <span className="text-xs text-[#FF4DAB] font-semibold mt-1 inline-block">867 Matches (IPL & T20I)</span>
+            <span className="text-xs text-[#FF4DAB] font-semibold mt-1 inline-flex items-center gap-1">
+              <CheckCircle className="w-3.5 h-3.5" /> 867 Matches (IPL & T20I)
+            </span>
           </div>
 
           <div className="bg-[#152238]/70 backdrop-blur-md rounded-2xl p-4 border border-[#1F314F] relative overflow-hidden">
@@ -228,7 +231,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Players Grid */}
+            {/* Players Grid with real downloaded photos */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {playersList.map((p: any) => {
                 const isClutch = p.archetype.includes('Clutch');
@@ -239,11 +242,11 @@ export default function Home() {
                   >
                     <div className="p-5">
                       <div className="flex items-start gap-4">
-                        <div className="relative">
+                        <div className="relative flex-shrink-0">
                           <img
-                            src={p.image}
+                            src={p.image.startsWith('/') ? p.image : `/${p.image}`}
                             alt={p.name}
-                            className="w-16 h-16 rounded-2xl object-cover border-2 border-[#EA1A85]/40 shadow-lg group-hover:scale-105 transition"
+                            className="w-16 h-16 rounded-2xl object-cover border-2 border-[#EA1A85]/50 shadow-lg group-hover:scale-105 transition"
                             onError={(e) => {
                               (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(p.name)}&background=EA1A85&color=fff&size=128&bold=true`;
                             }}
@@ -377,7 +380,7 @@ export default function Home() {
             {/* Visual Scatter Grid representation */}
             <div className="bg-[#152238]/70 rounded-2xl p-6 border border-[#1F314F] space-y-4">
               <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                <LayoutGrid className="w-5 h-5 text-[#EA1A85]" /> Player Classification Map
+                <LayoutGrid className="w-5 h-5 text-[#EA1A85]" /> Player Classification Distribution
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="p-4 rounded-xl bg-[#0F1A2E] border border-[#EA1A85]/40 space-y-2">
@@ -427,9 +430,9 @@ export default function Home() {
                     <div key={b.slot} className="bg-[#0F1A2E] rounded-xl p-4 border border-[#1F314F] hover:border-[#EA1A85]/50 transition">
                       <div className="flex items-center gap-3">
                         <img
-                          src={b.image}
+                          src={b.image.startsWith('/') ? b.image : `/${b.image}`}
                           alt={b.name}
-                          className="w-12 h-12 rounded-xl object-cover border border-[#EA1A85]"
+                          className="w-12 h-12 rounded-xl object-cover border border-[#EA1A85] flex-shrink-0"
                           onError={(e) => {
                             (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(b.name)}&background=EA1A85&color=fff&size=128&bold=true`;
                           }}
@@ -461,9 +464,9 @@ export default function Home() {
                     <div key={bw.role} className="bg-[#0F1A2E] rounded-xl p-4 border border-[#1F314F] hover:border-[#00F5D4]/50 transition">
                       <div className="flex items-center gap-3">
                         <img
-                          src={bw.image}
+                          src={bw.image.startsWith('/') ? bw.image : `/${bw.image}`}
                           alt={bw.name}
-                          className="w-12 h-12 rounded-xl object-cover border border-[#00F5D4]"
+                          className="w-12 h-12 rounded-xl object-cover border border-[#00F5D4] flex-shrink-0"
                           onError={(e) => {
                             (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(bw.name)}&background=00F5D4&color=000&size=128&bold=true`;
                           }}
@@ -488,7 +491,7 @@ export default function Home() {
           </section>
         )}
 
-        {/* TAB 4: SIMULATOR */}
+        {/* TAB 4: SIMULATOR (ZERO EMOJI STICKERS) */}
         {activeTab === 'simulator' && (
           <section className="space-y-6">
             <div className="pb-4 border-b border-[#1F314F]">
@@ -522,6 +525,11 @@ export default function Home() {
                     onChange={(e) => setRrr(parseFloat(e.target.value))}
                     className="w-full accent-[#EA1A85] bg-[#0F1A2E] rounded-lg cursor-pointer"
                   />
+                  <div className="flex justify-between text-xs text-slate-500 mt-1 font-medium">
+                    <span>4.0 (Comfortable)</span>
+                    <span>10.0 (Tense)</span>
+                    <span>20.0 (Extreme Miracle)</span>
+                  </div>
                 </div>
 
                 <div>
@@ -538,6 +546,11 @@ export default function Home() {
                     onChange={(e) => setBalls(parseInt(e.target.value))}
                     className="w-full accent-[#EA1A85] bg-[#0F1A2E] rounded-lg cursor-pointer"
                   />
+                  <div className="flex justify-between text-xs text-slate-500 mt-1 font-medium">
+                    <span>1 Ball (Final Ball)</span>
+                    <span>30 Balls (Death)</span>
+                    <span>120 Balls (Innings Start)</span>
+                  </div>
                 </div>
 
                 <div>
@@ -554,22 +567,28 @@ export default function Home() {
                     onChange={(e) => setWickets(parseInt(e.target.value))}
                     className="w-full accent-[#EA1A85] bg-[#0F1A2E] rounded-lg cursor-pointer"
                   />
+                  <div className="flex justify-between text-xs text-slate-500 mt-1 font-medium">
+                    <span>0 (Full Batting Depth)</span>
+                    <span>5 (Crisis Phase)</span>
+                    <span>9 (Last Wicket)</span>
+                  </div>
                 </div>
 
+                {/* SELECT DROPDOWN (CLEAN PROFESSIONAL TEXT - ZERO STICKERS) */}
                 <div>
-                  <label className="text-sm font-semibold text-slate-200 block mb-2">Macro Match Stakes</label>
+                  <label className="text-sm font-semibold text-slate-200 block mb-2">Macro Match Stakes Context</label>
                   <select
                     value={stakes}
                     onChange={(e) => setStakes(parseFloat(e.target.value))}
                     className="w-full p-3 bg-[#0F1A2E] border border-[#1F314F] rounded-xl text-white font-semibold focus:outline-none focus:border-[#EA1A85]"
                   >
-                    <option value="1.00">🏆 Tournament Final (IPL / ICC Final) - W_M = 1.00</option>
-                    <option value="0.95">⚔️ Direct Knockout / Semi-Final - W_M = 0.95</option>
-                    <option value="0.85">🔥 Tied Series Decider (34 Matches) - W_M = 0.85</option>
-                    <option value="0.80">💥 Marquee Derby (IND vs PAK, MI vs CSK) - W_M = 0.80</option>
-                    <option value="0.70">📈 Late League Match (Match 55+) - W_M = 0.70</option>
-                    <option value="0.50">🏏 Standard League Match - W_M = 0.50</option>
-                    <option value="0.35">💤 Dead Rubber - W_M = 0.35</option>
+                    <option value="1.00">Tournament Final (IPL / ICC Championship) - [W_M = 1.00]</option>
+                    <option value="0.95">Direct Knockout / Semi-Final / Eliminator - [W_M = 0.95]</option>
+                    <option value="0.85">Tied Series Decider (34 Matches) - [W_M = 0.85]</option>
+                    <option value="0.80">Marquee Rivalry Derby (IND vs PAK, MI vs CSK) - [W_M = 0.80]</option>
+                    <option value="0.70">Late League Match (Match 55+ NRR Battle) - [W_M = 0.70]</option>
+                    <option value="0.50">Standard League Match - [W_M = 0.50]</option>
+                    <option value="0.35">Dead Rubber (Series Already Clinched) - [W_M = 0.35]</option>
                   </select>
                 </div>
 
@@ -582,7 +601,7 @@ export default function Home() {
                     className="w-4 h-4 accent-[#EA1A85] rounded cursor-pointer"
                   />
                   <label htmlFor="fortress-check" className="text-sm font-semibold text-slate-200 cursor-pointer">
-                    Hostile Away Fortress (Wankhede, Eden Gardens, Gabba, MCG)
+                    Hostile Away Fortress Match (Wankhede, Eden Gardens, Gabba, MCG)
                   </label>
                 </div>
               </div>
@@ -651,7 +670,7 @@ export default function Home() {
                   P_ball = 0.40 * C_macro + 0.60 * S_micro
                 </div>
                 <p className="text-xs text-slate-300 leading-relaxed">
-                  Every ball across 200,999 deliveries receives a continuous pressure score. Top 30% ($P \ge 0.70$) forms the High-Pressure Regime. Super Overs hardcoded to 1.00.
+                  Every ball across 200,999 deliveries receives a continuous pressure score. Top 30% (P ≥ 0.70) forms the High-Pressure Regime. Super Overs hardcoded to 1.00.
                 </p>
               </div>
 
@@ -711,9 +730,9 @@ export default function Home() {
 
             <div className="flex items-center gap-4 border-b border-[#1F314F] pb-4">
               <img
-                src={selectedPlayer.image}
+                src={selectedPlayer.image.startsWith('/') ? selectedPlayer.image : `/${selectedPlayer.image}`}
                 alt={selectedPlayer.name}
-                className="w-20 h-20 rounded-2xl object-cover border-2 border-[#EA1A85] shadow-lg"
+                className="w-20 h-20 rounded-2xl object-cover border-2 border-[#EA1A85] shadow-lg flex-shrink-0"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(selectedPlayer.name)}&background=EA1A85&color=fff&size=128&bold=true`;
                 }}
