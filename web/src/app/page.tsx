@@ -98,7 +98,7 @@ export default function Home() {
                   : 'text-slate-400 hover:text-white hover:bg-[#131F37]'
               }`}
             >
-              <LayoutGrid className="w-3.5 h-3.5" /> 4-Quadrant
+              <LayoutGrid className="w-3.5 h-3.5" /> Performance under Pressure
             </button>
             <button
               onClick={() => setActiveTab('lineup')}
@@ -108,7 +108,7 @@ export default function Home() {
                   : 'text-slate-400 hover:text-white hover:bg-[#131F37]'
               }`}
             >
-              <Shield className="w-3.5 h-3.5" /> Pressure-Proof XI
+              <Shield className="w-3.5 h-3.5" /> World XI
             </button>
             <button
               onClick={() => setActiveTab('simulator')}
@@ -163,7 +163,7 @@ export default function Home() {
                 activeTab === t ? 'bg-[#E11D74] text-white' : 'text-slate-400'
               }`}
             >
-              {t === 'lineup' ? 'Pressure XI' : t}
+              {t === 'lineup' ? 'World XI' : t === 'quadrants' ? 'Performance Under Pressure' : t}
             </button>
           ))}
         </div>
@@ -348,7 +348,7 @@ export default function Home() {
           <section className="space-y-6">
             <div className="pb-4 border-b border-[#1E2E4F]">
               <h2 className="text-2xl font-black text-white flex items-center gap-2">
-                The 4-Quadrant Permutations Model
+                The Performance Under Pressure Model
               </h2>
               <p className="text-sm text-slate-400 mt-1">
                 Comparing Normal Match Performance against High-Pressure Performance to isolate true clutch masters.
@@ -419,7 +419,7 @@ export default function Home() {
           <section className="space-y-6">
             <div className="pb-4 border-b border-[#1E2E4F]">
               <h2 className="text-2xl font-black text-white flex items-center gap-2">
-                The Pressure-Proof World XI <span className="text-[#EAB308] text-base font-bold">• Master Lineup</span>
+                World Best T20 XI <span className="text-[#EAB308] text-base font-bold">• Master Lineup</span>
               </h2>
               <p className="text-sm text-slate-400 mt-1">
                 Synthesized from positional optimization (Slots 1–7) and phase-specific bowling metrics. Click any card for the full scouting report.
@@ -431,7 +431,7 @@ export default function Home() {
               {/* Batting slots 1 to 7 */}
               <div>
                 <h3 className="text-sm uppercase tracking-wider font-extrabold text-slate-300 mb-4 flex items-center gap-2">
-                  <Shield className="w-4 h-4 text-[#E11D74]" /> Positional Batting Order (Slots 1 to 7)
+                  <Shield className="w-4 h-4 text-[#E11D74]" /> Positional Batting Spine (Slots 1 to 7)
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {cricketData.pressure_proof_xi.batting_lineup.map((b: any) => (
