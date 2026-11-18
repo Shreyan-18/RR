@@ -3,3 +3,4 @@ __pycache__/
 *.py[cod]
 *$py.class
 .ipynb_checkpoints/
+extracted_problem_statement.txt
