@@ -1,0 +1,46 @@
+================================================================================
+RAJASTHAN ROYALS - SUPERR SELECTOR SEASON 2 (ROUND 1)
+UNSTOP SUBMISSION CHEATSHEET: PLAYER RANKINGS
+================================================================================
+
+COMPONENT 1: TOP 10 BATTERS UNDER PRESSURE (Select in Unstop Dropdowns)
+--------------------------------------------------------------------------------
+Rank 1 : Naman Dhir           (PPR: 1.51x | HP SR: 187.5 | Final Score: 87.7)
+Rank 2 : Shashank Singh       (PPR: 1.13x | HP Avg: 38.1 | Final Score: 84.3)
+Rank 3 : Tim David            (PPR: 1.13x | HP SR: 176.3 | Final Score: 81.5)
+Rank 4 : Namboori Tilak Varma (PPR: 1.30x | HP Avg: 39.5 | Final Score: 81.1)
+Rank 5 : Jos Buttler          (PPR: 1.15x | HP SR: 172.2 | Final Score: 81.0)
+Rank 6 : Rishabh Pant         (PPR: 1.39x | HP SR: 170.0 | Final Score: 79.4)
+Rank 7 : Matthew Wade         (PPR: 1.56x | HP Avg: 41.6 | Final Score: 78.9)
+Rank 8 : Shreyas Iyer         (PPR: 1.12x | HP SR: 174.5 | Final Score: 78.8)
+Rank 9 : Rajat Patidar        (PPR: 1.01x | HP SR: 170.3 | Final Score: 78.5)
+Rank 10: Tristan Stubbs       (PPR: 1.13x | HP SR: 158.6 | Final Score: 78.0)
+
+
+COMPONENT 1: TOP 10 BOWLERS UNDER PRESSURE (Select in Unstop Dropdowns)
+--------------------------------------------------------------------------------
+Rank 1 : Sunil Narine         (PPR: 1.20x | HP Econ: 6.76 | Final Score: 76.8)
+Rank 2 : Jasprit Bumrah       (PPR: 1.14x | HP Econ: 6.88 | Post-Bdry: 46.8% | Final Score: 72.5)
+Rank 3 : Shaheen Afridi       (PPR: 1.28x | HP WSR: 10.9  | Final Score: 69.2)
+Rank 4 : Faheem Ashraf        (PPR: 1.60x | HP Econ: 7.57 | Final Score: 68.7)
+Rank 5 : Riley Meredith       (PPR: 1.60x | HP WSR: 10.7  | Final Score: 68.7)
+Rank 6 : Haris Rauf           (PPR: 1.39x | HP WSR: 11.7  | Final Score: 67.5)
+Rank 7 : Alzarri Joseph       (PPR: 1.60x | HP WSR: 15.3  | Final Score: 66.1)
+Rank 8 : Shadab Khan          (PPR: 1.57x | HP Econ: 6.72 | Final Score: 64.8)
+Rank 9 : Xavier Bartlett      (PPR: 1.60x | HP WSR: 18.5  | Final Score: 64.4)
+Rank 10: Axar Patel           (PPR: 1.23x | HP Econ: 7.58 | Final Score: 64.2)
+
+
+COMPONENT 2: METHODOLOGY REPORT (Upload Document on Unstop)
+--------------------------------------------------------------------------------
+Upload File: METHODOLOGY_REPORT.pdf
+Contents:
+  1. Pressure Definition (Composite Pressure Index: 40% Macro Stakes + 60% Micro Leverage)
+  2. Performance Measurement Engine (Explicit batting and bowling weighted equations)
+  3. Fair Comparisons (Sample thresholds: min 200/60 balls for batters, 250/80 for bowlers)
+  4. The 4-Quadrant Permutations Model (Clutch Giants, Crisis Specialists, Front-Runners, Strugglers)
+  5. Statistical Evidence Tables for Top 10 Batters, Top 10 Bowlers, and Pressure-Proof World XI
+  6. Model Reliability & Boundaries
+
+GITHUB REPOSITORY: https://github.com/Shreyan-18/RR.git
+================================================================================
