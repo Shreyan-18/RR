@@ -527,7 +527,7 @@ export default function Home() {
           <section className="space-y-6">
             <div className="pb-4 border-b border-[#1E2E4F]">
               <h2 className="text-2xl font-black text-white flex items-center gap-2">
-                World Best T20 XI <span className="text-[#EAB308] text-base font-bold">• Master Lineup</span>
+                World Best T20 XI 
               </h2>
             </div>
 
