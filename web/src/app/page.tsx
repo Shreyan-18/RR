@@ -310,8 +310,8 @@ export default function Home() {
                         )}
                       </div>
 
-                      {/* Full Scouting Bio without truncation */}
-                      <p className="text-xs text-slate-300 mt-3 leading-relaxed">
+                      {/* Complete Scouting Bio snippet */}
+                      <p className="text-xs text-slate-300 mt-3 leading-relaxed line-clamp-2">
                         {p.bio}
                       </p>
                     </div>
@@ -424,40 +424,62 @@ export default function Home() {
                 <h3 className="text-sm uppercase tracking-wider font-extrabold text-slate-300 mb-4 flex items-center gap-2">
                   <Shield className="w-4 h-4 text-[#EA1A85]" /> Positional Batting Order (Slots 1 to 7)
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {cricketData.pressure_proof_xi.batting_lineup.map((b: any) => (
-                    <div key={b.slot} className="bg-[#0B1322] rounded-xl p-4 border border-[#1A2A44] hover:border-[#EA1A85]/60 flex flex-col justify-between transition group">
-                      <div>
-                        <div className="flex items-center gap-3">
-                          <img
-                            src={b.image.startsWith('/') ? b.image : `/${b.image}`}
-                            alt={b.name}
-                            className="w-13 h-13 rounded-xl object-cover border border-[#EA1A85] flex-shrink-0"
-                            onError={(e) => {
-                              (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(b.name)}&background=EA1A85&color=fff&size=128&bold=true`;
-                            }}
-                          />
+                    <div key={b.slot} className="bg-gradient-to-br from-[#0F1A2E]/90 to-[#0B1322]/90 rounded-2xl overflow-hidden border border-[#1A2A44] hover:border-[#EA1A85]/60 flex flex-col justify-between transition group h-full shadow-lg">
+                      <div className="p-5">
+                        {/* Header: Slot & Image & Info */}
+                        <div className="flex items-start gap-4">
+                          <div className="relative flex-shrink-0">
+                            <img
+                              src={b.image.startsWith('/') ? b.image : `/${b.image}`}
+                              alt={b.name}
+                              className="w-16 h-16 rounded-2xl object-cover border-2 border-[#EA1A85]/50 shadow-lg group-hover:scale-105 transition"
+                              onError={(e) => {
+                                (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(b.name)}&background=EA1A85&color=fff&size=128&bold=true`;
+                              }}
+                            />
+                            <span className="absolute -top-2 -left-2 w-7 h-7 rounded-full bg-[#EA1A85] text-white font-mono font-bold text-xs flex items-center justify-center shadow">
+                              #{b.slot}
+                            </span>
+                          </div>
                           <div className="min-w-0 flex-1">
                             <div className="flex justify-between items-center">
-                              <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-[#EA1A85]/20 text-[#FF3399] font-mono">
-                                Slot #{b.slot}
+                              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full border border-[#EA1A85]/40 bg-[#EA1A85]/15 text-[#FF3399]">
+                                {b.archetype || 'Clutch Giant'}
                               </span>
-                              <span className="text-xs font-bold font-mono text-[#F59E0B]">Score: {b.score}</span>
+                              <span className="text-xs font-mono font-extrabold text-[#F59E0B]">Score: {b.score}</span>
                             </div>
-                            <h4 className="text-sm font-black text-white truncate mt-1">{b.name}</h4>
-                            <p className="text-[10px] text-slate-400 truncate">{b.role}</p>
+                            <h4 className="text-base font-extrabold text-white truncate mt-1">{b.name}</h4>
+                            <p className="text-xs text-slate-400 truncate">{b.role}</p>
                           </div>
                         </div>
 
-                        {/* Full description without truncation (Request 2) */}
-                        <p className="text-xs text-slate-300 mt-3 leading-relaxed">
+                        {/* Metric Strip */}
+                        <div className="mt-4 grid grid-cols-3 gap-2 p-2.5 rounded-xl bg-[#0B1322] border border-[#1A2A44] text-center">
+                          <div>
+                            <p className="text-[10px] uppercase text-slate-400 font-semibold">HP SR</p>
+                            <p className="text-sm font-bold font-mono text-white">{b.hp_sr}</p>
+                          </div>
+                          <div>
+                            <p className="text-[10px] uppercase text-slate-400 font-semibold">HP Avg</p>
+                            <p className="text-sm font-bold font-mono text-white">{b.hp_avg}</p>
+                          </div>
+                          <div>
+                            <p className="text-[10px] uppercase text-slate-400 font-semibold">Slot Score</p>
+                            <p className="text-sm font-bold font-mono text-[#FF3399]">{b.score}</p>
+                          </div>
+                        </div>
+
+                        {/* Complete Scouting Bio snippet */}
+                        <p className="text-xs text-slate-300 mt-3 leading-relaxed line-clamp-2">
                           {b.bio}
                         </p>
                       </div>
 
-                      {/* Clickable Scouting Report Button (Request 2) */}
-                      <div className="mt-4 pt-3 border-t border-[#1A2A44] flex items-center justify-between">
-                        <span className="text-[11px] font-mono text-[#00F5D4]">PPR: {b.ppr}x</span>
+                      {/* Card Action Footer */}
+                      <div className="px-5 py-3 bg-[#0B1322]/70 border-t border-[#1A2A44] flex items-center justify-between">
+                        <span className="text-xs text-slate-400 font-mono">PPR: <strong className="text-white">{b.ppr}x</strong></span>
                         <button
                           onClick={() => setSelectedPlayer(b)}
                           className="text-xs font-bold text-[#FF3399] hover:text-white flex items-center gap-1 transition"
@@ -475,40 +497,62 @@ export default function Home() {
                 <h3 className="text-sm uppercase tracking-wider font-extrabold text-slate-300 mb-4 flex items-center gap-2">
                   <Crosshair className="w-4 h-4 text-[#00F5D4]" /> Phase-Specialist Bowling Attack
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {cricketData.pressure_proof_xi.bowling_attack.map((bw: any) => (
-                    <div key={bw.role} className="bg-[#0B1322] rounded-xl p-4 border border-[#1A2A44] hover:border-[#00F5D4]/60 flex flex-col justify-between transition group">
-                      <div>
-                        <div className="flex items-center gap-3">
-                          <img
-                            src={bw.image.startsWith('/') ? bw.image : `/${bw.image}`}
-                            alt={bw.name}
-                            className="w-13 h-13 rounded-xl object-cover border border-[#00F5D4] flex-shrink-0"
-                            onError={(e) => {
-                              (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(bw.name)}&background=00F5D4&color=000&size=128&bold=true`;
-                            }}
-                          />
+                    <div key={bw.role} className="bg-gradient-to-br from-[#0F1A2E]/90 to-[#0B1322]/90 rounded-2xl overflow-hidden border border-[#1A2A44] hover:border-[#00F5D4]/60 flex flex-col justify-between transition group h-full shadow-lg">
+                      <div className="p-5">
+                        {/* Header: Role & Image & Info */}
+                        <div className="flex items-start gap-4">
+                          <div className="relative flex-shrink-0">
+                            <img
+                              src={bw.image.startsWith('/') ? bw.image : `/${bw.image}`}
+                              alt={bw.name}
+                              className="w-16 h-16 rounded-2xl object-cover border-2 border-[#00F5D4]/50 shadow-lg group-hover:scale-105 transition"
+                              onError={(e) => {
+                                (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(bw.name)}&background=00F5D4&color=000&size=128&bold=true`;
+                              }}
+                            />
+                            <span className="absolute -top-2 -left-2 px-2 py-0.5 rounded-full bg-[#00F5D4] text-slate-900 font-mono font-black text-[9px] flex items-center justify-center shadow uppercase">
+                              PHASE
+                            </span>
+                          </div>
                           <div className="min-w-0 flex-1">
                             <div className="flex justify-between items-center">
-                              <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-[#00F5D4]/20 text-[#00F5D4] font-mono">
+                              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full border border-[#00F5D4]/40 bg-[#00F5D4]/15 text-[#00F5D4]">
                                 {bw.role}
                               </span>
-                              <span className="text-xs font-bold font-mono text-[#F59E0B]">Score: {bw.score}</span>
+                              <span className="text-xs font-mono font-extrabold text-[#F59E0B]">Score: {bw.score}</span>
                             </div>
-                            <h4 className="text-sm font-black text-white truncate mt-1">{bw.name}</h4>
-                            <p className="text-[10px] text-slate-400 truncate">{bw.team}</p>
+                            <h4 className="text-base font-extrabold text-white mt-1 truncate">{bw.name}</h4>
+                            <p className="text-xs text-slate-400 truncate">{bw.team}</p>
                           </div>
                         </div>
 
-                        {/* Full description without truncation (Request 2) */}
-                        <p className="text-xs text-slate-300 mt-3 leading-relaxed">
+                        {/* Metric Strip */}
+                        <div className="mt-4 grid grid-cols-3 gap-2 p-2.5 rounded-xl bg-[#0B1322] border border-[#1A2A44] text-center">
+                          <div>
+                            <p className="text-[10px] uppercase text-slate-400 font-semibold">HP Econ</p>
+                            <p className="text-sm font-bold font-mono text-[#00F5D4]">{bw.hp_econ}</p>
+                          </div>
+                          <div>
+                            <p className="text-[10px] uppercase text-slate-400 font-semibold">HP WSR</p>
+                            <p className="text-sm font-bold font-mono text-white">{bw.hp_wsr}</p>
+                          </div>
+                          <div>
+                            <p className="text-[10px] uppercase text-slate-400 font-semibold">Post-Bdry</p>
+                            <p className="text-sm font-bold font-mono text-emerald-400">{bw.post_b_comp}%</p>
+                          </div>
+                        </div>
+
+                        {/* Complete Scouting Bio snippet */}
+                        <p className="text-xs text-slate-300 mt-3 leading-relaxed line-clamp-2">
                           {bw.bio}
                         </p>
                       </div>
 
-                      {/* Clickable Scouting Report Button (Request 2) */}
-                      <div className="mt-4 pt-3 border-t border-[#1A2A44] flex items-center justify-between">
-                        <span className="text-[11px] font-mono text-[#00F5D4]">PPR: {bw.ppr}x</span>
+                      {/* Card Action Footer */}
+                      <div className="px-5 py-3 bg-[#0B1322]/70 border-t border-[#1A2A44] flex items-center justify-between">
+                        <span className="text-xs text-slate-400 font-mono">PPR: <strong className="text-white">{bw.ppr}x</strong></span>
                         <button
                           onClick={() => setSelectedPlayer(bw)}
                           className="text-xs font-bold text-[#00F5D4] hover:text-white flex items-center gap-1 transition"
@@ -532,7 +576,7 @@ export default function Home() {
                 Live Crunch-Time Pressure Simulator
               </h2>
               <p className="text-sm text-slate-400 mt-1">
-                Tweak match parameters in real-time to compute the instantaneous Composite Pressure Index ($P$) and tactical recommendations.
+                Adjust live game parameters to simulate high-stress match scenarios and see how our quantitative engine evaluates player pressure.
               </p>
             </div>
 
@@ -693,13 +737,21 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Architecture Overview Banner */}
-            <div className="bg-gradient-to-br from-[#0F1A2E] to-[#0B1322] rounded-2xl p-6 border-l-4 border-[#EA1A85] border border-[#1A2A44]">
-              <h3 className="text-base font-bold text-white mb-2 flex items-center gap-2">
-                <Compass className="w-5 h-5 text-[#EA1A85]" /> The Core Analytics Philosophy
-              </h3>
+            {/* Architecture Overview Banner (Clean, Executive & Human-Like) */}
+            <div className="bg-gradient-to-br from-[#0F1A2E] to-[#0B1322] rounded-2xl p-6 border-l-4 border-[#EA1A85] border border-[#1A2A44] shadow-xl">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                <h3 className="text-base font-extrabold text-white flex items-center gap-2.5">
+                  <Compass className="w-5 h-5 text-[#EA1A85]" /> The Core Analytics Philosophy
+                </h3>
+                <span className="px-2.5 py-1 rounded-full bg-[#EA1A85]/15 text-[#FF3399] border border-[#EA1A85]/30 text-[11px] font-bold w-fit">
+                  Context-First Evaluation
+                </span>
+              </div>
               <p className="text-sm text-slate-300 leading-relaxed">
-                Traditional cricket statistics suffer from severe <strong>context-blindness</strong>: a boundary hit when chasing 15 runs in 4 balls carries infinitely higher consequence than a boundary hit in the 3rd over of a dead rubber. Our methodology reconstructs the exact leverage of every delivery, separates <strong>Macro Stakes</strong> from <strong>Micro In-Game Situations</strong>, and benchmarks high-pressure performance ($S_{\text{hp}}$) against normal baseline performance ($S_{\text{norm}}$) to classify players across a 4-Quadrant archetype framework.
+                Traditional cricket statistics suffer from severe <strong>context-blindness</strong>: smashing a boundary when needing 15 runs off the final 4 deliveries of an IPL final carries infinitely greater consequence than hitting one in the powerplay of a dead rubber.
+              </p>
+              <p className="text-sm text-slate-300 leading-relaxed mt-2.5">
+                Our quantitative framework reconstructs the true leverage of all <strong>200,999 deliveries</strong> by isolating two distinct forces: high-stakes macro match consequence and live micro in-game leverage. By benchmarking each player's execution in high-pressure crunch time against their routine baseline performance, we objectively separate world-class clutch performers from flat-track accumulators.
               </p>
             </div>
 
@@ -709,19 +761,21 @@ export default function Home() {
               <div className="bg-gradient-to-br from-[#0F1A2E]/90 to-[#0B1322]/90 rounded-2xl p-6 border border-[#1A2A44] space-y-4 hover:border-[#EA1A85]/50 transition">
                 <div className="flex items-center gap-2 text-[#EA1A85] font-bold">
                   <span className="w-7 h-7 rounded-lg bg-[#EA1A85]/20 text-[#FF3399] flex items-center justify-center font-mono text-sm border border-[#EA1A85]/30">1</span>
-                  <h3 className="text-base text-white">The Composite Pressure Index (P_ball)</h3>
+                  <h3 className="text-base text-white">The Composite Pressure Index</h3>
                 </div>
                 <p className="text-xs text-slate-300 leading-relaxed">
-                  Every legal delivery is assigned an instantaneous pressure value $P_{\text{ball}} \in [0, 1]$ uniting two orthogonal forces:
+                  Every legal delivery is assigned an instantaneous pressure value from 0.00 to 1.00 uniting two independent forces:
                 </p>
-                <div className="p-3.5 rounded-xl bg-[#0B1322] font-mono text-xs text-[#FF3399] border border-[#1A2A44] text-center">
-                  P_ball = 0.40 × C_macro + 0.60 × S_micro
+                <div className="p-3.5 rounded-xl bg-[#0B1322] text-xs font-bold text-[#FF3399] border border-[#1A2A44] text-center flex items-center justify-center gap-2 flex-wrap">
+                  <span className="px-2.5 py-1 rounded-lg bg-[#EA1A85]/20 text-[#FF3399] border border-[#EA1A85]/30">40% Macro Match Stakes</span>
+                  <span className="text-slate-400 font-black">+</span>
+                  <span className="px-2.5 py-1 rounded-lg bg-[#00F5D4]/20 text-[#00F5D4] border border-[#00F5D4]/30">60% Live Match Leverage</span>
                 </div>
                 <ul className="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
-                  <li><strong>C_macro</strong>: Pre-ball tournament context, stakes, and hostile fortresses.</li>
-                  <li><strong>S_micro</strong>: Live match state (dynamic RRR, balls remaining, wickets down).</li>
-                  <li><strong>Super Overs</strong>: Hardcoded to maximum pressure ($P = 1.00$).</li>
-                  <li><strong>70th Percentile Split</strong>: Deliveries with $P \ge 0.70$ form the <strong>High-Pressure Regime</strong> (60,314 balls).</li>
+                  <li><strong>Macro Stakes (40%)</strong>: Pre-game tournament context, knockout urgency, opponent quality, and venue hostility.</li>
+                  <li><strong>Live In-Game Leverage (60%)</strong>: Ball-by-ball tension driven by dynamic required run rate, balls remaining, and wickets lost.</li>
+                  <li><strong>Super Overs</strong>: Automatically scored at maximum intensity (1.00 Pressure).</li>
+                  <li><strong>The 70th Percentile Cutoff</strong>: Deliveries with a pressure index of 0.70 or higher isolate the <strong>High-Pressure Regime</strong> (60,314 deliveries).</li>
                 </ul>
               </div>
 
@@ -729,20 +783,24 @@ export default function Home() {
               <div className="bg-gradient-to-br from-[#0F1A2E]/90 to-[#0B1322]/90 rounded-2xl p-6 border border-[#1A2A44] space-y-4 hover:border-[#00F5D4]/50 transition">
                 <div className="flex items-center gap-2 text-[#00F5D4] font-bold">
                   <span className="w-7 h-7 rounded-lg bg-[#00F5D4]/20 text-[#00F5D4] flex items-center justify-center font-mono text-sm border border-[#00F5D4]/30">2</span>
-                  <h3 className="text-base text-white">Macro Stakes Taxonomy (W_M)</h3>
+                  <h3 className="text-base text-white">Macro Stakes Taxonomy</h3>
                 </div>
                 <p className="text-xs text-slate-300 leading-relaxed">
                   Calculated before the delivery is bowled to reflect the severity of match consequences:
                 </p>
-                <div className="p-3.5 rounded-xl bg-[#0B1322] font-mono text-xs text-[#00F5D4] border border-[#1A2A44] text-center">
-                  C_macro = 0.50 × W_M + 0.35 × Q_opp + 0.15 × H_fortress
+                <div className="p-3.5 rounded-xl bg-[#0B1322] text-xs font-bold text-[#00F5D4] border border-[#1A2A44] text-center flex items-center justify-center gap-2 flex-wrap">
+                  <span className="px-2 py-0.5 rounded bg-[#00F5D4]/20 text-[#00F5D4]">50% Match Consequence</span>
+                  <span className="text-slate-400">+</span>
+                  <span className="px-2 py-0.5 rounded bg-[#F59E0B]/20 text-[#F59E0B]">35% Opposition Tier</span>
+                  <span className="text-slate-400">+</span>
+                  <span className="px-2 py-0.5 rounded bg-[#EA1A85]/20 text-[#FF3399]">15% Away Fortress</span>
                 </div>
                 <ul className="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
-                  <li><strong>Championship Finals ($W_M = 1.00$)</strong>: 15 winner-take-all tournament finals.</li>
-                  <li><strong>Direct Knockouts ($W_M = 0.95$)</strong>: 9 eliminators and semi-finals.</li>
-                  <li><strong>Tied Series Deciders ($W_M = 0.85$)</strong>: 34 tied 1–1 or 2–2 bilateral deciders.</li>
-                  <li><strong>Marquee Rivalries ($+0.15$ boost)</strong>: IND vs PAK, MI vs CSK, AUS vs ENG.</li>
-                  <li><strong>Dead Rubbers ($W_M = 0.35$)</strong>: 64 matches after series was clinched.</li>
+                  <li><strong>Championship Finals (1.00 Weight)</strong>: 15 winner-take-all tournament finals.</li>
+                  <li><strong>Direct Knockouts (0.95 Weight)</strong>: 9 sudden-death eliminators and semi-finals.</li>
+                  <li><strong>Tied Series Deciders (0.85 Weight)</strong>: 34 winner-take-all bilateral deciders tied at 1–1 or 2–2.</li>
+                  <li><strong>Marquee Rivalries (+0.15 Boost)</strong>: India vs Pakistan, Mumbai Indians vs CSK, Australia vs England.</li>
+                  <li><strong>Dead Rubbers (0.35 Weight)</strong>: 64 low-leverage matches played after series or playoff qualification was secured.</li>
                 </ul>
               </div>
 
@@ -782,9 +840,9 @@ export default function Home() {
                   <h3 className="text-base text-white">Psychological Momentum Indicators</h3>
                 </div>
                 <ul className="text-xs text-slate-300 space-y-2 list-disc list-inside leading-relaxed">
-                  <li><strong>Post-Boundary Stress (Composure)</strong>: Evaluates what a bowler does on the ball immediately following a 4 or 6. Bumrah (46.8%) and Narine (40.0%) lead the tournament in comeback dot/wicket rate.</li>
-                  <li><strong>Post-Wicket Surge</strong>: Incoming batters face a $+0.08$ pressure surge for the next 6 balls as fielding momentum rises.</li>
-                  <li><strong>3-Match Rolling Form</strong>: Accounts for fatigue and confidence shifts entering the fixture.</li>
+                  <li><strong>Post-Boundary Stress (Composure)</strong>: Evaluates what a bowler executes on the ball immediately following a 4 or 6. Jasprit Bumrah (46.8%) and Sunil Narine (40.0%) lead the tournament in comeback dot and wicket rate.</li>
+                  <li><strong>Post-Wicket Leverage Surge</strong>: Incoming batters face an immediate +8% pressure surge for the next 6 balls as fielding momentum rises.</li>
+                  <li><strong>3-Match Rolling Form</strong>: Incorporates a 3-match recent trajectory to account for match fitness, confidence, and fatigue.</li>
                 </ul>
               </div>
 
@@ -796,22 +854,22 @@ export default function Home() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   
-                  <!-- Batters formula -->
+                  {/* Batters formula */}
                   <div className="p-4 rounded-xl bg-[#0B1322] border border-[#1A2A44] space-y-2">
                     <h4 className="text-xs uppercase font-extrabold text-[#EA1A85] tracking-wider">Batting Performance Equation</h4>
                     <p className="text-xs font-mono text-slate-200 bg-[#0F1A2E] p-2 rounded border border-[#1A2A44]">
-                      Score = 0.30·SR + 0.25·Bdry% + 0.18·Rot% + 0.17·Avg + 0.10·DotAvoid
+                      Score = 30% Strike Rate + 25% Boundary% + 18% Strike Rotation + 17% Average + 10% Dot Avoidance
                     </p>
                     <p className="text-xs text-slate-400 leading-relaxed">
                       Prioritizes <strong>Boundary Conversion (25%)</strong> over strike rotation (18%) per franchise rules, since high-pressure death overs demand maximum boundaries.
                     </p>
                   </div>
 
-                  <!-- Bowlers formula -->
+                  {/* Bowlers formula */}
                   <div className="p-4 rounded-xl bg-[#0B1322] border border-[#1A2A44] space-y-2">
                     <h4 className="text-xs uppercase font-extrabold text-[#00F5D4] tracking-wider">Bowling Performance Equation</h4>
                     <p className="text-xs font-mono text-slate-200 bg-[#0F1A2E] p-2 rounded border border-[#1A2A44]">
-                      Score = 0.30·Econ + 0.25·WSR + 0.20·PostBdry + 0.15·Dot% + 0.10·Q_opp
+                      Score = 30% Economy + 25% Wicket Strike Rate + 20% Post-Boundary Composure + 15% Dot% + 10% Opposition Tier
                     </p>
                     <p className="text-xs text-slate-400 leading-relaxed">
                       Rewards <strong>low economy (30%)</strong> and <strong>wicket-taking strike rate (25%)</strong> alongside <strong>post-boundary bounce-back composure (20%)</strong>.
@@ -819,11 +877,11 @@ export default function Home() {
                   </div>
                 </div>
 
-                <!-- Elevation Ratio -->
+                {/* Elevation Ratio */}
                 <div className="p-4 rounded-xl bg-[#0B1322] border border-[#1A2A44]">
                   <h4 className="text-xs uppercase font-extrabold text-[#F59E0B] tracking-wider mb-1">Pressure Performance Ratio (PPR)</h4>
                   <p className="text-xs text-slate-300 leading-relaxed">
-                    Measures how much a player elevates compared to normal conditions: $\text{PPR} = S_{\text{hp}} / \max(20.0, S_{\text{norm}})$. A ratio of $1.51$ (e.g. Naman Dhir) represents a $+51\%$ performance lift under pressure, while a ratio of $0.79$ (e.g. Sam Curran as a bowler) represents a $-21\%$ decline under pressure.
+                    Measures how much a player elevates compared to normal conditions: <strong>PPR = High-Pressure Score / Baseline Score</strong>. A ratio of 1.51x (achieved by Naman Dhir) represents a +51% performance surge under pressure, while a ratio of 0.79x (e.g. Sam Curran as a bowler) represents a -21% decline under pressure.
                   </p>
                 </div>
               </div>
