@@ -30,6 +30,8 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<'leaderboard' | 'quadrants' | 'lineup' | 'simulator' | 'methodology'>('leaderboard');
   const [role, setRole] = useState<'batters' | 'bowlers'>('batters');
   const [selectedPlayer, setSelectedPlayer] = useState<any | null>(null);
+  const [scatterRole, setScatterRole] = useState<'batters' | 'bowlers'>('batters');
+  const [hoveredPoint, setHoveredPoint] = useState<any | null>(null);
 
   // Simulator states
   const [rrr, setRrr] = useState<number>(11.5);
@@ -297,7 +299,7 @@ export default function Home() {
                               <p className="text-sm font-bold font-mono text-white">{p.hp_avg}</p>
                             </div>
                             <div>
-                              <p className="text-[10px] uppercase text-slate-400 font-semibold">Bdry %</p>
+                              <p className="text-[10px] uppercase text-slate-400 font-semibold">Boundary %</p>
                               <p className="text-sm font-bold font-mono text-[#F43F5E]">{p.hp_bdry_pct}%</p>
                             </div>
                           </>
@@ -385,12 +387,123 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Visual Scatter Grid representation */}
+            {/* Scatter Chart (Matching Localhost Performance Distribution) */}
             <div className="bg-[#131F37]/90 rounded-2xl p-6 border border-[#1E2E4F] space-y-4">
-              <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                <LayoutGrid className="w-5 h-5 text-[#E11D74]" /> Player Classification Distribution
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                  <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                    <LayoutGrid className="w-5 h-5 text-[#E11D74]" /> Performance Distribution
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-0.5">
+                    Hover over dots to inspect player quadrants, clutch scores, and pressure elevation ratios.
+                  </p>
+                </div>
+                <div className="flex items-center space-x-2 bg-[#0E172A] p-1 rounded-xl border border-[#1E2E4F]">
+                  <button
+                    onClick={() => setScatterRole('batters')}
+                    className={`px-3.5 py-1.5 text-xs uppercase font-extrabold rounded-lg transition shadow ${
+                      scatterRole === 'batters'
+                        ? 'bg-[#E11D74] text-white shadow-md shadow-[#E11D74]/30'
+                        : 'text-slate-400 hover:text-white'
+                    }`}
+                  >
+                    Batters
+                  </button>
+                  <button
+                    onClick={() => setScatterRole('bowlers')}
+                    className={`px-3.5 py-1.5 text-xs uppercase font-extrabold rounded-lg transition shadow ${
+                      scatterRole === 'bowlers'
+                        ? 'bg-[#E11D74] text-white shadow-md shadow-[#E11D74]/30'
+                        : 'text-slate-400 hover:text-white'
+                    }`}
+                  >
+                    Bowlers
+                  </button>
+                </div>
+              </div>
+
+              {/* Interactive SVG Scatter Plot */}
+              <div className="relative w-full h-80 sm:h-96 bg-[#0E172A] rounded-xl border border-[#1E2E4F] overflow-hidden p-2">
+                <svg viewBox="0 0 800 360" className="w-full h-full">
+                  {/* Grid Lines */}
+                  <line x1="60" y1="50" x2="760" y2="50" stroke="#1E2E4F" strokeDasharray="3 3" />
+                  <line x1="60" y1="120" x2="760" y2="120" stroke="#1E2E4F" strokeDasharray="3 3" />
+                  <line x1="60" y1="190" x2="760" y2="190" stroke="#334155" strokeWidth="1.5" strokeDasharray="5 5" />
+                  <line x1="60" y1="260" x2="760" y2="260" stroke="#1E2E4F" strokeDasharray="3 3" />
+                  <line x1="60" y1="320" x2="760" y2="320" stroke="#475569" strokeWidth="1.5" />
+
+                  {/* Vertical Axes & Quadrant Divider */}
+                  <line x1="60" y1="20" x2="60" y2="320" stroke="#475569" strokeWidth="1.5" />
+                  <line x1="235" y1="20" x2="235" y2="320" stroke="#1E2E4F" strokeDasharray="3 3" />
+                  <line x1="410" y1="20" x2="410" y2="320" stroke="#334155" strokeWidth="1.5" strokeDasharray="5 5" />
+                  <line x1="585" y1="20" x2="585" y2="320" stroke="#1E2E4F" strokeDasharray="3 3" />
+                  <line x1="760" y1="20" x2="760" y2="320" stroke="#1E2E4F" strokeDasharray="3 3" />
+
+                  {/* Quadrant Corner Watermarks */}
+                  <text x="70" y="45" fill="#38BDF8" fillOpacity="0.4" fontSize="11" fontWeight="bold">Quadrant 2: Crisis Specialists</text>
+                  <text x="590" y="45" fill="#E11D74" fillOpacity="0.5" fontSize="11" fontWeight="bold">Quadrant 1: Clutch Giants</text>
+                  <text x="70" y="305" fill="#64748B" fillOpacity="0.4" fontSize="11" fontWeight="bold">Quadrant 4: Strugglers</text>
+                  <text x="590" y="305" fill="#EAB308" fillOpacity="0.4" fontSize="11" fontWeight="bold">Quadrant 3: Front-Runners</text>
+
+                  {/* Axis Labels */}
+                  <text x="410" y="348" fill="#94A3B8" fontSize="11" textAnchor="middle" fontWeight="bold">Normal Match Performance Score &rarr;</text>
+                  <text x="18" y="170" fill="#94A3B8" fontSize="11" textAnchor="middle" fontWeight="bold" transform="rotate(-90 18 170)">High-Pressure Score &rarr;</text>
+
+                  {/* Data Points */}
+                  {(scatterRole === 'batters' ? cricketData.scatter_batters : cricketData.scatter_bowlers).map((d: any, idx: number) => {
+                    const cx = 60 + Math.max(0, Math.min(700, ((d.norm_score - 20) / 80) * 700));
+                    const cy = 320 - Math.max(0, Math.min(280, ((d.hp_score - 45) / 55) * 280));
+                    const isHovered = hoveredPoint && hoveredPoint.name === d.name;
+                    const fill = d.quadrant.includes('1') ? '#E11D74' : d.quadrant.includes('2') ? '#38BDF8' : d.quadrant.includes('3') ? '#EAB308' : '#64748B';
+
+                    return (
+                      <g key={d.name || idx} className="cursor-pointer">
+                        <circle
+                          cx={cx}
+                          cy={cy}
+                          r={isHovered ? 8 : 5.5}
+                          fill={fill}
+                          stroke="#080D1A"
+                          strokeWidth={isHovered ? 2.5 : 1.5}
+                          className="transition-all duration-150"
+                          onMouseEnter={() => setHoveredPoint(d)}
+                          onMouseLeave={() => setHoveredPoint(null)}
+                        />
+                        {isHovered && (
+                          <text x={cx} y={cy - 12} fill="#FFFFFF" fontSize="11" fontWeight="bold" textAnchor="middle" stroke="#080D1A" strokeWidth="3" paintOrder="stroke">
+                            {d.name} ({d.ppr}x)
+                          </text>
+                        )}
+                      </g>
+                    );
+                  })}
+                </svg>
+
+                {/* Floating Tooltip Box */}
+                {hoveredPoint && (
+                  <div className="absolute top-4 right-4 bg-[#131F37]/95 border border-[#E11D74]/50 rounded-xl p-3 shadow-2xl backdrop-blur-md pointer-events-none text-xs">
+                    <p className="font-extrabold text-white text-sm">{hoveredPoint.name}</p>
+                    <p className="text-[11px] text-[#38BDF8] font-bold mt-0.5">{hoveredPoint.quadrant}</p>
+                    <div className="grid grid-cols-3 gap-2 mt-2 pt-2 border-t border-[#1E2E4F] font-mono text-center">
+                      <div>
+                        <span className="text-[9px] text-slate-400 block">HP SCORE</span>
+                        <span className="text-white font-bold">{hoveredPoint.hp_score}</span>
+                      </div>
+                      <div>
+                        <span className="text-[9px] text-slate-400 block">NORMAL</span>
+                        <span className="text-white font-bold">{hoveredPoint.norm_score}</span>
+                      </div>
+                      <div>
+                        <span className="text-[9px] text-[#EAB308] block">PPR</span>
+                        <span className="text-[#EAB308] font-bold">{hoveredPoint.ppr}x</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Classification Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                 <div className="p-4 rounded-xl bg-[#0E172A] border border-[#E11D74]/40 space-y-2">
                   <h4 className="text-sm font-bold text-[#F43F5E]">Top Clutch Batters Distribution</h4>
                   <ul className="text-xs space-y-1 text-slate-300">
@@ -660,21 +773,21 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* SELECT DROPDOWN (CLEAN PROFESSIONAL TEXT - ZERO STICKERS) */}
+                {/* SELECT DROPDOWN (CLEAN PROFESSIONAL TEXT - MATCHING LOCALHOST) */}
                 <div>
-                  <label className="text-sm font-semibold text-slate-200 block mb-2">Macro Match Stakes Context</label>
+                  <label className="text-sm font-semibold text-slate-200 block mb-2">Match Context</label>
                   <select
                     value={stakes}
                     onChange={(e) => setStakes(parseFloat(e.target.value))}
                     className="w-full p-3 bg-[#0E172A] border border-[#1E2E4F] rounded-xl text-white font-semibold focus:outline-none focus:border-[#E11D74]"
                   >
-                    <option value="1.00">Tournament Final (IPL / ICC Championship) - [W_M = 1.00]</option>
-                    <option value="0.95">Direct Knockout / Semi-Final / Eliminator - [W_M = 0.95]</option>
-                    <option value="0.85">Tied Series Decider (34 Matches) - [W_M = 0.85]</option>
-                    <option value="0.80">Marquee Rivalry Derby (IND vs PAK, MI vs CSK) - [W_M = 0.80]</option>
-                    <option value="0.70">Late League Match (Match 55+ NRR Battle) - [W_M = 0.70]</option>
-                    <option value="0.50">Standard League Match - [W_M = 0.50]</option>
-                    <option value="0.35">Dead Rubber (Series Already Clinched) - [W_M = 0.35]</option>
+                    <option value="1.00">Tournament Final : 1.00</option>
+                    <option value="0.95">Knockouts : 0.95</option>
+                    <option value="0.85">Tied Series Decider : 0.85</option>
+                    <option value="0.80">Rivalries : 0.80</option>
+                    <option value="0.70">Late League Match : 0.70</option>
+                    <option value="0.50">Standard League Match : 0.50</option>
+                    <option value="0.35">Dead Rubber (Series Already Clinched) : 0.35</option>
                   </select>
                 </div>
 
@@ -715,13 +828,9 @@ export default function Home() {
                   </div>
 
                   <div className="p-4 rounded-xl bg-[#0E172A]/60 border border-[#1E2E4F] text-left">
-                    <span className="text-[10px] font-bold text-slate-400 uppercase">Engine Recommendation</span>
-                    <p className="text-xs text-slate-200 mt-1 leading-relaxed">
-                      {pBall >= 0.70 ? (
-                        <>Deploy <strong>Naman Dhir</strong> (HP SR 187.5) or <strong>Shashank Singh</strong> (HP Avg 38.1). For bowling, immediately hand ball to <strong>Sunil Narine</strong> (HP Econ 6.76) or <strong>Jasprit Bumrah</strong> (Post-Bdry Composure 46.8%).</>
-                      ) : (
-                        <>Standard tactical rotation. <strong>Virat Kohli</strong> and <strong>Jos Buttler</strong> can build partnerships with low immediate risk.</>
-                      )}
+                    <span className="text-xs font-bold text-slate-400 uppercase">Engine Recommendation</span>
+                    <p className="text-xs text-slate-200 mt-1 font-medium leading-relaxed">
+                      Deploy <strong>Naman Dhir</strong> or <strong>Shashank Singh</strong> to bat. For bowling, immediately hand ball to <strong>Sunil Narine</strong> or <strong>Jasprit Bumrah</strong>.
                     </p>
                   </div>
                 </div>
