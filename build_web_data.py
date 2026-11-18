@@ -247,7 +247,7 @@ for _, r in bowlers_df.iterrows():
         "quadrant": r['quadrant']
     })
 
-# Compile Pressure Proof XI
+# Compile Pressure Proof XI with full scouting profiles
 xi_full = {
     "batting_lineup": [
         {
@@ -258,8 +258,12 @@ xi_full = {
             "image": "players/virat_kohli.jpg",
             "hp_sr": 197.4,
             "hp_avg": 38.5,
+            "norm_sr": 139.5,
             "score": 68.4,
-            "desc": "T20 World Cup 2024 Final hero. Unprecedented 197.4 strike rate when opening under immediate tournament pressure."
+            "ppr": 1.22,
+            "archetype": "Clutch Giant",
+            "key_strength": "Powerplay Strike Rate (197.4 in HP Opening)",
+            "bio": "ICC T20 World Cup 2024 Final Player of the Match. Demonstrated an unprecedented 197.4 strike rate when opening under immediate tournament leverage, attacking the new ball against high-pace attacks with minimal dot ball percentage."
         },
         {
             "slot": 2,
@@ -269,8 +273,12 @@ xi_full = {
             "image": "players/quinton_de_kock.jpg",
             "hp_sr": 152.4,
             "hp_avg": 48.0,
+            "norm_sr": 142.1,
             "score": 76.8,
-            "desc": "Calm, explosive wicketkeeper-opener averaging 48.0 against Tier-1 pace attacks in critical Powerplays."
+            "ppr": 1.18,
+            "archetype": "Clutch Giant",
+            "key_strength": "Wicket Preservation & 48.0 HP Average",
+            "bio": "Calm, explosive wicketkeeper-opener averaging a stellar 48.0 against Tier-1 pace attacks in critical Powerplays. Neutralizes swing bowling while keeping the scoreboard moving at 152.4 SR without giving away early dismissals."
         },
         {
             "slot": 3,
@@ -280,8 +288,12 @@ xi_full = {
             "image": "players/shreyas_iyer.jpg",
             "hp_sr": 198.3,
             "hp_avg": 58.5,
+            "norm_sr": 149.3,
             "score": 85.3,
-            "desc": "Astonishing 58.5 average and 198.3 strike rate at Position 3 under pressure. The definitive anchor-destroyer."
+            "ppr": 1.12,
+            "archetype": "Clutch Giant",
+            "key_strength": "Spin Neutralization & 58.5 HP Average at #3",
+            "bio": "IPL championship-winning captain with an astonishing 58.5 average and 198.3 strike rate at Position 3 under pressure. Possesses unmatched 51.4% strike rotation, completely dismantling spin during the critical middle overs."
         },
         {
             "slot": 4,
@@ -291,19 +303,27 @@ xi_full = {
             "image": "players/rovman_powell.jpg",
             "hp_sr": 170.0,
             "hp_avg": 39.7,
+            "norm_sr": 145.2,
             "score": 91.9,
-            "desc": "RR powerhouse captain. Unmatched 91.9 clutch rating at slot 4, punishing spinners and death pacers alike."
+            "ppr": 1.25,
+            "archetype": "Clutch Giant",
+            "key_strength": "High-Leverage Six Hitting (91.9 Slot Score)",
+            "bio": "Rajasthan Royals powerhouse captain. Achieved an unmatched 91.9 clutch rating at slot 4, punishing both mystery spinners and death pacers alike with heavy six-hitting when the Required Run Rate climbs beyond 11.5 RPO."
         },
         {
             "slot": 5,
-            "role": "Crisis Stabilizer & Counter-Attacker",
+            "role": "Crisis Stabilizer & Finisher",
             "name": "Namboori Tilak Varma",
             "team": "Mumbai Indians / India",
             "image": "players/tilak_varma.jpg",
             "hp_sr": 168.5,
             "hp_avg": 45.3,
+            "norm_sr": 132.9,
             "score": 89.0,
-            "desc": "Rescues innings from collapses. 679 pressure runs at 45.3 average and 168.5 SR in high-stakes middle overs."
+            "ppr": 1.30,
+            "archetype": "Clutch Giant",
+            "key_strength": "Gear Shifting from 30/3 Collapse to Death Finish",
+            "bio": "Rescues innings from top-order collapses. Accumulated 679 high-pressure runs at slot 5 with a 45.3 average and 168.5 SR. Elevates performance by +30% in playoff and decider fixtures."
         },
         {
             "slot": 6,
@@ -313,32 +333,44 @@ xi_full = {
             "image": "players/shashank_singh.jpg",
             "hp_sr": 164.9,
             "hp_avg": 45.0,
+            "norm_sr": 151.0,
             "score": 89.6,
-            "desc": "Dead-eye finisher averaging 45.0 when chasing 12+ RRR with ice-cool boundary execution."
+            "ppr": 1.13,
+            "archetype": "Clutch Giant",
+            "key_strength": "Ice-Cool Boundary Execution in 12+ RRR Chases",
+            "bio": "Dead-eye finisher averaging 45.0 when chasing steep Required Run Rates in the final 5 overs. Demonstrates extraordinary calmness under pressure with a 51.6% strike rotation and clutch boundary conversion."
         },
         {
             "slot": 7,
             "role": "Lower Clutch Demolisher",
             "name": "Naman Dhir",
-            "team": "Mumbai Indians",
+            "team": "Mumbai Indians / Punjab",
             "image": "players/naman_dhir.jpg",
             "hp_sr": 197.0,
             "hp_avg": 43.7,
+            "norm_sr": 152.8,
             "score": 97.2,
-            "desc": "Highest position score in tournament (97.2). Strikes at 197.0 in death overs with a 27.5% boundary conversion rate."
+            "ppr": 1.51,
+            "archetype": "Clutch Giant",
+            "key_strength": "Tournament-Best 97.2 Position Score & 197.0 SR",
+            "bio": "Highest positional score in the entire tournament dataset (97.2). Smashes at a 197.0 strike rate in high-pressure death overs with an extraordinary 27.5% boundary conversion rate and +51% clutch elevation."
         }
     ],
     "bowling_attack": [
         {
             "role": "Powerplay Weapon",
             "name": "Shaheen Afridi",
-            "team": "Pakistan",
+            "team": "Pakistan / Lahore Qalandars",
             "image": "players/shaheen_afridi.jpg",
             "hp_econ": 6.19,
             "hp_wsr": 14.2,
+            "norm_econ": 7.76,
             "post_b_comp": 55.1,
             "score": 82.5,
-            "desc": "Concedes just 6.19 in high-pressure Powerplays with an incredible 55.1% post-boundary comeback rate."
+            "ppr": 1.28,
+            "archetype": "Clutch Giant",
+            "key_strength": "First-Over Wickets & 55.1% Post-Boundary Comeback",
+            "bio": "Concedes just 6.19 RPO in high-pressure Powerplays with an incredible 55.1% post-boundary comeback rate. Known globally for devastating first-over breakthroughs in ICC knockout matches and deciders."
         },
         {
             "role": "Middle Squeezer",
@@ -347,9 +379,13 @@ xi_full = {
             "image": "players/harpreet_brar.jpg",
             "hp_econ": 6.35,
             "hp_wsr": 13.9,
+            "norm_econ": 7.85,
             "post_b_comp": 30.0,
             "score": 79.7,
-            "desc": "Suffocates the opposition in overs 7-15, boasting a 6.35 economy and 13.9 strike rate in pressure games."
+            "ppr": 1.24,
+            "archetype": "Clutch Giant",
+            "key_strength": "Suffocating Middle-Over Economy (6.35 RPO)",
+            "bio": "Suffocates opposition acceleration through overs 7 to 15, boasting a 6.35 economy and 13.9 wicket strike rate in high-pressure games. Constricts scoring areas and forces rash strokes from top-order batters."
         },
         {
             "role": "Death Yorker Specialist",
@@ -358,20 +394,28 @@ xi_full = {
             "image": "players/jasprit_bumrah.jpg",
             "hp_econ": 6.88,
             "hp_wsr": 21.0,
+            "norm_econ": 6.83,
             "post_b_comp": 46.8,
             "score": 72.5,
-            "desc": "Global #1 death bowler. 736 HP deliveries with 46.8% post-boundary composure and lethal pinpoint yorkers."
+            "ppr": 1.14,
+            "archetype": "Clutch Giant",
+            "key_strength": "Pinpoint Laser Yorkers & 46.8% Bounce-Back",
+            "bio": "Global benchmark death bowler. Bowled 736 high-pressure deliveries maintaining an elite 6.88 economy with 46.8% post-boundary composure (highest among major pacers). Zero performance drop-off against Tier-1 opposition."
         },
         {
             "role": "Death Enforcer & Spinner",
             "name": "Sunil Narine",
-            "team": "Kolkata Knight Riders",
+            "team": "Kolkata Knight Riders / West Indies",
             "image": "players/sunil_narine.jpg",
             "hp_econ": 6.18,
             "hp_wsr": 11.2,
+            "norm_econ": 6.76,
             "post_b_comp": 43.8,
             "score": 89.7,
-            "desc": "Tournament #1 clutch bowler. 6.18 economy at the death, giving up virtually zero boundaries (11.1%)."
+            "ppr": 1.20,
+            "archetype": "Clutch Giant",
+            "key_strength": "Death Overs Mystery & Boundary Denial (11.1%)",
+            "bio": "Tournament #1 clutch bowler. Delivers an unbelievable 6.18 economy at the death, yielding virtually zero boundaries (11.1%) and claiming a wicket every 11.2 deliveries under maximum scoreboard pressure."
         }
     ]
 }

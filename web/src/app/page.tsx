@@ -7,7 +7,7 @@ import {
   LayoutGrid, 
   Shield, 
   Gauge, 
-  FileText, 
+  BookOpen, 
   Github, 
   Zap, 
   Target, 
@@ -21,7 +21,8 @@ import {
   Crosshair,
   Award,
   Brain,
-  CheckCircle
+  CheckCircle,
+  Compass
 } from 'lucide-react';
 
 export default function Home() {
@@ -52,83 +53,81 @@ export default function Home() {
   const playersList = role === 'batters' ? cricketData.batters : cricketData.bowlers;
 
   return (
-    <div className="min-h-screen bg-[#060B14] text-slate-100 font-sans selection:bg-[#EA1A85] selection:text-white pb-16">
+    <div className="min-h-screen bg-[#050811] text-slate-100 font-sans selection:bg-[#EA1A85] selection:text-white pb-16 relative">
       
-      {/* HEADER / NAVIGATION (With clean vertical padding - NEVER cut off) */}
-      <header className="sticky top-0 z-50 bg-[#060B14]/95 backdrop-blur-lg border-b border-[#1F314F] shadow-lg shadow-black/40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
+      {/* Subtle ambient lighting */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute -top-40 -left-40 w-96 h-96 bg-[#EA1A85]/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/3 -right-40 w-96 h-96 bg-[#00F5D4]/8 rounded-full blur-3xl"></div>
+      </div>
+
+      {/* HEADER / NAVIGATION (Clean Title without Badges - Request 1) */}
+      <header className="sticky top-0 z-50 bg-[#050811]/95 backdrop-blur-xl border-b border-[#1A2A44] shadow-xl shadow-black/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           
           {/* Logo & Brand */}
           <div className="flex items-center space-x-3.5">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#EA1A85] to-[#001C58] flex items-center justify-center font-black text-white text-xl shadow-lg shadow-[#EA1A85]/30 border border-[#EA1A85]/40 flex-shrink-0">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-[#EA1A85] via-[#B80E64] to-[#001C58] flex items-center justify-center font-black text-white text-lg shadow-lg shadow-[#EA1A85]/30 border border-[#EA1A85]/40 flex-shrink-0">
               RR
             </div>
-            <div className="flex flex-col justify-center">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#EA1A85]/20 text-[#FF4DAB] border border-[#EA1A85]/30 leading-none">
-                  Season 2 • Round 1
-                </span>
-                <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#00F5D4]/15 text-[#00F5D4] border border-[#00F5D4]/25 leading-none">
-                  Verified Pipeline
-                </span>
-              </div>
-              <h1 className="text-lg sm:text-2xl font-extrabold tracking-tight text-white leading-tight">
-                SupeRR Selector <span className="text-[#EA1A85]">Analytics Hub</span>
+            <div className="flex items-center space-x-2">
+              <h1 className="text-xl sm:text-2xl font-black tracking-tight text-white leading-none">
+                SupeRR Selector <span className="bg-gradient-to-r from-[#FF66B2] to-[#EA1A85] bg-clip-text text-transparent font-extrabold">Analytics Hub</span>
               </h1>
             </div>
           </div>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center space-x-1 bg-[#0F1A2E] p-1.5 rounded-xl border border-[#1F314F]">
+          <nav className="hidden md:flex items-center space-x-1 bg-[#0B1322]/90 p-1 rounded-xl border border-[#1A2A44] shadow-inner">
             <button
               onClick={() => setActiveTab('leaderboard')}
-              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 ${
+              className={`px-4 py-2 rounded-lg text-xs uppercase font-extrabold tracking-wider transition-all duration-200 flex items-center gap-1.5 ${
                 activeTab === 'leaderboard'
                   ? 'bg-[#EA1A85] text-white shadow-md shadow-[#EA1A85]/30'
-                  : 'text-slate-400 hover:text-white hover:bg-[#152238]'
+                  : 'text-slate-400 hover:text-white hover:bg-[#0F1A2E]'
               }`}
             >
-              <Trophy className="w-4 h-4" /> Leaderboard
+              <Trophy className="w-3.5 h-3.5" /> Leaderboard
             </button>
             <button
               onClick={() => setActiveTab('quadrants')}
-              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 ${
+              className={`px-4 py-2 rounded-lg text-xs uppercase font-extrabold tracking-wider transition-all duration-200 flex items-center gap-1.5 ${
                 activeTab === 'quadrants'
                   ? 'bg-[#EA1A85] text-white shadow-md shadow-[#EA1A85]/30'
-                  : 'text-slate-400 hover:text-white hover:bg-[#152238]'
+                  : 'text-slate-400 hover:text-white hover:bg-[#0F1A2E]'
               }`}
             >
-              <LayoutGrid className="w-4 h-4" /> 4-Quadrant
+              <LayoutGrid className="w-3.5 h-3.5" /> 4-Quadrant
             </button>
             <button
               onClick={() => setActiveTab('lineup')}
-              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 ${
+              className={`px-4 py-2 rounded-lg text-xs uppercase font-extrabold tracking-wider transition-all duration-200 flex items-center gap-1.5 ${
                 activeTab === 'lineup'
                   ? 'bg-[#EA1A85] text-white shadow-md shadow-[#EA1A85]/30'
-                  : 'text-slate-400 hover:text-white hover:bg-[#152238]'
+                  : 'text-slate-400 hover:text-white hover:bg-[#0F1A2E]'
               }`}
             >
-              <Shield className="w-4 h-4" /> Pressure-Proof XI
+              <Shield className="w-3.5 h-3.5" /> Pressure-Proof XI
             </button>
             <button
               onClick={() => setActiveTab('simulator')}
-              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 ${
+              className={`px-4 py-2 rounded-lg text-xs uppercase font-extrabold tracking-wider transition-all duration-200 flex items-center gap-1.5 ${
                 activeTab === 'simulator'
                   ? 'bg-[#EA1A85] text-white shadow-md shadow-[#EA1A85]/30'
-                  : 'text-slate-400 hover:text-white hover:bg-[#152238]'
+                  : 'text-slate-400 hover:text-white hover:bg-[#0F1A2E]'
               }`}
             >
-              <Gauge className="w-4 h-4" /> Simulator
+              <Gauge className="w-3.5 h-3.5" /> Simulator
             </button>
             <button
               onClick={() => setActiveTab('methodology')}
-              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 ${
+              className={`px-4 py-2 rounded-lg text-xs uppercase font-extrabold tracking-wider transition-all duration-200 flex items-center gap-1.5 ${
                 activeTab === 'methodology'
                   ? 'bg-[#EA1A85] text-white shadow-md shadow-[#EA1A85]/30'
-                  : 'text-slate-400 hover:text-white hover:bg-[#152238]'
+                  : 'text-slate-400 hover:text-white hover:bg-[#0F1A2E]'
               }`}
             >
-              <FileText className="w-4 h-4" /> Methodology
+              <BookOpen className="w-3.5 h-3.5" /> Methodology
             </button>
           </nav>
 
@@ -138,7 +137,7 @@ export default function Home() {
               href="https://github.com/Shreyan-18/RR.git"
               target="_blank"
               rel="noreferrer"
-              className="px-3.5 py-2 rounded-lg bg-[#152238] hover:bg-[#1F314F] text-slate-200 text-xs font-bold border border-[#1F314F] transition flex items-center gap-1.5"
+              className="px-3.5 py-2 rounded-lg bg-[#0F1A2E] hover:bg-[#14233D] text-slate-200 text-xs font-bold border border-[#1A2A44] transition flex items-center gap-1.5 shadow"
             >
               <Github className="w-4 h-4" /> GitHub
             </a>
@@ -146,7 +145,7 @@ export default function Home() {
         </div>
 
         {/* Mobile Navigation Bar */}
-        <div className="md:hidden flex overflow-x-auto px-4 py-2 space-x-2 bg-[#0F1A2E] border-t border-[#1F314F]">
+        <div className="md:hidden flex overflow-x-auto px-4 py-2 space-x-2 bg-[#0B1322] border-t border-[#1A2A44]">
           {(['leaderboard', 'quadrants', 'lineup', 'simulator', 'methodology'] as const).map((t) => (
             <button
               key={t}
@@ -162,48 +161,48 @@ export default function Home() {
       </header>
 
       {/* MAIN CONTENT AREA */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 relative z-10">
         
         {/* STATS STRIP */}
         <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-[#152238]/70 backdrop-blur-md rounded-2xl p-4 border border-[#1F314F] relative overflow-hidden">
+          <div className="bg-gradient-to-br from-[#0F1A2E]/90 to-[#0B1322]/90 backdrop-blur-md rounded-2xl p-4 border border-[#1A2A44] hover:border-[#EA1A85]/40 transition relative overflow-hidden">
             <Database className="w-16 h-16 absolute right-2 -bottom-2 text-[#EA1A85]/10" />
             <p className="text-[11px] uppercase font-bold text-slate-400 tracking-wider">Total Deliveries</p>
-            <p className="text-2xl sm:text-3xl font-extrabold font-mono text-white mt-1">200,999</p>
-            <span className="text-xs text-[#FF4DAB] font-semibold mt-1 inline-flex items-center gap-1">
+            <p className="text-2xl sm:text-3xl font-black font-mono text-white mt-1">200,999</p>
+            <span className="text-xs text-[#FF3399] font-semibold mt-1 inline-flex items-center gap-1">
               <CheckCircle className="w-3.5 h-3.5" /> 867 Matches (IPL & T20I)
             </span>
           </div>
 
-          <div className="bg-[#152238]/70 backdrop-blur-md rounded-2xl p-4 border border-[#1F314F] relative overflow-hidden">
+          <div className="bg-gradient-to-br from-[#0F1A2E]/90 to-[#0B1322]/90 backdrop-blur-md rounded-2xl p-4 border border-[#1A2A44] hover:border-[#00F5D4]/40 transition relative overflow-hidden">
             <Flame className="w-16 h-16 absolute right-2 -bottom-2 text-[#00F5D4]/10" />
             <p className="text-[11px] uppercase font-bold text-slate-400 tracking-wider">High Pressure Split</p>
-            <p className="text-2xl sm:text-3xl font-extrabold font-mono text-[#00F5D4] mt-1">60,314</p>
+            <p className="text-2xl sm:text-3xl font-black font-mono text-[#00F5D4] mt-1">60,314</p>
             <span className="text-xs text-slate-300 font-semibold mt-1 inline-block">Top 30% Leverage (P ≥ 0.70)</span>
           </div>
 
-          <div className="bg-[#152238]/70 backdrop-blur-md rounded-2xl p-4 border border-[#1F314F] relative overflow-hidden">
-            <Users className="w-16 h-16 absolute right-2 -bottom-2 text-[#D4AF37]/10" />
+          <div className="bg-gradient-to-br from-[#0F1A2E]/90 to-[#0B1322]/90 backdrop-blur-md rounded-2xl p-4 border border-[#1A2A44] hover:border-[#F59E0B]/40 transition relative overflow-hidden">
+            <Users className="w-16 h-16 absolute right-2 -bottom-2 text-[#F59E0B]/10" />
             <p className="text-[11px] uppercase font-bold text-slate-400 tracking-wider">Qualified Players</p>
-            <p className="text-2xl sm:text-3xl font-extrabold font-mono text-white mt-1">405</p>
-            <span className="text-xs text-[#D4AF37] font-semibold mt-1 inline-block">162 Batters • 243 Bowlers</span>
+            <p className="text-2xl sm:text-3xl font-black font-mono text-white mt-1">405</p>
+            <span className="text-xs text-[#F59E0B] font-semibold mt-1 inline-block">162 Batters • 243 Bowlers</span>
           </div>
 
-          <div className="bg-[#152238]/70 backdrop-blur-md rounded-2xl p-4 border border-[#1F314F] relative overflow-hidden">
+          <div className="bg-gradient-to-br from-[#0F1A2E]/90 to-[#0B1322]/90 backdrop-blur-md rounded-2xl p-4 border border-[#1A2A44] hover:border-[#EA1A85]/40 transition relative overflow-hidden">
             <Crown className="w-16 h-16 absolute right-2 -bottom-2 text-[#EA1A85]/10" />
             <p className="text-[11px] uppercase font-bold text-slate-400 tracking-wider">#1 Clutch Ranks</p>
-            <p className="text-lg sm:text-xl font-extrabold text-white mt-1 truncate">N. Dhir & S. Narine</p>
-            <span className="text-xs text-[#FF4DAB] font-semibold mt-1 inline-block">Scores: 87.7 (Bat) • 76.8 (Bowl)</span>
+            <p className="text-lg sm:text-xl font-black text-white mt-1 truncate">N. Dhir & S. Narine</p>
+            <span className="text-xs text-[#FF3399] font-semibold mt-1 inline-block">Scores: 87.7 (Bat) • 76.8 (Bowl)</span>
           </div>
         </section>
 
         {/* TAB 1: LEADERBOARDS */}
         {activeTab === 'leaderboard' && (
           <section className="space-y-6">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-[#1F314F]">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-[#1A2A44]">
               <div>
-                <h2 className="text-2xl font-extrabold text-white flex items-center gap-2">
-                  Official Pressure Rankings <span className="text-[#EA1A85] text-base font-semibold">• Top 10</span>
+                <h2 className="text-2xl font-black text-white flex items-center gap-2">
+                  Official Pressure Rankings <span className="bg-gradient-to-r from-[#FF66B2] to-[#EA1A85] bg-clip-text text-transparent text-base font-bold">• Top 10</span>
                 </h2>
                 <p className="text-sm text-slate-400 mt-0.5">
                   Audited across 867 fixtures, prioritizing boundary conversion (27.5%), post-boundary composure (46.8%), and macro stakes.
@@ -211,19 +210,19 @@ export default function Home() {
               </div>
 
               {/* Batters vs Bowlers Toggle */}
-              <div className="flex items-center bg-[#0F1A2E] p-1 rounded-xl border border-[#1F314F]">
+              <div className="flex items-center bg-[#0B1322] p-1 rounded-xl border border-[#1A2A44] shadow-inner">
                 <button
                   onClick={() => setRole('batters')}
-                  className={`px-5 py-2 rounded-lg text-sm font-bold flex items-center gap-1.5 transition ${
-                    role === 'batters' ? 'bg-[#EA1A85] text-white shadow-md' : 'text-slate-400 hover:text-white'
+                  className={`px-5 py-2 rounded-lg text-xs uppercase font-extrabold tracking-wider flex items-center gap-1.5 transition ${
+                    role === 'batters' ? 'bg-[#EA1A85] text-white shadow-md shadow-[#EA1A85]/30' : 'text-slate-400 hover:text-white'
                   }`}
                 >
                   <Zap className="w-4 h-4" /> Batters (10)
                 </button>
                 <button
                   onClick={() => setRole('bowlers')}
-                  className={`px-5 py-2 rounded-lg text-sm font-bold flex items-center gap-1.5 transition ${
-                    role === 'bowlers' ? 'bg-[#EA1A85] text-white shadow-md' : 'text-slate-400 hover:text-white'
+                  className={`px-5 py-2 rounded-lg text-xs uppercase font-extrabold tracking-wider flex items-center gap-1.5 transition ${
+                    role === 'bowlers' ? 'bg-[#EA1A85] text-white shadow-md shadow-[#EA1A85]/30' : 'text-slate-400 hover:text-white'
                   }`}
                 >
                   <Target className="w-4 h-4" /> Bowlers (10)
@@ -238,7 +237,7 @@ export default function Home() {
                 return (
                   <div
                     key={p.rank}
-                    className="bg-[#152238]/70 backdrop-blur-md rounded-2xl overflow-hidden border border-[#1F314F] hover:border-[#EA1A85]/50 transition duration-300 flex flex-col justify-between group"
+                    className="bg-gradient-to-br from-[#0F1A2E]/90 to-[#0B1322]/90 backdrop-blur-md rounded-2xl overflow-hidden border border-[#1A2A44] hover:border-[#EA1A85]/60 hover:shadow-xl hover:shadow-[#EA1A85]/10 transition duration-300 flex flex-col justify-between group"
                   >
                     <div className="p-5">
                       <div className="flex items-start gap-4">
@@ -261,13 +260,13 @@ export default function Home() {
                             <span
                               className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
                                 isClutch
-                                  ? 'bg-[#EA1A85]/20 text-[#FF4DAB] border-[#EA1A85]/40'
+                                  ? 'bg-[#EA1A85]/20 text-[#FF3399] border-[#EA1A85]/40'
                                   : 'bg-[#00F5D4]/20 text-[#00F5D4] border-[#00F5D4]/40'
                               }`}
                             >
                               {p.archetype}
                             </span>
-                            <span className="text-xs font-mono font-extrabold text-[#D4AF37]">
+                            <span className="text-xs font-mono font-extrabold text-[#F59E0B]">
                               Score: {p.final_score}
                             </span>
                           </div>
@@ -277,7 +276,7 @@ export default function Home() {
                       </div>
 
                       {/* Stat Metrics Strip */}
-                      <div className="mt-4 grid grid-cols-3 gap-2 p-2.5 rounded-xl bg-[#0F1A2E] text-center">
+                      <div className="mt-4 grid grid-cols-3 gap-2 p-2.5 rounded-xl bg-[#0B1322] border border-[#1A2A44] text-center">
                         {role === 'batters' ? (
                           <>
                             <div>
@@ -290,7 +289,7 @@ export default function Home() {
                             </div>
                             <div>
                               <p className="text-[10px] uppercase text-slate-400 font-semibold">Bdry %</p>
-                              <p className="text-sm font-bold font-mono text-[#FF4DAB]">{p.hp_bdry_pct}%</p>
+                              <p className="text-sm font-bold font-mono text-[#FF3399]">{p.hp_bdry_pct}%</p>
                             </div>
                           </>
                         ) : (
@@ -311,19 +310,19 @@ export default function Home() {
                         )}
                       </div>
 
-                      {/* Scouting Bio snippet */}
-                      <p className="text-xs text-slate-300 mt-3 line-clamp-2 leading-relaxed italic">
-                        "{p.bio}"
+                      {/* Full Scouting Bio without truncation */}
+                      <p className="text-xs text-slate-300 mt-3 leading-relaxed">
+                        {p.bio}
                       </p>
                     </div>
 
-                    <div className="px-5 py-3 bg-[#0F1A2E]/60 border-t border-[#1F314F] flex items-center justify-between">
+                    <div className="px-5 py-3 bg-[#0B1322]/70 border-t border-[#1A2A44] flex items-center justify-between">
                       <span className="text-xs text-slate-400 font-mono">
                         PPR: <strong className="text-white">{p.ppr}x</strong>
                       </span>
                       <button
                         onClick={() => setSelectedPlayer(p)}
-                        className="text-xs font-bold text-[#FF4DAB] hover:text-white flex items-center gap-1 transition"
+                        className="text-xs font-bold text-[#FF3399] hover:text-white flex items-center gap-1 transition"
                       >
                         Scouting Report <ChevronRight className="w-3.5 h-3.5" />
                       </button>
@@ -338,8 +337,8 @@ export default function Home() {
         {/* TAB 2: 4-QUADRANT MATRIX */}
         {activeTab === 'quadrants' && (
           <section className="space-y-6">
-            <div className="pb-4 border-b border-[#1F314F]">
-              <h2 className="text-2xl font-extrabold text-white flex items-center gap-2">
+            <div className="pb-4 border-b border-[#1A2A44]">
+              <h2 className="text-2xl font-black text-white flex items-center gap-2">
                 The 4-Quadrant Permutations Model
               </h2>
               <p className="text-sm text-slate-400 mt-1">
@@ -348,29 +347,29 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="bg-[#152238]/70 rounded-xl p-4 border-l-4 border-[#EA1A85] border border-[#1F314F]">
-                <span className="text-xs uppercase font-extrabold text-[#FF4DAB]">Quadrant 1</span>
+              <div className="bg-[#0F1A2E]/90 rounded-xl p-4 border-l-4 border-[#EA1A85] border border-[#1A2A44]">
+                <span className="text-xs uppercase font-black text-[#FF3399] tracking-wider">Quadrant 1</span>
                 <h3 className="text-base font-bold text-white mt-0.5">Clutch Giants</h3>
-                <p className="text-xs text-slate-400 mt-1">Dominant across ALL match conditions. Consistent high scores.</p>
+                <p className="text-xs text-slate-400 mt-1">Dominant across ALL match conditions. High normal score and high pressure score.</p>
                 <div className="mt-2 text-xs font-mono text-slate-300">Buttler, Narine, Bumrah, David</div>
               </div>
 
-              <div className="bg-[#152238]/70 rounded-xl p-4 border-l-4 border-[#00F5D4] border border-[#1F314F]">
-                <span className="text-xs uppercase font-extrabold text-[#00F5D4]">Quadrant 2</span>
+              <div className="bg-[#0F1A2E]/90 rounded-xl p-4 border-l-4 border-[#00F5D4] border border-[#1A2A44]">
+                <span className="text-xs uppercase font-black text-[#00F5D4] tracking-wider">Quadrant 2</span>
                 <h3 className="text-base font-bold text-white mt-0.5">Crisis Specialists</h3>
                 <p className="text-xs text-slate-400 mt-1">Elevate by +25% to +60% when the team is in trouble.</p>
                 <div className="mt-2 text-xs font-mono text-slate-300">Pant, Wade, Faheem, Haris Rauf</div>
               </div>
 
-              <div className="bg-[#152238]/70 rounded-xl p-4 border-l-4 border-amber-500 border border-[#1F314F]">
-                <span className="text-xs uppercase font-extrabold text-amber-400">Quadrant 3</span>
+              <div className="bg-[#0F1A2E]/90 rounded-xl p-4 border-l-4 border-amber-500 border border-[#1A2A44]">
+                <span className="text-xs uppercase font-black text-amber-400 tracking-wider">Quadrant 3</span>
                 <h3 className="text-base font-bold text-white mt-0.5">Front-Runners</h3>
                 <p className="text-xs text-slate-400 mt-1">Accumulate stats in easy games, but dip sharply under pressure.</p>
                 <div className="mt-2 text-xs font-mono text-slate-300">Aiden Markram, Shami, Brevis</div>
               </div>
 
-              <div className="bg-[#152238]/70 rounded-xl p-4 border-l-4 border-slate-600 border border-[#1F314F]">
-                <span className="text-xs uppercase font-extrabold text-slate-400">Quadrant 4</span>
+              <div className="bg-[#0F1A2E]/90 rounded-xl p-4 border-l-4 border-slate-600 border border-[#1A2A44]">
+                <span className="text-xs uppercase font-black text-slate-400 tracking-wider">Quadrant 4</span>
                 <h3 className="text-base font-bold text-white mt-0.5">Strugglers</h3>
                 <p className="text-xs text-slate-400 mt-1">Below average across both normal and pressure scenarios.</p>
                 <div className="mt-2 text-xs font-mono text-slate-300">Lower order accumulators</div>
@@ -378,13 +377,13 @@ export default function Home() {
             </div>
 
             {/* Visual Scatter Grid representation */}
-            <div className="bg-[#152238]/70 rounded-2xl p-6 border border-[#1F314F] space-y-4">
+            <div className="bg-[#0F1A2E]/90 rounded-2xl p-6 border border-[#1A2A44] space-y-4">
               <h3 className="text-lg font-bold text-white flex items-center gap-2">
                 <LayoutGrid className="w-5 h-5 text-[#EA1A85]" /> Player Classification Distribution
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="p-4 rounded-xl bg-[#0F1A2E] border border-[#EA1A85]/40 space-y-2">
-                  <h4 className="text-sm font-bold text-[#FF4DAB]">Top Clutch Batters Distribution</h4>
+                <div className="p-4 rounded-xl bg-[#0B1322] border border-[#EA1A85]/40 space-y-2">
+                  <h4 className="text-sm font-bold text-[#FF3399]">Top Clutch Batters Distribution</h4>
                   <ul className="text-xs space-y-1 text-slate-300">
                     <li>• <strong>Naman Dhir</strong>: HP Score 91.8 | Normal 60.9 | PPR 1.51 (Clutch Giant)</li>
                     <li>• <strong>Shashank Singh</strong>: HP Score 93.5 | Normal 82.7 | PPR 1.13 (Clutch Giant)</li>
@@ -392,7 +391,7 @@ export default function Home() {
                     <li>• <strong>Matthew Wade</strong>: HP Score 79.1 | Normal 50.6 | PPR 1.56 (Crisis Specialist)</li>
                   </ul>
                 </div>
-                <div className="p-4 rounded-xl bg-[#0F1A2E] border border-[#00F5D4]/40 space-y-2">
+                <div className="p-4 rounded-xl bg-[#0B1322] border border-[#00F5D4]/40 space-y-2">
                   <h4 className="text-sm font-bold text-[#00F5D4]">Top Clutch Bowlers Distribution</h4>
                   <ul className="text-xs space-y-1 text-slate-300">
                     <li>• <strong>Sunil Narine</strong>: HP Score 82.5 | Normal 68.9 | PPR 1.20 (Clutch Giant)</li>
@@ -406,19 +405,19 @@ export default function Home() {
           </section>
         )}
 
-        {/* TAB 3: PRESSURE PROOF XI */}
+        {/* TAB 3: PRESSURE PROOF XI (FULL TEXT & SCOUTING BUTTONS - REQUEST 2) */}
         {activeTab === 'lineup' && (
           <section className="space-y-6">
-            <div className="pb-4 border-b border-[#1F314F]">
-              <h2 className="text-2xl font-extrabold text-white flex items-center gap-2">
-                The Pressure-Proof World XI <span className="text-[#D4AF37] text-base font-semibold">• Master Lineup</span>
+            <div className="pb-4 border-b border-[#1A2A44]">
+              <h2 className="text-2xl font-black text-white flex items-center gap-2">
+                The Pressure-Proof World XI <span className="text-[#F59E0B] text-base font-bold">• Master Lineup</span>
               </h2>
               <p className="text-sm text-slate-400 mt-1">
-                Synthesized from positional optimization (Slots 1–7) and phase-specific bowling metrics.
+                Synthesized from positional optimization (Slots 1–7) and phase-specific bowling metrics. Click any card for the full scouting report.
               </p>
             </div>
 
-            <div className="bg-[#152238]/70 rounded-3xl p-6 sm:p-8 border-2 border-[#EA1A85]/30 space-y-8">
+            <div className="bg-gradient-to-br from-[#0F1A2E]/95 to-[#0B1322]/95 rounded-3xl p-6 sm:p-8 border-2 border-[#EA1A85]/30 space-y-8">
               
               {/* Batting slots 1 to 7 */}
               <div>
@@ -427,28 +426,45 @@ export default function Home() {
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   {cricketData.pressure_proof_xi.batting_lineup.map((b: any) => (
-                    <div key={b.slot} className="bg-[#0F1A2E] rounded-xl p-4 border border-[#1F314F] hover:border-[#EA1A85]/50 transition">
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={b.image.startsWith('/') ? b.image : `/${b.image}`}
-                          alt={b.name}
-                          className="w-12 h-12 rounded-xl object-cover border border-[#EA1A85] flex-shrink-0"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(b.name)}&background=EA1A85&color=fff&size=128&bold=true`;
-                          }}
-                        />
-                        <div className="min-w-0 flex-1">
-                          <div className="flex justify-between items-center">
-                            <span className="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-[#EA1A85]/20 text-[#FF4DAB] font-mono">
-                              Slot #{b.slot}
-                            </span>
-                            <span className="text-xs font-bold font-mono text-[#D4AF37]">{b.score}</span>
+                    <div key={b.slot} className="bg-[#0B1322] rounded-xl p-4 border border-[#1A2A44] hover:border-[#EA1A85]/60 flex flex-col justify-between transition group">
+                      <div>
+                        <div className="flex items-center gap-3">
+                          <img
+                            src={b.image.startsWith('/') ? b.image : `/${b.image}`}
+                            alt={b.name}
+                            className="w-13 h-13 rounded-xl object-cover border border-[#EA1A85] flex-shrink-0"
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(b.name)}&background=EA1A85&color=fff&size=128&bold=true`;
+                            }}
+                          />
+                          <div className="min-w-0 flex-1">
+                            <div className="flex justify-between items-center">
+                              <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-[#EA1A85]/20 text-[#FF3399] font-mono">
+                                Slot #{b.slot}
+                              </span>
+                              <span className="text-xs font-bold font-mono text-[#F59E0B]">Score: {b.score}</span>
+                            </div>
+                            <h4 className="text-sm font-black text-white truncate mt-1">{b.name}</h4>
+                            <p className="text-[10px] text-slate-400 truncate">{b.role}</p>
                           </div>
-                          <h4 className="text-sm font-black text-white truncate mt-1">{b.name}</h4>
-                          <p className="text-[10px] text-slate-400 truncate">{b.role}</p>
                         </div>
+
+                        {/* Full description without truncation (Request 2) */}
+                        <p className="text-xs text-slate-300 mt-3 leading-relaxed">
+                          {b.bio}
+                        </p>
                       </div>
-                      <p className="text-[11px] text-slate-300 mt-2.5 line-clamp-2 leading-relaxed">{b.desc}</p>
+
+                      {/* Clickable Scouting Report Button (Request 2) */}
+                      <div className="mt-4 pt-3 border-t border-[#1A2A44] flex items-center justify-between">
+                        <span className="text-[11px] font-mono text-[#00F5D4]">PPR: {b.ppr}x</span>
+                        <button
+                          onClick={() => setSelectedPlayer(b)}
+                          className="text-xs font-bold text-[#FF3399] hover:text-white flex items-center gap-1 transition"
+                        >
+                          Scouting Report <ChevronRight className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -461,28 +477,45 @@ export default function Home() {
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   {cricketData.pressure_proof_xi.bowling_attack.map((bw: any) => (
-                    <div key={bw.role} className="bg-[#0F1A2E] rounded-xl p-4 border border-[#1F314F] hover:border-[#00F5D4]/50 transition">
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={bw.image.startsWith('/') ? bw.image : `/${bw.image}`}
-                          alt={bw.name}
-                          className="w-12 h-12 rounded-xl object-cover border border-[#00F5D4] flex-shrink-0"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(bw.name)}&background=00F5D4&color=000&size=128&bold=true`;
-                          }}
-                        />
-                        <div className="min-w-0 flex-1">
-                          <div className="flex justify-between items-center">
-                            <span className="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-[#00F5D4]/20 text-[#00F5D4] font-mono">
-                              {bw.role}
-                            </span>
-                            <span className="text-xs font-bold font-mono text-[#D4AF37]">{bw.score}</span>
+                    <div key={bw.role} className="bg-[#0B1322] rounded-xl p-4 border border-[#1A2A44] hover:border-[#00F5D4]/60 flex flex-col justify-between transition group">
+                      <div>
+                        <div className="flex items-center gap-3">
+                          <img
+                            src={bw.image.startsWith('/') ? bw.image : `/${bw.image}`}
+                            alt={bw.name}
+                            className="w-13 h-13 rounded-xl object-cover border border-[#00F5D4] flex-shrink-0"
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(bw.name)}&background=00F5D4&color=000&size=128&bold=true`;
+                            }}
+                          />
+                          <div className="min-w-0 flex-1">
+                            <div className="flex justify-between items-center">
+                              <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-[#00F5D4]/20 text-[#00F5D4] font-mono">
+                                {bw.role}
+                              </span>
+                              <span className="text-xs font-bold font-mono text-[#F59E0B]">Score: {bw.score}</span>
+                            </div>
+                            <h4 className="text-sm font-black text-white truncate mt-1">{bw.name}</h4>
+                            <p className="text-[10px] text-slate-400 truncate">{bw.team}</p>
                           </div>
-                          <h4 className="text-sm font-black text-white truncate mt-1">{bw.name}</h4>
-                          <p className="text-[10px] text-slate-400 truncate">{bw.team}</p>
                         </div>
+
+                        {/* Full description without truncation (Request 2) */}
+                        <p className="text-xs text-slate-300 mt-3 leading-relaxed">
+                          {bw.bio}
+                        </p>
                       </div>
-                      <p className="text-[11px] text-slate-300 mt-2.5 line-clamp-2 leading-relaxed">{bw.desc}</p>
+
+                      {/* Clickable Scouting Report Button (Request 2) */}
+                      <div className="mt-4 pt-3 border-t border-[#1A2A44] flex items-center justify-between">
+                        <span className="text-[11px] font-mono text-[#00F5D4]">PPR: {bw.ppr}x</span>
+                        <button
+                          onClick={() => setSelectedPlayer(bw)}
+                          className="text-xs font-bold text-[#00F5D4] hover:text-white flex items-center gap-1 transition"
+                        >
+                          Scouting Report <ChevronRight className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -494,8 +527,8 @@ export default function Home() {
         {/* TAB 4: SIMULATOR (ZERO EMOJI STICKERS) */}
         {activeTab === 'simulator' && (
           <section className="space-y-6">
-            <div className="pb-4 border-b border-[#1F314F]">
-              <h2 className="text-2xl font-extrabold text-white flex items-center gap-2">
+            <div className="pb-4 border-b border-[#1A2A44]">
+              <h2 className="text-2xl font-black text-white flex items-center gap-2">
                 Live Crunch-Time Pressure Simulator
               </h2>
               <p className="text-sm text-slate-400 mt-1">
@@ -506,7 +539,7 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               
               {/* Left Controls */}
-              <div className="lg:col-span-2 bg-[#152238]/70 rounded-2xl p-6 border border-[#1F314F] space-y-6">
+              <div className="lg:col-span-2 bg-gradient-to-br from-[#0F1A2E]/90 to-[#0B1322]/90 rounded-2xl p-6 border border-[#1A2A44] space-y-6">
                 <h3 className="text-lg font-bold text-white flex items-center gap-2">
                   <Sliders className="w-5 h-5 text-[#EA1A85]" /> Match Situation Inputs
                 </h3>
@@ -514,7 +547,7 @@ export default function Home() {
                 <div>
                   <div className="flex justify-between items-center mb-2">
                     <label className="text-sm font-semibold text-slate-200">Required Run Rate (RRR)</label>
-                    <span className="text-base font-mono font-bold text-[#FF4DAB]">{rrr.toFixed(1)} RPO</span>
+                    <span className="text-base font-mono font-bold text-[#FF3399]">{rrr.toFixed(1)} RPO</span>
                   </div>
                   <input
                     type="range"
@@ -523,7 +556,7 @@ export default function Home() {
                     step="0.5"
                     value={rrr}
                     onChange={(e) => setRrr(parseFloat(e.target.value))}
-                    className="w-full accent-[#EA1A85] bg-[#0F1A2E] rounded-lg cursor-pointer"
+                    className="w-full accent-[#EA1A85] bg-[#0B1322] rounded-lg cursor-pointer"
                   />
                   <div className="flex justify-between text-xs text-slate-500 mt-1 font-medium">
                     <span>4.0 (Comfortable)</span>
@@ -544,7 +577,7 @@ export default function Home() {
                     step="1"
                     value={balls}
                     onChange={(e) => setBalls(parseInt(e.target.value))}
-                    className="w-full accent-[#EA1A85] bg-[#0F1A2E] rounded-lg cursor-pointer"
+                    className="w-full accent-[#EA1A85] bg-[#0B1322] rounded-lg cursor-pointer"
                   />
                   <div className="flex justify-between text-xs text-slate-500 mt-1 font-medium">
                     <span>1 Ball (Final Ball)</span>
@@ -565,7 +598,7 @@ export default function Home() {
                     step="1"
                     value={wickets}
                     onChange={(e) => setWickets(parseInt(e.target.value))}
-                    className="w-full accent-[#EA1A85] bg-[#0F1A2E] rounded-lg cursor-pointer"
+                    className="w-full accent-[#EA1A85] bg-[#0B1322] rounded-lg cursor-pointer"
                   />
                   <div className="flex justify-between text-xs text-slate-500 mt-1 font-medium">
                     <span>0 (Full Batting Depth)</span>
@@ -580,7 +613,7 @@ export default function Home() {
                   <select
                     value={stakes}
                     onChange={(e) => setStakes(parseFloat(e.target.value))}
-                    className="w-full p-3 bg-[#0F1A2E] border border-[#1F314F] rounded-xl text-white font-semibold focus:outline-none focus:border-[#EA1A85]"
+                    className="w-full p-3 bg-[#0B1322] border border-[#1A2A44] rounded-xl text-white font-semibold focus:outline-none focus:border-[#EA1A85]"
                   >
                     <option value="1.00">Tournament Final (IPL / ICC Championship) - [W_M = 1.00]</option>
                     <option value="0.95">Direct Knockout / Semi-Final / Eliminator - [W_M = 0.95]</option>
@@ -592,7 +625,7 @@ export default function Home() {
                   </select>
                 </div>
 
-                <div className="flex items-center space-x-3 p-3 bg-[#0F1A2E] rounded-xl border border-[#1F314F]">
+                <div className="flex items-center space-x-3 p-3 bg-[#0B1322] rounded-xl border border-[#1A2A44]">
                   <input
                     type="checkbox"
                     id="fortress-check"
@@ -607,7 +640,7 @@ export default function Home() {
               </div>
 
               {/* Gauge & Output */}
-              <div className="bg-[#152238]/70 rounded-2xl p-6 border border-[#1F314F] flex flex-col justify-between text-center">
+              <div className="bg-gradient-to-br from-[#0F1A2E]/90 to-[#0B1322]/90 rounded-2xl p-6 border border-[#1A2A44] flex flex-col justify-between text-center">
                 <div>
                   <span className="text-xs uppercase font-extrabold text-slate-400 tracking-wider">
                     Instantaneous Pressure Score
@@ -616,19 +649,19 @@ export default function Home() {
                     <div className="text-6xl font-black font-mono text-[#EA1A85]">
                       {pBall.toFixed(2)}
                     </div>
-                    <p className={`text-sm font-extrabold uppercase tracking-widest mt-2 ${pBall >= 0.70 ? 'text-[#FF4DAB]' : 'text-emerald-400'}`}>
+                    <p className={`text-sm font-extrabold uppercase tracking-widest mt-2 ${pBall >= 0.70 ? 'text-[#FF3399]' : 'text-emerald-400'}`}>
                       {pBall >= 0.70 ? 'HIGH PRESSURE REGIME (70th+ %ile)' : 'NORMAL MATCH LEVERAGE REGIME'}
                     </p>
                   </div>
 
-                  <div className="w-full bg-[#0F1A2E] h-3.5 rounded-full overflow-hidden p-0.5 border border-[#1F314F] mb-4">
+                  <div className="w-full bg-[#0B1322] h-3.5 rounded-full overflow-hidden p-0.5 border border-[#1A2A44] mb-4">
                     <div
                       className="h-full rounded-full bg-gradient-to-r from-emerald-400 via-amber-400 to-[#EA1A85] transition-all duration-300"
                       style={{ width: `${pPercent}%` }}
                     />
                   </div>
 
-                  <div className="p-4 rounded-xl bg-[#0F1A2E]/60 border border-[#1F314F] text-left">
+                  <div className="p-4 rounded-xl bg-[#0B1322]/60 border border-[#1A2A44] text-left">
                     <span className="text-[10px] font-bold text-slate-400 uppercase">Engine Recommendation</span>
                     <p className="text-xs text-slate-200 mt-1 leading-relaxed">
                       {pBall >= 0.70 ? (
@@ -640,7 +673,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-[#1F314F] text-xs text-slate-500 font-mono">
+                <div className="pt-4 border-t border-[#1A2A44] text-xs text-slate-500 font-mono">
                   P = 0.40 · C_macro + 0.60 · S_micro
                 </div>
               </div>
@@ -648,69 +681,153 @@ export default function Home() {
           </section>
         )}
 
-        {/* TAB 5: METHODOLOGY */}
+        {/* TAB 5: METHODOLOGY (CLEAR & COMPREHENSIVE - REQUEST 4) */}
         {activeTab === 'methodology' && (
-          <section className="space-y-6">
-            <div className="pb-4 border-b border-[#1F314F]">
-              <h2 className="text-2xl font-extrabold text-white flex items-center gap-2">
-                Mathematical Formulation & Domain Architecture
+          <section className="space-y-8">
+            <div className="pb-4 border-b border-[#1A2A44]">
+              <h2 className="text-2xl font-black text-white flex items-center gap-2">
+                Methodology & Mathematical Engine
               </h2>
               <p className="text-sm text-slate-400 mt-1">
-                Audited data-science pipeline adhering to all RR problem statement constraints.
+                Complete transparent formulation of how 200,999 deliveries were evaluated to isolate true clutch execution from reputation.
+              </p>
+            </div>
+
+            {/* Architecture Overview Banner */}
+            <div className="bg-gradient-to-br from-[#0F1A2E] to-[#0B1322] rounded-2xl p-6 border-l-4 border-[#EA1A85] border border-[#1A2A44]">
+              <h3 className="text-base font-bold text-white mb-2 flex items-center gap-2">
+                <Compass className="w-5 h-5 text-[#EA1A85]" /> The Core Analytics Philosophy
+              </h3>
+              <p className="text-sm text-slate-300 leading-relaxed">
+                Traditional cricket statistics suffer from severe <strong>context-blindness</strong>: a boundary hit when chasing 15 runs in 4 balls carries infinitely higher consequence than a boundary hit in the 3rd over of a dead rubber. Our methodology reconstructs the exact leverage of every delivery, separates <strong>Macro Stakes</strong> from <strong>Micro In-Game Situations</strong>, and benchmarks high-pressure performance ($S_{\text{hp}}$) against normal baseline performance ($S_{\text{norm}}$) to classify players across a 4-Quadrant archetype framework.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-[#152238]/70 rounded-2xl p-6 border border-[#1F314F] space-y-3">
+              
+              {/* STEP 1 */}
+              <div className="bg-gradient-to-br from-[#0F1A2E]/90 to-[#0B1322]/90 rounded-2xl p-6 border border-[#1A2A44] space-y-4 hover:border-[#EA1A85]/50 transition">
                 <div className="flex items-center gap-2 text-[#EA1A85] font-bold">
-                  <Database className="w-5 h-5" />
-                  <h3>1. The Composite Pressure Index</h3>
-                </div>
-                <div className="p-3 rounded-xl bg-[#0F1A2E] font-mono text-xs text-[#FF4DAB] border border-[#1F314F]">
-                  P_ball = 0.40 * C_macro + 0.60 * S_micro
+                  <span className="w-7 h-7 rounded-lg bg-[#EA1A85]/20 text-[#FF3399] flex items-center justify-center font-mono text-sm border border-[#EA1A85]/30">1</span>
+                  <h3 className="text-base text-white">The Composite Pressure Index (P_ball)</h3>
                 </div>
                 <p className="text-xs text-slate-300 leading-relaxed">
-                  Every ball across 200,999 deliveries receives a continuous pressure score. Top 30% (P ≥ 0.70) forms the High-Pressure Regime. Super Overs hardcoded to 1.00.
+                  Every legal delivery is assigned an instantaneous pressure value $P_{\text{ball}} \in [0, 1]$ uniting two orthogonal forces:
                 </p>
-              </div>
-
-              <div className="bg-[#152238]/70 rounded-2xl p-6 border border-[#1F314F] space-y-3">
-                <div className="flex items-center gap-2 text-[#00F5D4] font-bold">
-                  <Trophy className="w-5 h-5" />
-                  <h3>2. Macro Stakes & Deciders</h3>
+                <div className="p-3.5 rounded-xl bg-[#0B1322] font-mono text-xs text-[#FF3399] border border-[#1A2A44] text-center">
+                  P_ball = 0.40 × C_macro + 0.60 × S_micro
                 </div>
-                <div className="p-3 rounded-xl bg-[#0F1A2E] font-mono text-xs text-[#00F5D4] border border-[#1F314F]">
-                  C_macro = 0.50 * W_M + 0.35 * Q_opp + 0.15 * H_fortress
-                </div>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  Incorporates 15 tournament finals, 9 direct knockouts, 34 tied bilateral series deciders, 48 high-ego rivalries (IND vs PAK, MI vs CSK), and 64 dead rubbers.
-                </p>
-              </div>
-
-              <div className="bg-[#152238]/70 rounded-2xl p-6 border border-[#1F314F] space-y-3">
-                <div className="flex items-center gap-2 text-[#D4AF37] font-bold">
-                  <Award className="w-5 h-5" />
-                  <h3>3. Opposition Quality Tiers</h3>
-                </div>
-                <div className="grid grid-cols-2 gap-2 text-xs font-mono">
-                  <div className="p-2 rounded bg-[#0F1A2E] border border-[#1F314F]"><span className="text-[#D4AF37] font-bold">Tier 1 (1.00)</span>: India</div>
-                  <div className="p-2 rounded bg-[#0F1A2E] border border-[#1F314F]"><span className="text-[#FF4DAB] font-bold">Tier 1.5 (0.88-0.92)</span>: IPL</div>
-                  <div className="p-2 rounded bg-[#0F1A2E] border border-[#1F314F]"><span className="text-[#00F5D4] font-bold">Tier 2 (0.85)</span>: AUS, ENG, SA, NZ</div>
-                  <div className="p-2 rounded bg-[#0F1A2E] border border-[#1F314F]"><span className="text-slate-400 font-bold">Tier 3 (0.70)</span>: PAK, WI, SL, AFG</div>
-                </div>
-              </div>
-
-              <div className="bg-[#152238]/70 rounded-2xl p-6 border border-[#1F314F] space-y-3">
-                <div className="flex items-center gap-2 text-emerald-400 font-bold">
-                  <Brain className="w-5 h-5" />
-                  <h3>4. Psychological Momentum Indicators</h3>
-                </div>
-                <ul className="text-xs text-slate-300 space-y-1.5 list-disc list-inside leading-relaxed">
-                  <li><strong>Post-Boundary Stress</strong>: Bowler dot/wicket comeback rate after conceding a 4/6. Bumrah (46.8%) and Narine (40.0%) lead.</li>
-                  <li><strong>Post-Wicket Surge</strong>: Next 6 balls receive +0.08 pressure boost.</li>
-                  <li><strong>3-Match Rolling Form</strong>: Accounts for fatigue and recent form swings.</li>
+                <ul className="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+                  <li><strong>C_macro</strong>: Pre-ball tournament context, stakes, and hostile fortresses.</li>
+                  <li><strong>S_micro</strong>: Live match state (dynamic RRR, balls remaining, wickets down).</li>
+                  <li><strong>Super Overs</strong>: Hardcoded to maximum pressure ($P = 1.00$).</li>
+                  <li><strong>70th Percentile Split</strong>: Deliveries with $P \ge 0.70$ form the <strong>High-Pressure Regime</strong> (60,314 balls).</li>
                 </ul>
               </div>
+
+              {/* STEP 2 */}
+              <div className="bg-gradient-to-br from-[#0F1A2E]/90 to-[#0B1322]/90 rounded-2xl p-6 border border-[#1A2A44] space-y-4 hover:border-[#00F5D4]/50 transition">
+                <div className="flex items-center gap-2 text-[#00F5D4] font-bold">
+                  <span className="w-7 h-7 rounded-lg bg-[#00F5D4]/20 text-[#00F5D4] flex items-center justify-center font-mono text-sm border border-[#00F5D4]/30">2</span>
+                  <h3 className="text-base text-white">Macro Stakes Taxonomy (W_M)</h3>
+                </div>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Calculated before the delivery is bowled to reflect the severity of match consequences:
+                </p>
+                <div className="p-3.5 rounded-xl bg-[#0B1322] font-mono text-xs text-[#00F5D4] border border-[#1A2A44] text-center">
+                  C_macro = 0.50 × W_M + 0.35 × Q_opp + 0.15 × H_fortress
+                </div>
+                <ul className="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+                  <li><strong>Championship Finals ($W_M = 1.00$)</strong>: 15 winner-take-all tournament finals.</li>
+                  <li><strong>Direct Knockouts ($W_M = 0.95$)</strong>: 9 eliminators and semi-finals.</li>
+                  <li><strong>Tied Series Deciders ($W_M = 0.85$)</strong>: 34 tied 1–1 or 2–2 bilateral deciders.</li>
+                  <li><strong>Marquee Rivalries ($+0.15$ boost)</strong>: IND vs PAK, MI vs CSK, AUS vs ENG.</li>
+                  <li><strong>Dead Rubbers ($W_M = 0.35$)</strong>: 64 matches after series was clinched.</li>
+                </ul>
+              </div>
+
+              {/* STEP 3 */}
+              <div className="bg-gradient-to-br from-[#0F1A2E]/90 to-[#0B1322]/90 rounded-2xl p-6 border border-[#1A2A44] space-y-4 hover:border-[#F59E0B]/50 transition">
+                <div className="flex items-center gap-2 text-[#F59E0B] font-bold">
+                  <span className="w-7 h-7 rounded-lg bg-[#F59E0B]/20 text-[#F59E0B] flex items-center justify-center font-mono text-sm border border-[#F59E0B]/30">3</span>
+                  <h3 className="text-base text-white">Opposition Quality Hierarchy (Q_opp)</h3>
+                </div>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Calibrated on empirical win-loss records and ICC silverware between 2022 and 2026:
+                </p>
+                <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+                  <div className="p-2.5 rounded-xl bg-[#0B1322] border border-[#1A2A44]">
+                    <span className="text-[#F59E0B] font-bold block">Tier 1.0 (1.00)</span>
+                    <span className="text-slate-300 text-[11px]">India (82 wins, 2 T20 WCs)</span>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-[#0B1322] border border-[#1A2A44]">
+                    <span className="text-[#FF3399] font-bold block">Tier 1.5 (0.88-0.92)</span>
+                    <span className="text-slate-300 text-[11px]">IPL Franchises</span>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-[#0B1322] border border-[#1A2A44]">
+                    <span className="text-[#00F5D4] font-bold block">Tier 2.0 (0.85)</span>
+                    <span className="text-slate-300 text-[11px]">Australia, England, SA, NZ</span>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-[#0B1322] border border-[#1A2A44]">
+                    <span className="text-slate-400 font-bold block">Tier 3.0 (0.70)</span>
+                    <span className="text-slate-300 text-[11px]">Pakistan, WI, SL, Afghanistan</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* STEP 4 */}
+              <div className="bg-gradient-to-br from-[#0F1A2E]/90 to-[#0B1322]/90 rounded-2xl p-6 border border-[#1A2A44] space-y-4 hover:border-emerald-400/50 transition">
+                <div className="flex items-center gap-2 text-emerald-400 font-bold">
+                  <span className="w-7 h-7 rounded-lg bg-emerald-400/20 text-emerald-400 flex items-center justify-center font-mono text-sm border border-emerald-400/30">4</span>
+                  <h3 className="text-base text-white">Psychological Momentum Indicators</h3>
+                </div>
+                <ul className="text-xs text-slate-300 space-y-2 list-disc list-inside leading-relaxed">
+                  <li><strong>Post-Boundary Stress (Composure)</strong>: Evaluates what a bowler does on the ball immediately following a 4 or 6. Bumrah (46.8%) and Narine (40.0%) lead the tournament in comeback dot/wicket rate.</li>
+                  <li><strong>Post-Wicket Surge</strong>: Incoming batters face a $+0.08$ pressure surge for the next 6 balls as fielding momentum rises.</li>
+                  <li><strong>3-Match Rolling Form</strong>: Accounts for fatigue and confidence shifts entering the fixture.</li>
+                </ul>
+              </div>
+
+              {/* STEP 5 */}
+              <div className="bg-gradient-to-br from-[#0F1A2E]/90 to-[#0B1322]/90 rounded-2xl p-6 border border-[#1A2A44] space-y-4 md:col-span-2">
+                <div className="flex items-center gap-2 text-[#FF3399] font-bold">
+                  <span className="w-7 h-7 rounded-lg bg-[#EA1A85]/20 text-[#FF3399] flex items-center justify-center font-mono text-sm border border-[#EA1A85]/30">5</span>
+                  <h3 className="text-base text-white">Performance Scoring Equations & Weights</h3>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  
+                  <!-- Batters formula -->
+                  <div className="p-4 rounded-xl bg-[#0B1322] border border-[#1A2A44] space-y-2">
+                    <h4 className="text-xs uppercase font-extrabold text-[#EA1A85] tracking-wider">Batting Performance Equation</h4>
+                    <p className="text-xs font-mono text-slate-200 bg-[#0F1A2E] p-2 rounded border border-[#1A2A44]">
+                      Score = 0.30·SR + 0.25·Bdry% + 0.18·Rot% + 0.17·Avg + 0.10·DotAvoid
+                    </p>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      Prioritizes <strong>Boundary Conversion (25%)</strong> over strike rotation (18%) per franchise rules, since high-pressure death overs demand maximum boundaries.
+                    </p>
+                  </div>
+
+                  <!-- Bowlers formula -->
+                  <div className="p-4 rounded-xl bg-[#0B1322] border border-[#1A2A44] space-y-2">
+                    <h4 className="text-xs uppercase font-extrabold text-[#00F5D4] tracking-wider">Bowling Performance Equation</h4>
+                    <p className="text-xs font-mono text-slate-200 bg-[#0F1A2E] p-2 rounded border border-[#1A2A44]">
+                      Score = 0.30·Econ + 0.25·WSR + 0.20·PostBdry + 0.15·Dot% + 0.10·Q_opp
+                    </p>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      Rewards <strong>low economy (30%)</strong> and <strong>wicket-taking strike rate (25%)</strong> alongside <strong>post-boundary bounce-back composure (20%)</strong>.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Elevation Ratio -->
+                <div className="p-4 rounded-xl bg-[#0B1322] border border-[#1A2A44]">
+                  <h4 className="text-xs uppercase font-extrabold text-[#F59E0B] tracking-wider mb-1">Pressure Performance Ratio (PPR)</h4>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    Measures how much a player elevates compared to normal conditions: $\text{PPR} = S_{\text{hp}} / \max(20.0, S_{\text{norm}})$. A ratio of $1.51$ (e.g. Naman Dhir) represents a $+51\%$ performance lift under pressure, while a ratio of $0.79$ (e.g. Sam Curran as a bowler) represents a $-21\%$ decline under pressure.
+                  </p>
+                </div>
+              </div>
+
             </div>
           </section>
         )}
@@ -719,16 +836,16 @@ export default function Home() {
 
       {/* SCOUTING MODAL */}
       {selectedPlayer && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-[#152238] rounded-3xl max-w-lg w-full p-6 sm:p-8 relative border border-[#EA1A85]/40 shadow-2xl shadow-[#EA1A85]/20 overflow-hidden space-y-4">
+        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="bg-[#0F1A2E] rounded-3xl max-w-lg w-full p-6 sm:p-8 relative border border-[#EA1A85]/50 shadow-2xl shadow-[#EA1A85]/25 overflow-hidden space-y-4">
             <button
               onClick={() => setSelectedPlayer(null)}
-              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-[#0F1A2E] hover:bg-[#1F314F] flex items-center justify-center text-slate-300 hover:text-white transition"
+              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-[#0B1322] hover:bg-[#1A2A44] flex items-center justify-center text-slate-300 hover:text-white transition"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="flex items-center gap-4 border-b border-[#1F314F] pb-4">
+            <div className="flex items-center gap-4 border-b border-[#1A2A44] pb-4">
               <img
                 src={selectedPlayer.image.startsWith('/') ? selectedPlayer.image : `/${selectedPlayer.image}`}
                 alt={selectedPlayer.name}
@@ -740,39 +857,39 @@ export default function Home() {
               <div>
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-[#EA1A85] text-white">
-                    Rank #{selectedPlayer.rank}
+                    {selectedPlayer.slot ? `Slot #${selectedPlayer.slot}` : (selectedPlayer.rank ? `Rank #${selectedPlayer.rank}` : selectedPlayer.role)}
                   </span>
-                  <span className="text-xs font-bold px-2 py-0.5 rounded bg-[#0F1A2E] text-[#00F5D4] border border-[#1F314F]">
-                    {selectedPlayer.archetype}
+                  <span className="text-xs font-bold px-2 py-0.5 rounded bg-[#0B1322] text-[#00F5D4] border border-[#1A2A44]">
+                    {selectedPlayer.archetype || 'Clutch Giant'}
                   </span>
                 </div>
                 <h3 className="text-xl font-black text-white mt-1">{selectedPlayer.name}</h3>
-                <p className="text-xs text-slate-400">{selectedPlayer.role} • {selectedPlayer.team}</p>
+                <p className="text-xs text-slate-400">{selectedPlayer.role || selectedPlayer.team}</p>
               </div>
             </div>
 
             <div className="space-y-3">
-              <h4 className="text-xs uppercase font-extrabold text-[#FF4DAB] tracking-wider">
+              <h4 className="text-xs uppercase font-extrabold text-[#FF3399] tracking-wider">
                 Tactical Scouting Assessment
               </h4>
               <p className="text-sm text-slate-200 leading-relaxed">{selectedPlayer.bio}</p>
 
-              <div className="p-3 rounded-xl bg-[#0F1A2E] border border-[#1F314F]">
-                <span className="text-[11px] font-bold text-slate-400 uppercase">Key Super-Power</span>
-                <p className="text-xs font-bold text-[#00F5D4] mt-0.5">{selectedPlayer.key_strength}</p>
+              <div className="p-3.5 rounded-xl bg-[#0B1322] border border-[#1A2A44]">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Key Super-Power</span>
+                <p className="text-xs font-bold text-[#00F5D4] mt-0.5">{selectedPlayer.key_strength || 'High-Pressure Execution'}</p>
               </div>
 
               <div className="grid grid-cols-2 gap-2 text-center text-xs font-mono pt-2">
-                <div className="p-2.5 rounded-lg bg-[#0F1A2E] border border-[#1F314F]">
-                  <span className="text-slate-400 block text-[10px]">NORMAL MATCH SCORE</span>
+                <div className="p-2.5 rounded-lg bg-[#0B1322] border border-[#1A2A44]">
+                  <span className="text-slate-400 block text-[10px]">BASELINE (NORMAL) SCORE</span>
                   <span className="text-white font-bold text-sm">
-                    {selectedPlayer.norm_sr || selectedPlayer.norm_econ}
+                    {selectedPlayer.norm_sr || selectedPlayer.norm_econ || 'Standard'}
                   </span>
                 </div>
-                <div className="p-2.5 rounded-lg bg-[#0F1A2E] border border-[#EA1A85]/30">
-                  <span className="text-[#FF4DAB] block text-[10px]">HIGH-PRESSURE SCORE</span>
+                <div className="p-2.5 rounded-lg bg-[#0B1322] border border-[#EA1A85]/30">
+                  <span className="text-[#FF3399] block text-[10px]">HIGH-PRESSURE SCORE</span>
                   <span className="text-white font-bold text-sm">
-                    {selectedPlayer.hp_sr || selectedPlayer.hp_econ}
+                    {selectedPlayer.hp_sr || selectedPlayer.hp_econ || selectedPlayer.score}
                   </span>
                 </div>
               </div>
@@ -782,14 +899,14 @@ export default function Home() {
       )}
 
       {/* FOOTER */}
-      <footer className="mt-16 border-t border-[#1F314F] bg-[#060B14]/90 py-8 text-center text-xs text-slate-500">
+      <footer className="mt-16 border-t border-[#1A2A44] bg-[#050811]/95 py-8 text-center text-xs text-slate-500 relative z-10">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center space-x-2">
             <span className="w-2.5 h-2.5 rounded-full bg-[#EA1A85] animate-pulse"></span>
             <span className="font-bold text-slate-400">Rajasthan Royals SupeRR Selector • Round 1 Official Submission</span>
           </div>
-          <div>
-            Built with Next.js, Tailwind CSS & Python Data Science Stack
+          <div className="font-medium">
+            Built with Next.js, Tailwind CSS & Audited Python Data Science Pipeline
           </div>
         </div>
       </footer>
