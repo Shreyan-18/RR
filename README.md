@@ -3,6 +3,14 @@
 > **Round 1 Solution Architecture & Methodology**  
 > An empirical, multi-layer analytics system to evaluate, segment, and rank the most reliable T20/T20I batters and bowlers under high-pressure conditions.
 
+[![Live Web Application](https://img.shields.io/badge/Live_Hub-rr--top--players.vercel.app-E11D74?style=for-the-badge&logo=vercel&logoColor=white)](https://rr-top-players.vercel.app/)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repo-131F37?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Shreyan-18/RR.git)
+[![Evaluation Dataset](https://img.shields.io/badge/Deliveries-200%2C999-38BDF8?style=for-the-badge&logo=apache-spark&logoColor=white)](#)
+
+* **🌐 Live Interactive Hub**: [https://rr-top-players.vercel.app/](https://rr-top-players.vercel.app/)
+* **📄 Official PDF Methodology Report**: [`submission_package/METHODOLOGY_REPORT.pdf`](./submission_package/METHODOLOGY_REPORT.pdf)
+* **📋 Unstop Dropdown Rankings Cheatsheet**: [`submission_package/UNSTOP_RANKINGS_CHEATSHEET.txt`](./submission_package/UNSTOP_RANKINGS_CHEATSHEET.txt)
+
 ---
 
 ## 📌 Executive Summary

@@ -9,6 +9,7 @@ import {
   Gauge, 
   BookOpen, 
   Github, 
+  Globe,
   Zap, 
   Target, 
   ChevronRight, 
@@ -131,15 +132,23 @@ export default function Home() {
             </button>
           </nav>
 
-          {/* Quick link */}
-          <div className="flex items-center space-x-3">
+          {/* Quick links */}
+          <div className="flex items-center space-x-2 sm:space-x-3">
+            <a
+              href="https://rr-top-players.vercel.app/"
+              target="_blank"
+              rel="noreferrer"
+              className="px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-lg bg-[#E11D74] hover:bg-[#BE185D] text-white text-xs font-bold transition flex items-center gap-1.5 shadow-md shadow-[#E11D74]/25"
+            >
+              <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> Live Hub
+            </a>
             <a
               href="https://github.com/Shreyan-18/RR.git"
               target="_blank"
               rel="noreferrer"
-              className="px-3.5 py-2 rounded-lg bg-[#131F37] hover:bg-[#14233D] text-slate-200 text-xs font-bold border border-[#1E2E4F] transition flex items-center gap-1.5 shadow"
+              className="px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-lg bg-[#131F37] hover:bg-[#14233D] text-slate-200 text-xs font-bold border border-[#1E2E4F] transition flex items-center gap-1.5 shadow"
             >
-              <Github className="w-4 h-4" /> GitHub
+              <Github className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> GitHub
             </a>
           </div>
         </div>
@@ -883,6 +892,36 @@ export default function Home() {
                   <p className="text-xs text-slate-300 leading-relaxed">
                     Measures how much a player elevates compared to normal conditions: <strong>PPR = High-Pressure Score / Baseline Score</strong>. A ratio of 1.51x (achieved by Naman Dhir) represents a +51% performance surge under pressure, while a ratio of 0.79x (e.g. Sam Curran as a bowler) represents a -21% decline under pressure.
                   </p>
+                </div>
+              </div>
+
+              {/* OFFICIAL AUDIT & LIVE DEPLOYMENT LINKS */}
+              <div className="bg-gradient-to-r from-[#131F37] to-[#0E172A] rounded-2xl p-6 border border-[#1E2E4F] flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                  <h4 className="text-sm font-extrabold text-white flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-emerald-400" /> Official Verified Submission
+                  </h4>
+                  <p className="text-xs text-slate-400 mt-1">
+                    Evaluated across 200,999 legal deliveries (867 matches) with 70th-percentile pressure thresholding.
+                  </p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <a
+                    href="https://rr-top-players.vercel.app/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-4 py-2 rounded-xl bg-[#E11D74] text-white text-xs font-bold hover:bg-[#BE185D] transition shadow-lg shadow-[#E11D74]/25 flex items-center gap-1.5"
+                  >
+                    <Globe className="w-4 h-4" /> Live Deployment Hub
+                  </a>
+                  <a
+                    href="https://github.com/Shreyan-18/RR.git"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-4 py-2 rounded-xl bg-[#0E172A] text-slate-200 text-xs font-bold hover:bg-[#1E2E4F] border border-[#1E2E4F] transition flex items-center gap-1.5"
+                  >
+                    <Github className="w-4 h-4" /> GitHub Repo
+                  </a>
                 </div>
               </div>
 

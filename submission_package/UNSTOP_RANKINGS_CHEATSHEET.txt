@@ -42,5 +42,6 @@ Contents:
   5. Statistical Evidence Tables for Top 10 Batters, Top 10 Bowlers, and Pressure-Proof World XI
   6. Model Reliability & Boundaries
 
-GITHUB REPOSITORY: https://github.com/Shreyan-18/RR.git
+LIVE INTERACTIVE PLATFORM: https://rr-top-players.vercel.app/
+GITHUB REPOSITORY:         https://github.com/Shreyan-18/RR.git
 ================================================================================

@@ -51,7 +51,7 @@ class NumberedCanvas(canvas.Canvas):
         self.setStrokeColor(colors.HexColor("#CBD5E1"))
         self.setLineWidth(0.5)
         self.line(54, 45, 540, 45)
-        self.drawString(54, 32, "Confidential - Prepared for Rajasthan Royals Cricket Strategy & Analytics Team")
+        self.drawString(54, 32, "Rajasthan Royals SupeRR Selector | Live Platform: https://rr-top-players.vercel.app/")
         page_str = f"Page {self._pageNumber} of {total_pages}"
         self.drawRightString(540, 32, page_str)
         self.restoreState()
@@ -184,7 +184,7 @@ def build_pdf():
     story.append(Paragraph("Rajasthan Royals - SupeRR Selector Season 2", title_style))
     story.append(Paragraph("ROUND 1 METHODOLOGY REPORT: IDENTIFYING THE MOST RELIABLE PLAYERS UNDER PRESSURE", subtitle_style))
     
-    meta_text = "<b>Dataset:</b> 200,999 Deliveries across 867 IPL & T20I Matches (2022–2026) | <b>Author:</b> Sports Analytics & Data Science Team | <b>Submission:</b> Unstop Round 1"
+    meta_text = "<b>Dataset:</b> 200,999 Deliveries (867 Matches) | <b>Live Interactive Platform:</b> <font color='#0284C7'><u>https://rr-top-players.vercel.app/</u></font><br/><b>Official GitHub Repository:</b> <font color='#0284C7'><u>https://github.com/Shreyan-18/RR.git</u></font> | <b>Submission:</b> Unstop Round 1 Report"
     story.append(Paragraph(meta_text, meta_style))
     story.append(Spacer(1, 10))
     story.append(HRFlowable(width="100%", thickness=1.5, color=c_primary, spaceBefore=2, spaceAfter=12))
@@ -459,7 +459,7 @@ def build_pdf():
 
     # Footer note & Links
     story.append(HRFlowable(width="100%", thickness=0.8, color=colors.HexColor("#CBD5E1"), spaceBefore=6, spaceAfter=8))
-    links_text = "<b>Official Code Repository:</b> https://github.com/Shreyan-18/RR.git &nbsp;|&nbsp; <b>Interactive Web Hub:</b> Audited Next.js & Tailwind Analytics Engine"
+    links_text = "<b>Live Interactive Platform:</b> <font color='#0284C7'><u>https://rr-top-players.vercel.app/</u></font> &nbsp;|&nbsp; <b>Official Code Repository:</b> <font color='#0284C7'><u>https://github.com/Shreyan-18/RR.git</u></font>"
     story.append(Paragraph(links_text, meta_style))
 
     # Build PDF with NumberedCanvas
@@ -522,7 +522,8 @@ Contents:
   5. Statistical Evidence Tables for Top 10 Batters, Top 10 Bowlers, and Pressure-Proof World XI
   6. Model Reliability & Boundaries
 
-GITHUB REPOSITORY: https://github.com/Shreyan-18/RR.git
+LIVE INTERACTIVE PLATFORM: https://rr-top-players.vercel.app/
+GITHUB REPOSITORY:         https://github.com/Shreyan-18/RR.git
 ================================================================================
 """
     with open(os.path.join(OUT_DIR, 'UNSTOP_RANKINGS_CHEATSHEET.txt'), 'w', encoding='utf-8') as f:
@@ -579,7 +580,7 @@ Upload the publication-grade PDF document generated in this folder:
 
 ### Step 3: Optional Submission ("Share Your Journey")
 Unstop invites participants to share back-stage materials and insights:
-* **Live Interactive Platform**: [Vercel Deployment URL]
+* **Live Interactive Platform**: [https://rr-top-players.vercel.app/](https://rr-top-players.vercel.app/)
 * **GitHub Repository**: [https://github.com/Shreyan-18/RR.git](https://github.com/Shreyan-18/RR.git)
 * **Key Counter-Intuitive Insights to Mention**:
   * *Naman Dhir's +51% Surge*: Ranked #1 clutch batter empirically (187.5 HP strike rate) despite lower historical profile.

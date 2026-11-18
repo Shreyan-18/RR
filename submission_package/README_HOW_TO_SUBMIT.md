@@ -48,7 +48,7 @@ Upload the publication-grade PDF document generated in this folder:
 
 ### Step 3: Optional Submission ("Share Your Journey")
 Unstop invites participants to share back-stage materials and insights:
-* **Live Interactive Platform**: [Vercel Deployment URL]
+* **Live Interactive Platform**: [https://rr-top-players.vercel.app/](https://rr-top-players.vercel.app/)
 * **GitHub Repository**: [https://github.com/Shreyan-18/RR.git](https://github.com/Shreyan-18/RR.git)
 * **Key Counter-Intuitive Insights to Mention**:
   * *Naman Dhir's +51% Surge*: Ranked #1 clutch batter empirically (187.5 HP strike rate) despite lower historical profile.
