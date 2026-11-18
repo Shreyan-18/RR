@@ -22,22 +22,22 @@
           },
           colors: {
             rr: {
-              pink: '#EA1A85',
-              darkPink: '#B80E64',
-              lightPink: '#FF3399',
-              glowPink: '#FF66B2',
-              blue: '#0A1931',
-              darkBlue: '#001C58',
-              obsidian: '#050811',
-              surface: '#0B1322',
-              card: '#0F1A2E',
-              cardHover: '#14233D',
-              border: '#1A2A44',
-              borderLight: '#273D63',
-              gold: '#F59E0B',
-              goldLight: '#FBBF24',
-              cyan: '#00F5D4',
-              cyanGlow: '#55FFEB'
+              pink: '#E11D74',
+              darkPink: '#B8145B',
+              lightPink: '#F43F5E',
+              glowPink: '#FB7185',
+              blue: '#0F1A30',
+              darkBlue: '#0A1224',
+              obsidian: '#080D1A',
+              surface: '#0E172A',
+              card: '#131F37',
+              cardHover: '#1A2A4A',
+              border: '#1E2E4F',
+              borderLight: '#2C426E',
+              gold: '#EAB308',
+              goldLight: '#FACC15',
+              cyan: '#38BDF8',
+              cyanGlow: '#7DD3FC'
             }
           }
         }
@@ -52,32 +52,32 @@
   <style>
     /* Custom scrollbar */
     ::-webkit-scrollbar { width: 7px; height: 7px; }
-    ::-webkit-scrollbar-track { background: #050811; }
-    ::-webkit-scrollbar-thumb { background: #1A2A44; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #EA1A85; }
+    ::-webkit-scrollbar-track { background: #080D1A; }
+    ::-webkit-scrollbar-thumb { background: #1E2E4F; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #E11D74; }
     
     .glow-card-pink {
-      box-shadow: 0 4px 25px -4px rgba(234, 26, 133, 0.18);
+      box-shadow: 0 4px 25px -4px rgba(225, 29, 116, 0.20);
     }
     .glow-card-cyan {
-      box-shadow: 0 4px 25px -4px rgba(0, 245, 212, 0.16);
+      box-shadow: 0 4px 25px -4px rgba(56, 189, 248, 0.18);
     }
     .glass-panel {
-      background: linear-gradient(135deg, rgba(15, 26, 46, 0.85) 0%, rgba(11, 19, 34, 0.85) 100%);
+      background: linear-gradient(135deg, rgba(19, 31, 55, 0.85) 0%, rgba(14, 23, 42, 0.85) 100%);
       backdrop-filter: blur(16px);
-      border: 1px solid rgba(26, 42, 68, 0.85);
+      border: 1px solid rgba(30, 46, 79, 0.85);
     }
     .glass-panel-hover:hover {
-      border-color: rgba(234, 26, 133, 0.5);
-      box-shadow: 0 8px 30px -4px rgba(234, 26, 133, 0.22);
+      border-color: rgba(225, 29, 116, 0.5);
+      box-shadow: 0 8px 30px -4px rgba(225, 29, 116, 0.22);
     }
     .text-gradient-pink {
-      background: linear-gradient(135deg, #FF66B2 0%, #EA1A85 100%);
+      background: linear-gradient(135deg, #FB7185 0%, #E11D74 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .text-gradient-gold {
-      background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
+      background: linear-gradient(135deg, #FDE047 0%, #EAB308 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -114,10 +114,10 @@
           <i data-lucide="trophy" class="w-3.5 h-3.5"></i> Leaderboard
         </button>
         <button onclick="switchTab('quadrants')" id="tab-btn-quadrants" class="tab-btn px-4 py-2 rounded-lg text-xs uppercase font-extrabold tracking-wider transition-all duration-200 text-slate-400 hover:text-white hover:bg-rr-card flex items-center gap-1.5">
-          <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i> 4-Quadrant Matrix
+          <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i> Performance under Pressure
         </button>
         <button onclick="switchTab('lineup')" id="tab-btn-lineup" class="tab-btn px-4 py-2 rounded-lg text-xs uppercase font-extrabold tracking-wider transition-all duration-200 text-slate-400 hover:text-white hover:bg-rr-card flex items-center gap-1.5">
-          <i data-lucide="shield" class="w-3.5 h-3.5"></i> Pressure-Proof XI
+          <i data-lucide="shield" class="w-3.5 h-3.5"></i> World XI
         </button>
         <button onclick="switchTab('simulator')" id="tab-btn-simulator" class="tab-btn px-4 py-2 rounded-lg text-xs uppercase font-extrabold tracking-wider transition-all duration-200 text-slate-400 hover:text-white hover:bg-rr-card flex items-center gap-1.5">
           <i data-lucide="gauge" class="w-3.5 h-3.5"></i> Simulator
@@ -210,18 +210,16 @@
           <h2 class="text-2xl font-black text-white flex items-center gap-2">
             Official Pressure Rankings <span class="text-gradient-pink text-base font-bold">• Top 10</span>
           </h2>
-          <p class="text-sm text-slate-400 mt-0.5">
-            Ranked by Composite Pressure Score, prioritizing boundary conversion (27.5%), post-boundary composure (46.8%), and macro stakes.
-          </p>
+          
         </div>
 
         <!-- Role Toggle: Batters vs Bowlers -->
         <div class="flex items-center bg-rr-surface p-1 rounded-xl border border-rr-border shadow-inner">
           <button onclick="toggleRole('batters')" id="role-btn-batters" class="px-5 py-2 rounded-lg text-xs uppercase font-extrabold tracking-wider bg-rr-pink text-white shadow-md shadow-rr-pink/30 transition flex items-center gap-1.5">
-            <i data-lucide="zap" class="w-4 h-4"></i> Batters (10)
+             Batters (10)
           </button>
           <button onclick="toggleRole('bowlers')" id="role-btn-bowlers" class="px-5 py-2 rounded-lg text-xs uppercase font-extrabold tracking-wider text-slate-400 hover:text-white transition flex items-center gap-1.5">
-            <i data-lucide="target" class="w-4 h-4"></i> Bowlers (10)
+             Bowlers (10)
           </button>
         </div>
       </div>
@@ -239,10 +237,10 @@
     <section id="tab-quadrants" class="tab-content hidden space-y-6">
       <div class="pb-4 border-b border-rr-border">
         <h2 class="text-2xl font-black text-white flex items-center gap-2">
-          The 4-Quadrant Permutations Model
+          The Performance Under Pressure Model
         </h2>
         <p class="text-sm text-slate-400 mt-1">
-          Separating true clutch performers from flat-track accumulators by comparing Normal Match Performance against High-Pressure Performance.
+          Comparing Normal Match Performance against High-Pressure Performance.
         </p>
       </div>
 
@@ -282,7 +280,7 @@
         <div class="flex items-center justify-between mb-4">
           <h3 class="text-lg font-bold text-white flex items-center gap-2">
             <i data-lucide="scatter-chart" class="w-5 h-5 text-rr-pink"></i>
-            Performance Permutations Scatter Map
+            Performance Distribution
           </h3>
           <div class="flex items-center space-x-2">
             <button onclick="updateQuadrantChart('batters')" id="quad-btn-batters" class="px-3.5 py-1.5 text-xs uppercase font-bold rounded-lg bg-rr-pink text-white transition shadow">Batters</button>
@@ -302,11 +300,8 @@
     <section id="tab-lineup" class="tab-content hidden space-y-6">
       <div class="pb-4 border-b border-rr-border">
         <h2 class="text-2xl font-black text-white flex items-center gap-2">
-          The Pressure-Proof World XI <span class="text-gradient-gold text-base font-bold">• Master Lineup</span>
+          World Best T20 XI <span class="text-gradient-gold text-base font-bold">• </span>
         </h2>
-        <p class="text-sm text-slate-400 mt-1">
-          Mathematically synthesized from positional optimization (Slots 1–7) and bowling phase specialists. Click any card for the full scouting breakdown.
-        </p>
       </div>
 
       <!-- CRICKET PITCH TACTICAL VIEW -->
@@ -404,15 +399,15 @@
 
           <!-- Select 4: Match Stakes Context (CLEAN PROFESSIONAL TEXT - NO EMOJI STICKERS) -->
           <div>
-            <label class="text-sm font-semibold text-slate-200 block mb-2">Macro Match Stakes Context</label>
+            <label class="text-sm font-semibold text-slate-200 block mb-2">Match Context</label>
             <select id="input-stakes" class="w-full p-3 bg-rr-surface border border-rr-border rounded-xl text-white font-semibold focus:outline-none focus:border-rr-pink" onchange="runSimulation()">
-              <option value="1.00">Tournament Final (IPL / ICC Championship) - [W_M = 1.00]</option>
-              <option value="0.95">Direct Knockout / Semi-Final / Eliminator - [W_M = 0.95]</option>
-              <option value="0.85" selected>Tied Series Decider (34 Matches) - [W_M = 0.85]</option>
-              <option value="0.80">Marquee Rivalry Derby (IND vs PAK, MI vs CSK) - [W_M = 0.80]</option>
-              <option value="0.70">Late League Match (Match 55+ NRR Battle) - [W_M = 0.70]</option>
-              <option value="0.50">Standard League Match - [W_M = 0.50]</option>
-              <option value="0.35">Dead Rubber (Series Already Clinched) - [W_M = 0.35]</option>
+              <option value="1.00">Tournament Final : 1.00</option>
+              <option value="0.95">Knockouts : 0.95</option>
+              <option value="0.85" selected>Tied Series Decider : 0.85</option>
+              <option value="0.80">Rivalries : 0.80</option>
+              <option value="0.70">Late League Match : 0.70</option>
+              <option value="0.50">Standard League Match : 0.50</option>
+              <option value="0.35">Dead Rubber (Series Already Clinched) : 0.35</option>
             </select>
           </div>
 
@@ -420,7 +415,7 @@
           <div class="flex items-center space-x-3 p-3 bg-rr-surface rounded-xl border border-rr-border">
             <input type="checkbox" id="input-fortress" class="w-4 h-4 accent-rr-pink rounded cursor-pointer" onchange="runSimulation()" checked>
             <label for="input-fortress" class="text-sm font-semibold text-slate-200 cursor-pointer">
-              Hostile Away Fortress Match (Wankhede, Eden Gardens, Gabba, MCG)
+              Hostile Away Fortress 
             </label>
           </div>
         </div>
@@ -469,9 +464,6 @@
         <h2 class="text-2xl font-black text-white flex items-center gap-2">
           Methodology & Mathematical Engine
         </h2>
-        <p class="text-sm text-slate-400 mt-1">
-          Complete transparent formulation of how 200,999 deliveries were evaluated to isolate true clutch execution from reputation.
-        </p>
       </div>
 
       <!-- ARCHITECTURE OVERVIEW BANNER (Clean, Executive & Human-Like) -->
@@ -537,7 +529,7 @@
             <li><strong>Championship Finals (1.00 Weight)</strong>: 15 winner-take-all tournament finals.</li>
             <li><strong>Direct Knockouts (0.95 Weight)</strong>: 9 sudden-death eliminators and semi-finals.</li>
             <li><strong>Tied Series Deciders (0.85 Weight)</strong>: 34 winner-take-all bilateral deciders tied at 1–1 or 2–2.</li>
-            <li><strong>Marquee Rivalries (+0.15 Boost)</strong>: India vs Pakistan, Mumbai Indians vs CSK, Australia vs England.</li>
+            <li><strong>Rivalries (+0.15 Boost)</strong>: IND VS PAK, MI vs CSK, RCB VS CSK, AUS VS ENG.</li>
             <li><strong>Dead Rubbers (0.35 Weight)</strong>: 64 low-leverage matches played after series or playoff qualification was secured.</li>
           </ul>
         </div>
@@ -769,7 +761,7 @@
                 <div class="relative flex-shrink-0">
                   <img src="${p.image}" alt="${p.name}" 
                        class="w-16 h-16 rounded-2xl object-cover border-2 border-rr-pink/50 shadow-lg group-hover:scale-105 transition"
-                       onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(p.name)}&background=EA1A85&color=fff&size=128&bold=true';">
+                       onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(p.name)}&background=E11D74&color=fff&size=128&bold=true';">
                   <span class="absolute -top-2 -left-2 w-6 h-6 rounded-full bg-rr-pink text-white font-mono font-bold text-xs flex items-center justify-center shadow">
                     #${p.rank}
                   </span>
@@ -840,7 +832,7 @@
       content.innerHTML = `
         <div class="flex items-center gap-4 border-b border-rr-border pb-4">
           <img src="${p.image}" alt="${p.name}" class="w-20 h-20 rounded-2xl object-cover border-2 border-rr-pink shadow-lg flex-shrink-0"
-               onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(p.name)}&background=EA1A85&color=fff&size=128&bold=true';">
+               onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(p.name)}&background=E11D74&color=fff&size=128&bold=true';">
           <div class="min-w-0 flex-1">
             <div class="flex items-center gap-2 flex-wrap">
               <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-rr-pink text-white">${badgeText}</span>
@@ -895,7 +887,7 @@
               <div class="relative flex-shrink-0">
                 <img src="${b.image}" alt="${b.name}" 
                      class="w-16 h-16 rounded-2xl object-cover border-2 border-rr-pink/50 shadow-lg group-hover:scale-105 transition"
-                     onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(b.name)}&background=EA1A85&color=fff&size=128&bold=true';">
+                     onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(b.name)}&background=E11D74&color=fff&size=128&bold=true';">
                 <span class="absolute -top-2 -left-2 w-7 h-7 rounded-full bg-rr-pink text-white font-mono font-bold text-xs flex items-center justify-center shadow">
                   #${b.slot}
                 </span>
@@ -959,7 +951,7 @@
               <div class="relative flex-shrink-0">
                 <img src="${bw.image}" alt="${bw.name}" 
                      class="w-16 h-16 rounded-2xl object-cover border-2 border-rr-cyan/50 shadow-lg group-hover:scale-105 transition"
-                     onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(bw.name)}&background=00F5D4&color=000&size=128&bold=true';">
+                     onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(bw.name)}&background=38BDF8&color=000&size=128&bold=true';">
                 <span class="absolute -top-2 -left-2 px-2 py-0.5 rounded-full bg-rr-cyan text-slate-900 font-mono font-black text-[9px] flex items-center justify-center shadow uppercase">
                   PHASE
                 </span>
@@ -1039,10 +1031,10 @@
             data: chartData,
             backgroundColor: (ctx) => {
               const item = ctx.raw;
-              if (!item) return '#EA1A85';
-              if (item.quadrant.includes('1')) return '#EA1A85'; // Pink
-              if (item.quadrant.includes('2')) return '#00F5D4'; // Cyan
-              if (item.quadrant.includes('3')) return '#F59E0B'; // Amber
+              if (!item) return '#E11D74';
+              if (item.quadrant.includes('1')) return '#E11D74'; // Royals Magenta
+              if (item.quadrant.includes('2')) return '#38BDF8'; // Ice Cyan
+              if (item.quadrant.includes('3')) return '#EAB308'; // Champagne Gold
               return '#64748B'; // Slate
             },
             pointRadius: 6,
