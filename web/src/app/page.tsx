@@ -10,8 +10,6 @@ import {
   BookOpen, 
   Github, 
   Globe,
-  Zap, 
-  Target, 
   ChevronRight, 
   X, 
   Sliders, 
@@ -215,28 +213,25 @@ export default function Home() {
                 <h2 className="text-2xl font-black text-white flex items-center gap-2">
                   Official Pressure Rankings <span className="bg-gradient-to-r from-[#FF66B2] to-[#E11D74] bg-clip-text text-transparent text-base font-bold">• Top 10</span>
                 </h2>
-                <p className="text-sm text-slate-400 mt-0.5">
-                  Audited across 867 fixtures, prioritizing boundary conversion (27.5%), post-boundary composure (46.8%), and macro stakes.
-                </p>
               </div>
 
-              {/* Batters vs Bowlers Toggle */}
+              {/* Batters vs Bowlers Toggle (Clean - Zero Stickers) */}
               <div className="flex items-center bg-[#0E172A] p-1 rounded-xl border border-[#1E2E4F] shadow-inner">
                 <button
                   onClick={() => setRole('batters')}
-                  className={`px-5 py-2 rounded-lg text-xs uppercase font-extrabold tracking-wider flex items-center gap-1.5 transition ${
+                  className={`px-5 py-2 rounded-lg text-xs uppercase font-extrabold tracking-wider transition ${
                     role === 'batters' ? 'bg-[#E11D74] text-white shadow-md shadow-[#E11D74]/30' : 'text-slate-400 hover:text-white'
                   }`}
                 >
-                  <Zap className="w-4 h-4" /> Batters (10)
+                  Batters (10)
                 </button>
                 <button
                   onClick={() => setRole('bowlers')}
-                  className={`px-5 py-2 rounded-lg text-xs uppercase font-extrabold tracking-wider flex items-center gap-1.5 transition ${
+                  className={`px-5 py-2 rounded-lg text-xs uppercase font-extrabold tracking-wider transition ${
                     role === 'bowlers' ? 'bg-[#E11D74] text-white shadow-md shadow-[#E11D74]/30' : 'text-slate-400 hover:text-white'
                   }`}
                 >
-                  <Target className="w-4 h-4" /> Bowlers (10)
+                  Bowlers (10)
                 </button>
               </div>
             </div>
@@ -534,9 +529,6 @@ export default function Home() {
               <h2 className="text-2xl font-black text-white flex items-center gap-2">
                 World Best T20 XI <span className="text-[#EAB308] text-base font-bold">• Master Lineup</span>
               </h2>
-              <p className="text-sm text-slate-400 mt-1">
-                Synthesized from positional optimization (Slots 1–7) and phase-specific bowling metrics. Click any card for the full scouting report.
-              </p>
             </div>
 
             <div className="bg-gradient-to-br from-[#131F37]/95 to-[#0E172A]/95 rounded-3xl p-6 sm:p-8 border-2 border-[#E11D74]/30 space-y-8">
@@ -695,11 +687,8 @@ export default function Home() {
           <section className="space-y-6">
             <div className="pb-4 border-b border-[#1E2E4F]">
               <h2 className="text-2xl font-black text-white flex items-center gap-2">
-                Live Crunch-Time Pressure Simulator
+                Pressure Simulation
               </h2>
-              <p className="text-sm text-slate-400 mt-1">
-                Adjust live game parameters to simulate high-stress match scenarios and see how our quantitative engine evaluates player pressure.
-              </p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -800,7 +789,7 @@ export default function Home() {
                     className="w-4 h-4 accent-[#E11D74] rounded cursor-pointer"
                   />
                   <label htmlFor="fortress-check" className="text-sm font-semibold text-slate-200 cursor-pointer">
-                    Hostile Away Fortress Match (Wankhede, Eden Gardens, Gabba, MCG)
+                    Hostile Away Fortress
                   </label>
                 </div>
               </div>
@@ -850,9 +839,6 @@ export default function Home() {
               <h2 className="text-2xl font-black text-white flex items-center gap-2">
                 Methodology & Mathematical Engine
               </h2>
-              <p className="text-sm text-slate-400 mt-1">
-                Complete transparent formulation of how 200,999 deliveries were evaluated to isolate true clutch execution from reputation.
-              </p>
             </div>
 
             {/* Architecture Overview Banner (Clean, Executive & Human-Like) */}
